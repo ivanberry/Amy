@@ -2,6 +2,7 @@
 
 const config = require('../config/config');
 const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 
 process.env.NODE_ENV = 'test';
 

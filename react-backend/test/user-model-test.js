@@ -9,22 +9,6 @@ const User = require('../model/User');
 
 describe('Database Tests', () => {
 	describe('Add new user', () => {
-		it('should add a new user', done => {
-		    let newUser = new User({
-		        name: 'tab',
-		        password: 'tab',
-		        uuid: 0
-		    });
-
-		    newUser.save(done);
-		});
-
-		it('retrive insert data', done => {
-		    User.find({ name: 'tab' }, (err, doc) => {
-		        done();
-		    });
-		});
-
 		it('insert and retrive user data', done => {
 			let newUser = new User({
 				name: 'tab',
@@ -34,12 +18,12 @@ describe('Database Tests', () => {
 
 			newUser.save(err => {
 				if (err) throw new Error(err);
-				User.find({ name: 'tab' }, (err, docs) => {
-					if (err) throw new Error(err);
-					console.log(docs);
-					expect(docs[0].uuid, 'doc[uuid]').to.equal('0');
-					done();
-				});
+				User.find({ name: 'tab' })
+					.then(docs => {
+                        console.log(docs);
+						expect(docs[0].uuid, 'user[uuid]').to.equal(0);
+					})
+					.catch(e => console.log(e));
 			});
 		});
 	});
