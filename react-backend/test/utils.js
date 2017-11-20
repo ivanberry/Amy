@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../config');
+const config = require('../config/config');
 const mongoose = require('mongoose');
 
 process.env.NODE_ENV = 'test';
@@ -14,7 +14,7 @@ beforeEach(done => {
 	}
 
 	if (mongoose.connection.readyState === 0) {
-		mongoose.connect(config.test, err => {
+		mongoose.connect(config.db.test, err => {
 			if (err) throw new Error(err);
 			return clearDB();
 		});
