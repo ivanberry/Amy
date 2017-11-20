@@ -24,6 +24,7 @@ beforeEach(done => {
 });
 
 afterEach(done => {
-	mongoose.disconnect();
-	return done();
+	mongoose.connection.dropDatabase(function() {
+    mongoose.connection.close(done);
+  });
 });
