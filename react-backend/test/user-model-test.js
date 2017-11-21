@@ -1,13 +1,9 @@
-const bcrypt = require('bcrypt');
-
-var sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
 
-//execute
-require('sinon-mongoose');
-require('../ultis/test-ultis');
+require('../ultis/test-ultis'); //what's the execute context
 
+const bcrypt = require('bcrypt');
 const UserModel = require('../model/User');
 const User = require('../ultis/user');
 
@@ -35,11 +31,31 @@ describe('Database Tests', () => {
 			let newUser = new User(o);
 			newUser.createUser(err => {
 				if (err) throw new Error(err);
-				UserModel.findOne({ name: 'tab' },'-name', { lean: true }, (err, doc) => {
-                    if (err) throw new Error(err);
-                    expect(doc).to.has.ownProperty('hash');
-                    done();
-				});
+				UserModel.findOne({ name: 'tab' }, '-name', { lean: true })
+					.then(doc => {
+						expect(doc).to.has.ownProperty('hash');
+						done();
+					})
+					.catch(err => {
+						throw new Error(err);
+					});
+			});
+		});
+
+		it('Match user password', done => {
+			let newUser = new User(o);
+			newUser.createUser(err => {
+				if (err) throw new Error(err);
+				UserModel.findOne({ name: 'tab' }, 'hash', { lean: true })
+					.then(doc => {
+						bcrypt.compare('tab', doc.hash, (err, res) => {
+							expect(res).to.true;
+							done();
+						});
+					})
+					.catch(err => {
+						throw new Error(err);
+					});
 			});
 		});
 	});

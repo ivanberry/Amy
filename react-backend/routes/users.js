@@ -3,20 +3,17 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-	res.json([
-		{
-			id: 1,
-			username: 'tab'
-		},
-		{
-			id: 2,
-			username: 'shirting'
-		},
-		{
-			id: 3,
-			username: 'amy'
-		}
-	]);
+	let response = {
+		statusCode: 200,
+		message: 'There are all users!',
+		data: []
+	};
+	res.statusCode = 200;
+	res.json(response);
+});
+
+router.post('/', function (req, res, next) {
+	res.end('wowo');
 });
 
 module.exports = router;
