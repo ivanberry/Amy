@@ -13,8 +13,7 @@ const User = require('../ultis/user');
 
 let o = {
 	name: 'tab',
-	password: 'tab',
-	uuid: '0'
+	password: 'tab'
 };
 
 describe('Database Tests', () => {
@@ -25,7 +24,6 @@ describe('Database Tests', () => {
 				if (err) throw new Error(err);
 				UserModel.findOne({ name: 'tab' })
 					.then(doc => {
-                        console.log(doc)
 						expect(doc).to.be.a('object');
 						done();
 					})
@@ -33,23 +31,16 @@ describe('Database Tests', () => {
 			});
 		});
 
-		// it('match user correctly', done => {
-		// 	let newUser = new User(o);
-		// 	newUser.save(err => {
-		// 		if (err) throw new Error(err);
-		// 		UserModel.findOne({ name: 'tab' })
-		// 			.then(doc => {
-		// 				let pass = doc.password,
-		// 					hash = doc.hash;
-		// 				bcrypt.compare(pass, hash).then(res => {
-		// 					expect(res).to.true;
-		// 					done();
-		// 				});
-		// 			})
-		// 			.catch(e => {
-		// 				done(e);
-		// 			});
-		// 	});
-		// });
+		it('Has hashed user password', done => {
+			let newUser = new User(o);
+			newUser.createUser(err => {
+				if (err) throw new Error(err);
+				UserModel.findOne({ name: 'tab' },'-name', { lean: true }, (err, doc) => {
+                    if (err) throw new Error(err);
+                    expect(doc).to.has.ownProperty('hash');
+                    done();
+				});
+			});
+		});
 	});
 });

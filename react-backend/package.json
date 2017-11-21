@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "PORT=3001 DEBUG=1 nodemon --inspect ./bin/www",
-    "test": "mocha test"
+    "test": "mocha test -w"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
