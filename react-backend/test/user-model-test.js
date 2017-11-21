@@ -20,8 +20,9 @@ describe('Database Tests', () => {
 				if (err) throw new Error(err);
 				User.find({ name: 'tab' })
 					.then(docs => {
-                        console.log(docs);
-						expect(docs[0].uuid, 'user[uuid]').to.equal(0);
+                        expect(docs[0].uuid, 'user[uuid]').to.equal('0');
+                        expect(docs[0].password, 'user[password]').to.equal('tab');
+                        done();
 					})
 					.catch(e => console.log(e));
 			});
