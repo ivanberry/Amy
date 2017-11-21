@@ -8,4 +8,4 @@ var Userschema = new mongoose.Schema({
 });
 
 //a model is a class with which we construct documents
-module.exports = mongoose.models.User || mongoose.model('User', Userschema);
+module.exports = mongoose.models.UserModel || mongoose.model('UserModel', Userschema);

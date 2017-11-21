@@ -4,34 +4,52 @@ var sinon = require('sinon');
 var chai = require('chai');
 var expect = chai.expect;
 
+//execute
 require('sinon-mongoose');
+require('../ultis/test-ultis');
 
-var ultis = require('./utils');
-const User = require('../model/User');
+const UserModel = require('../model/User');
+const User = require('../ultis/user');
+
+let o = {
+	name: 'tab',
+	password: 'tab',
+	uuid: '0'
+};
 
 describe('Database Tests', () => {
-	describe('Add new user', () => {
-		it('insert and retrive user data', done => {
-			let newUser = new User({
-				name: 'tab',
-				password: 'tab',
-                uuid: 0,
-                password: 'amy'
-			});
-
-			newUser.save(err => {
+	describe('Create user', () => {
+		it('create a new user', done => {
+			let newUser = new User(o);
+			newUser.createUser(err => {
 				if (err) throw new Error(err);
-				User.find({ name: 'tab' })
-					.then(docs => {
-                        expect(docs[0].uuid, 'user[uuid]').to.equal('0');
-                        done();
+				UserModel.findOne({ name: 'tab' })
+					.then(doc => {
+                        console.log(doc)
+						expect(doc).to.be.a('object');
+						done();
 					})
-					.catch(e => console.log(e));
+					.catch(e => done(e));
 			});
-        });
-        
-        it('check user with hash', done => {
+		});
 
-        })
+		// it('match user correctly', done => {
+		// 	let newUser = new User(o);
+		// 	newUser.save(err => {
+		// 		if (err) throw new Error(err);
+		// 		UserModel.findOne({ name: 'tab' })
+		// 			.then(doc => {
+		// 				let pass = doc.password,
+		// 					hash = doc.hash;
+		// 				bcrypt.compare(pass, hash).then(res => {
+		// 					expect(res).to.true;
+		// 					done();
+		// 				});
+		// 			})
+		// 			.catch(e => {
+		// 				done(e);
+		// 			});
+		// 	});
+		// });
 	});
 });
