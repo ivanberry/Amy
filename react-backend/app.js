@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+const mongoose = require('mongoose');
+const dbUrl = require('./config/config').db.test;
 
 var app = express();
 
@@ -30,6 +32,11 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+mongoose.connect(dbUrl);
+let db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connectin Error!'));
 
 // error handler
 app.use(function(err, req, res) {
