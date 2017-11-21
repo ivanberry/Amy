@@ -40,6 +40,7 @@ describe('User API Test', () => {
 
 		rp(options)
 			.then(function(res) {
+                //what did you except?
 				// POST succeeded...
 				console.log(res);
 				done();
