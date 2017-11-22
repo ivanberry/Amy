@@ -53,26 +53,26 @@ describe('User API Test', () => {
 		});
 	});
 
-	it('Register a new user', done => {
-		var options = {
-			method: 'POST',
-			uri: url,
-			body: {
-				name: 'tab',
-				password: 'tab'
-			},
-			json: true // Automatically stringifies the body to JSON
-		};
+	// it('Register a new user', done => {
+	// 	var options = {
+	// 		method: 'POST',
+	// 		uri: url,
+	// 		body: {
+	// 			name: 'tab',
+	// 			password: 'tab'
+	// 		},
+	// 		json: true // Automatically stringifies the body to JSON
+	// 	};
 
-		rp(options)
-			.then(function(res) {
-				//what did you except?
-				// POST succeeded...
-				console.log(res);
-				done();
-			})
-			.catch(err => {
-				throw new Error(err);
-			});
-	});
+	// 	rp(options)
+	// 		.then(function(res) {
+	// 			//what did you except?
+	// 			// POST succeeded...
+	// 			console.log(res);
+	// 			done();
+	// 		})
+	// 		.catch(err => {
+	// 			throw new Error(err);
+	// 		});
+	// });
 });
