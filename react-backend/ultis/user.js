@@ -3,6 +3,14 @@ const config = require('../config/config');
 const bcrcyt = require('bcrypt');
 const uuid = require('uuid');
 
+UserModel.on('index', function(err) {
+	if (err) {
+		console.error('User index error: %s', err);
+	} else {
+		console.info('User indexing complete');
+	}
+});
+
 class User {
 	constructor(opt) {
 		Object.assign(this, opt);
@@ -20,6 +28,7 @@ class User {
 			.then(hash => {
 				this.hash = hash;
 				let userCreated = new UserModel(user);
+
 				userCreated.save(cb);
 			})
 			.catch(e => {

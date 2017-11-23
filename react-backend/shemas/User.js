@@ -1,8 +1,15 @@
 const mongoose = require('mongoose');
 
 module.exports = new mongoose.Schema({
-	name: String,
-	password: String,
+	name: {
+		type: String,
+		unique: true,
+		required: true
+	},
+	password: {
+		type: String,
+		required: true
+	},
 	uuid: String,
 	hash: String,
 	updateTime: Date
