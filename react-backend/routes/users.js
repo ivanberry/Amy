@@ -39,6 +39,7 @@ router.post('/', function(req, res, next) {
 		};
 		if (err) {
 			if (err.code === 11000) {
+				response.statusCode = 401;
 				response.message = 'Name has been used';
 				res.json(response);
 			} else {

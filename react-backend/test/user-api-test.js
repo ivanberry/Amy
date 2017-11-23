@@ -20,11 +20,6 @@ describe('User API Test', () => {
 		});
 	});
 
-	it('basic-test', done => {
-		except(2).to.equal(2);
-		done();
-	});
-
 	it('Get none users', done => {
 		rp(url)
 			.then(res => {
@@ -86,6 +81,18 @@ describe('User API Test', () => {
 			});
 	});
 
+	it('Register without name', done => {
+		let options = {
+			method: 'POST',
+			uri: url,
+			body: {
+				password: 'tab'
+			},
+			json: true
+		};
+		done();
+	});
+
 	it('Register user with same name', done => {
 		let user = new User({
 			name: 'tab',
@@ -106,7 +113,7 @@ describe('User API Test', () => {
 
 			rp(options)
 				.then(function(res) {
-					except(res.statusCode).to.be.equal(200);
+					except(res.statusCode).to.be.equal(401);
 					except(res.message).to.be.equal('Name has been used');
 					done();
 				})
