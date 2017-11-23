@@ -12,5 +12,8 @@ module.exports = new mongoose.Schema({
 	},
 	uuid: String,
 	hash: String,
-	updateTime: Date
+	updatedAt: {
+		type: Date,
+		default: Date.now
+	}
 });

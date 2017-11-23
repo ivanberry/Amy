@@ -1,5 +1,5 @@
 const UserModel = require('../model/User');
-const config = require('../config/config');
+const config = require('../config/_config');
 const bcrcyt = require('bcrypt');
 const uuid = require('uuid');
 
@@ -24,7 +24,7 @@ class User {
 	createUser(cb) {
 		let user = this;
 		bcrcyt
-			.hash(this.password, config.salt.test)
+			.hash(this.password, config.saltLevel.test)
 			.then(hash => {
 				this.hash = hash;
 				let userCreated = new UserModel(user);

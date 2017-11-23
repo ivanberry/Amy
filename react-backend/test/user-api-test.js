@@ -1,15 +1,25 @@
 const User = require('../ultis/user');
 const URL = require('../ultis/request');
 
+const UserModel = require('../model/User');
+
 require('../ultis/test-ultis');
 
 const chai = require('chai');
 const except = chai.expect;
-const bcrypt = require('bcrypt');
+
+
 const rp = require('request-promise');
 const url = `${URL}/users`;
 
 describe('User API Test', () => {
+
+	beforeEach(done => {
+		UserModel.remove({}, err => {
+			done();
+		});
+	});
+
 	it('basic-test', done => {
 		except(2).to.equal(2);
 		done();
@@ -25,9 +35,9 @@ describe('User API Test', () => {
 					.to.be.an('array')
 					.to.lengthOf(0);
 				done();
-            })
+			})
 			.catch(err => {
-                done(err);
+				done(err);
 			});
 	});
 
@@ -49,7 +59,7 @@ describe('User API Test', () => {
 					done();
 				})
 				.catch(err => {
-                    done(err);
+					done(err);
 				});
 		});
 	});
@@ -72,7 +82,7 @@ describe('User API Test', () => {
 				done();
 			})
 			.catch(err => {
-                done(err);
+				done(err);
 			});
 	});
 
@@ -101,7 +111,7 @@ describe('User API Test', () => {
 					done();
 				})
 				.catch(err => {
-                    done(err);
+					done(err);
 				});
 		});
 	});

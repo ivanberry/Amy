@@ -14,6 +14,13 @@ let o = {
 
 describe('Database Tests', () => {
 	describe('Create user', () => {
+
+		beforeEach(done => {
+			UserModel.remove({}, err => {
+				done();
+			});
+		});
+
 		it('create a new user', done => {
 			let newUser = new User(o);
 			newUser.createUser(err => {
