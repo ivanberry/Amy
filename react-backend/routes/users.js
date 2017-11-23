@@ -37,9 +37,16 @@ router.post('/', function(req, res, next) {
 			statusCode: 200,
 			message: 'Success!'
 		};
-
-		if (err) next(err);
-		res.json(response);
+		if (err) {
+			if (err.code === 11000) {
+				response.message = 'Name has been used';
+				res.json(response);
+			} else {
+				next(err);
+			}
+		} else {
+			res.json(response);
+		}
 	});
 });
 

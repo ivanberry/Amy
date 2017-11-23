@@ -1,8 +1,8 @@
 module.exports = {
   db: {
     production: '',
-    development: 'mongodb://localhost/blog_app',
-    test: 'mongodb://localhost/app'
+    development: 'mongodb://127.0.0.1/app',
+    test: 'mongodb://127.0.0.1/app'
   },
   salt: {
     test: 2,

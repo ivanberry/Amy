@@ -2,12 +2,14 @@
 
 const config = require('../config/config');
 const mongoose = require('mongoose');
+
 mongoose.Promise = Promise;
 
 process.env.NODE_ENV = 'test';
 
 beforeEach(done => {
 	function clearDB() {
+		//remove all connectioned collections
 		for (let collection in mongoose.connection.collections) {
 			mongoose.connection.collections[collection].remove();
 		}
@@ -25,7 +27,15 @@ beforeEach(done => {
 });
 
 afterEach(done => {
+	//drop database and close connection
 	mongoose.connection.dropDatabase(function() {
-    mongoose.connection.close(done);
-  });
+		mongoose.connection.close(done);
+	});
+});
+
+after(function(done) {
+	mongoose.models = {};
+	mongoose.modelSchemas = {};
+	mongoose.connection.close();
+	done();
 });

@@ -25,9 +25,9 @@ describe('User API Test', () => {
 					.to.be.an('array')
 					.to.lengthOf(0);
 				done();
-			})
+            })
 			.catch(err => {
-				throw new Error(err);
+                done(err);
 			});
 	});
 
@@ -49,7 +49,7 @@ describe('User API Test', () => {
 					done();
 				})
 				.catch(err => {
-					throw new Error(err);
+                    done(err);
 				});
 		});
 	});
@@ -72,7 +72,7 @@ describe('User API Test', () => {
 				done();
 			})
 			.catch(err => {
-				throw new Error(err);
+                done(err);
 			});
 	});
 
@@ -101,9 +101,8 @@ describe('User API Test', () => {
 					done();
 				})
 				.catch(err => {
-					throw new Error(err);
+                    done(err);
 				});
-			done();
 		});
 	});
 });

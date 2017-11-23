@@ -12,8 +12,6 @@ const dbUrl = require('./config/config').db.test;
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,6 +32,7 @@ app.use(function(req, res, next) {
 });
 
 mongoose.connect(dbUrl);
+mongoose.set('debug', true);
 let db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connectin Error!'));
