@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 const mongoose = require('mongoose');
-const dbUrl = require('./config/config').db.test;
+const config = require('./config/_config');
 
 var app = express();
 
@@ -31,10 +31,20 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-mongoose.connect(dbUrl);
-mongoose.set('debug', true);
-let db = mongoose.connection;
+app.set('env', 'test');
 
+//create mongdb connection
+mongoose.set('debug', true);
+mongoose.connect(config.mongoURI[app.settings.env], function (err) {
+  if (err) {
+    console.log('Error connecting to the database' + err);
+  } else {
+    console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+  }
+});
+
+//create connection db instance
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connectin Error!'));
 
 // error handler
