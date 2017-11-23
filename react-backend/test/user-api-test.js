@@ -8,7 +8,6 @@ const except = chai.expect;
 const bcrypt = require('bcrypt');
 const rp = require('request-promise');
 const url = `${URL}/users`;
-console.log(url);
 
 describe('User API Test', () => {
 	it('basic-test', done => {
@@ -16,13 +15,15 @@ describe('User API Test', () => {
 		done();
 	});
 
-	it('Get users', done => {
+	it('Get none users', done => {
 		rp(url)
 			.then(res => {
 				res = JSON.parse(res);
-				except(res.statusCode, 'statueCode').to.be.equal(200);
-				except(res.message).to.be.equal('Success!');
-				except(res.data, 'data').to.be.an('array');
+				except(res.statusCode).to.be.equal(200);
+				except(res.message).to.be.equal('No Users Exits!');
+				except(res.data)
+					.to.be.an('array')
+					.to.lengthOf(0);
 				done();
 			})
 			.catch(err => {
@@ -53,26 +54,56 @@ describe('User API Test', () => {
 		});
 	});
 
-	// it('Register a new user', done => {
-	// 	var options = {
-	// 		method: 'POST',
-	// 		uri: url,
-	// 		body: {
-	// 			name: 'tab',
-	// 			password: 'tab'
-	// 		},
-	// 		json: true // Automatically stringifies the body to JSON
-	// 	};
+	it('Register a new user', done => {
+		var options = {
+			method: 'POST',
+			uri: url,
+			body: {
+				name: 'tab',
+				password: 'tab'
+			},
+			json: true
+		};
 
-	// 	rp(options)
-	// 		.then(function(res) {
-	// 			//what did you except?
-	// 			// POST succeeded...
-	// 			console.log(res);
-	// 			done();
-	// 		})
-	// 		.catch(err => {
-	// 			throw new Error(err);
-	// 		});
-	// });
+		rp(options)
+			.then(function(res) {
+				except(res.statusCode).to.be.equal(200);
+				except(res.message).to.be.equal('Success!');
+				done();
+			})
+			.catch(err => {
+				throw new Error(err);
+			});
+	});
+
+	it('Register user with same name', done => {
+		let user = new User({
+			name: 'tab',
+			password: 'tab'
+		});
+		user.createUser(err => {
+			if (err) throw new Error(err);
+
+			var options = {
+				method: 'POST',
+				uri: url,
+				body: {
+					name: 'tab',
+					password: 'tab'
+				},
+				json: true
+			};
+
+			rp(options)
+				.then(function(res) {
+					except(res.statusCode).to.be.equal(200);
+					except(res.message).to.be.equal('Name has been used');
+					done();
+				})
+				.catch(err => {
+					throw new Error(err);
+				});
+			done();
+		});
+	});
 });
