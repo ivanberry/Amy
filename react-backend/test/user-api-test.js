@@ -8,12 +8,10 @@ require('../ultis/test-ultis');
 const chai = require('chai');
 const except = chai.expect;
 
-
 const rp = require('request-promise');
 const url = `${URL}/users`;
 
 describe('User API Test', () => {
-
 	beforeEach(done => {
 		UserModel.remove({}, err => {
 			done();
@@ -121,5 +119,27 @@ describe('User API Test', () => {
 					done(err);
 				});
 		});
+	});
+
+	it('Update user info', done => {
+		let options = {
+			method: 'POST',
+			uri: `${url}/:name`,
+			body: {
+				name: 'tab',
+				new_pass_word: '21121'
+			},
+			json: true
+		};
+		rp(options)
+			.then(res => {
+				res = JSON.parse(res);
+				except(res.statusCode).to.be.equal(200);
+				except(res.message).to.be.equal('Password updates success!');
+				done();
+			})
+			.catch(err => {
+				done(err);
+			});
 	});
 });

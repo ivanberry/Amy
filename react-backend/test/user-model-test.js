@@ -65,5 +65,15 @@ describe('Database Tests', () => {
 					});
 			});
 		});
+
+		//TODO: How to reject thi err?
+		// it('Create user without password', done => {
+		// 	let newUser = new User({
+		// 		name: 'tab'
+		// 	});
+		// 	newUser.createUser(err => {
+		// 		done(err);
+		// 	});
+		// })
 	});
 });
