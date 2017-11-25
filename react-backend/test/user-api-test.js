@@ -70,7 +70,7 @@ describe('User API Test', () => {
 
 		rp(options)
 			.then(function(res) {
-				except(res.statusCode).to.be.equal(200);
+				except(res.statusCode).to.be.equal(201);
 				except(res.message).to.be.equal('Success!');
 				done();
 			})
@@ -96,6 +96,7 @@ describe('User API Test', () => {
 			name: 'tab',
 			password: 'tab'
 		});
+
 		user.createUser(err => {
 			if (err) throw new Error(err);
 
@@ -122,24 +123,32 @@ describe('User API Test', () => {
 	});
 
 	it('Update user info', done => {
-		let options = {
-			method: 'POST',
-			uri: `${url}/:name`,
-			body: {
-				name: 'tab',
-				new_pass_word: '21121'
-			},
-			json: true
-		};
-		rp(options)
-			.then(res => {
-				res = JSON.parse(res);
-				except(res.statusCode).to.be.equal(200);
-				except(res.message).to.be.equal('Password updates success!');
-				done();
-			})
-			.catch(err => {
-				done(err);
-			});
+		let user = new User({
+			name: 'tab',
+			password: 'tab'
+		});
+
+		user.createUser(err => {
+			if (err) throw new Error(err);
+			let options = {
+				method: 'POST',
+				uri: `${url}/tab`,
+				body: {
+					name: 'tab',
+					password: '21121'
+				},
+				json: true
+			};
+			rp(options)
+				.then(res => {
+					res = JSON.parse(res);
+					except(res.statusCode).to.be.equal(200);
+					except(res.message).to.be.equal('Password updates success!');
+					done();
+				})
+				.catch(err => {
+					done(err);
+				});
+		});
 	});
 });

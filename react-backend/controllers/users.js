@@ -1,6 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
-
 var UserModel = require('../model/User');
 const User = require('../ultis/user');
 
@@ -20,21 +17,21 @@ function createOrUpdate(req, res, next) {
 	if (_name) {
 		UserModel.findOne({ name: _name }, 'password')
 			.then(doc => {
-				return Object.assign(doc, { password: password });
-			}).then(doc => {
+				if (doc) return Object.assign(doc, { password: password });
+			})
+			.then(doc => {
 				return doc.save();
-			}).then(updatedDoc => {
+			})
+			.then(updatedDoc => {
 				response.message = 'Password updates success!';
-				res.json({
-					response,
-					updatedDoc
-				});
+				updatedDoc = updatedDoc.toObject();
+				response = Object.assign(response, { password: updatedDoc.password });
+				res.json(JSON.stringify(response));
 			})
 			.catch(err => next(err));
 	} else {
 		let newUser = new User({ name, password });
 		newUser.createUser(err => {
-
 			if (err) {
 				if (err.code === 11000) {
 					response.statusCode = 401;
