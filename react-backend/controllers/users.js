@@ -14,7 +14,7 @@ function createOrUpdate(req, res, next) {
 		message: 'Success!'
 	};
 
-	if (_name) {
+	if (_name && name === _name) {
 		UserModel.findOne({ name: _name }, 'password')
 			.then(doc => {
 				if (doc) return Object.assign(doc, { password: password });
@@ -51,6 +51,7 @@ function createOrUpdate(req, res, next) {
 /* GET users listing. */
 exports.get = function(req, res, next) {
 	let response = {
+		statusCode: 200,
 		message: 'Success!'
 	};
 	UserModel.find({}, null, { lean: true }, (err, docs) => {
@@ -60,11 +61,9 @@ exports.get = function(req, res, next) {
 
 		if (docs.length === 0) {
 			response.data = [];
-			response.statusCode = 200;
 			response.message = 'No Users Exits!';
 			res.json(response);
 		} else {
-			response.statusCode = 200;
 			response.data = docs;
 			res.json(response);
 		}

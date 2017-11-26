@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-	state = { users: [] };
+	constructor() {
+		super();
+		this.state = {
+			users: []
+		};
+	}
+
 	componentDidMount() {
 		fetch('/api/users')
-			.then(res => res.json())
-			.then(users => this.setState({ users }))
+			.then(res => {
+				return res.json();
+			})
+			.then(users => {
+				let _data = users.data;
+				this.setState({ users: _data });
+			})
 			.catch(err => console.log(err));
 	}
 
@@ -14,7 +25,7 @@ class App extends Component {
 		return (
 			<div className="App">
 				<h1>Users</h1>
-				{this.state.users.map(user => <div key={user.id}>{user.username}</div>)}
+				{this.state.users.map(user => <div key={user._id}>{user.name}</div>)}
 			</div>
 		);
 	}
