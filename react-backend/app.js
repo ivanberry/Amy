@@ -9,6 +9,7 @@ var index = require('./controllers/index');
 var users = require('./controllers/users');
 const mongoose = require('mongoose');
 const config = require('./config/_config');
+const basic_auth = require('./lib/basic-auth');
 
 var app = express();
 
@@ -22,6 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(basic_auth);
 
 app.use('/', index);
 app.get('/api/users', users.get);
