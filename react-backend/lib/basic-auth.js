@@ -11,7 +11,7 @@ module.exports = function auth(req, res, next) {
 
 	if (!login || !password) {
         res.status(401);
-        res.set('WWW-Authenticate', 'Basic realm="nope"');
+        res.set('WWW-Authenticate', 'Basic realm="Resource Protected"');
 		res.json({
 			statusCode: 401,
 			message: 'User Unauthorized!'
