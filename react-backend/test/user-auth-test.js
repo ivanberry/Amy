@@ -34,17 +34,33 @@ describe('User Authorization Test', () => {
 		};
 
 		newUser.createUser(err => {
-            if (err) throw new Error(err);
+			if (err) throw new Error(err);
 
 			rp(options)
-                .then(res => {
-                    except(res.statusCode).to.be.equal(200);
-                    except(res.message).to.be.equal('Login Successed!');
-                    done();
-                })
+				.then(res => {
+					except(res.statusCode).to.be.equal(200);
+					except(res.message).to.be.equal('Login Successed!');
+					done();
+				})
 				.catch(err => {
-                    done(err);
+					done(err);
 				});
 		});
+	});
+
+	it('Should Login before get Resources', done => {
+		//why status 401 will be catched?
+		rp({
+			uri: `${URL}/users`,
+			json: true 
+		})
+			.then(res => {
+				console.log(res);
+				done();
+			})
+			.catch(e => {
+				//why should get boyd?
+				done();
+			});
 	});
 });

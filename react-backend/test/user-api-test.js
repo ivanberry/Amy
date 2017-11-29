@@ -122,7 +122,7 @@ describe('User API Test', () => {
 		});
 	});
 
-	it('Update user info', done => {
+	it('Update self info', done => {
 		let user = new User({
 			name: 'tab',
 			password: 'tab'

@@ -1,23 +1,37 @@
-const bcrypt = require('bcrypt');
 const UserModel = require('../model/User');
 
+/**
+ * Authorization only
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 module.exports = function auth(req, res, next) {
-	/**
-	 * 0. if have session id, regard as authorized
-	 * 1. retrive data from Authorization
-	 */
 	let _auth64base = (req.headers.authorization || '').split(' ') || '';
-	const [login, password] = new Buffer(_auth64base, 'base64').toString().split(':');
+	const [name, hash] = new Buffer(_auth64base, 'base64').toString().split(':');
 
-	if (!login || !password) {
-        res.status(401);
-        res.set('WWW-Authenticate', 'Basic realm="Resource Protected"');
+	if (!name || !hash) {
+		res.status(200);
+		res.set('WWW-Authenticate', 'Basic realm="Resource Protected"');
 		res.json({
 			statusCode: 401,
 			message: 'User Unauthorized!'
 		});
 	} else {
 		//forward to next
-		next();
+		UserModel.findOne({ name: name }, 'hash', { lean: true }, (err, doc) => {
+			if (err) throw new Error(err);
+			if (hash !== doc.hash) {
+				res.status(200);
+				res.set('WWW-Authenticate', 'Basic realm="Resource Protected"');
+				res.json({
+					statusCode: 401,
+					message: 'User Unauthorized!'
+				});
+			} else {
+				res.status(200);
+				next();
+			}
+		});
 	}
 };
