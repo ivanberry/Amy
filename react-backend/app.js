@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/api/login', login.login);
 
 app.use('/', index);
-app.get('/api/users', basic_auth, users.get);
+app.get('/api/users', users.get);
 app.post('/api/users', users.post);
 app.post('/api/users/:name', users.post);
 

@@ -11,7 +11,7 @@ module.exports = function auth(req, res, next) {
 	const [name, hash] = new Buffer(_auth64base, 'base64').toString().split(':');
 
 	if (!name || !hash) {
-		res.status(200);
+		res.status(401);
 		res.set('WWW-Authenticate', 'Basic realm="Resource Protected"');
 		res.json({
 			statusCode: 401,
@@ -22,7 +22,7 @@ module.exports = function auth(req, res, next) {
 		UserModel.findOne({ name: name }, 'hash', { lean: true }, (err, doc) => {
 			if (err) throw new Error(err);
 			if (hash !== doc.hash) {
-				res.status(200);
+				res.status(401);
 				res.set('WWW-Authenticate', 'Basic realm="Resource Protected"');
 				res.json({
 					statusCode: 401,

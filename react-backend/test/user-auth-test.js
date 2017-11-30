@@ -52,15 +52,19 @@ describe('User Authorization Test', () => {
 		//why status 401 will be catched?
 		rp({
 			uri: `${URL}/users`,
-			json: true 
+			json: true
 		})
 			.then(res => {
-				console.log(res);
+				except(res.statusCode).to.be.equal(200);
+				except(res.message).to.be.equal('No Users Exits!');
 				done();
 			})
 			.catch(e => {
-				//why should get boyd?
-				done();
+				//why when status code set to 401, will be catched?
+				//why bodyParser did not parse the err messages?
+				except(e.statusCode).to.be.equal(401);
+				except(e.message).to.be.equal('User Unauthorized!');
+				done(e);
 			});
 	});
 });

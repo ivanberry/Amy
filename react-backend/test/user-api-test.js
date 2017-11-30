@@ -19,9 +19,11 @@ describe('User API Test', () => {
 	});
 
 	it('Get none users', done => {
-		rp(url)
+		rp({
+			uri: url,
+			json: true
+		})
 			.then(res => {
-				res = JSON.parse(res);
 				except(res.statusCode).to.be.equal(200);
 				except(res.message).to.be.equal('No Users Exits!');
 				except(res.data)
@@ -41,9 +43,11 @@ describe('User API Test', () => {
 		});
 		newUser.createUser(err => {
 			if (err) throw new Error(err);
-			rp(url)
+			rp({
+				uri: url,
+				json: true
+			})
 				.then(res => {
-					res = JSON.parse(res);
 					except(res.statusCode, 'statusCode').to.be.equal(200);
 					except(res.message, 'message').to.be.equal('Success!');
 					except(res.data, 'data')
