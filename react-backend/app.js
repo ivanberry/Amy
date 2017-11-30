@@ -9,7 +9,9 @@ let secret = {
 	secret: 'keyboard cat',
 	resave: false,
 	saveUninitialized: true,
-	cookie: { /*secure: true*/ }
+	cookie: {
+		maxAge: 6000
+	}
 };
 
 // var cors = require('cors');
@@ -23,7 +25,12 @@ const login = require('./controllers/login');
 
 var app = express();
 
-// view engine setup
+app.set('env', 'test');
+
+if(app.get('env') === 'production') {
+  app.set('trust proxy', 1);
+  secret.cookie.secure = true;
+}
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -49,7 +56,6 @@ app.use(function(req, res, next) {
 	next(err);
 });
 
-app.set('env', 'test');
 
 //create mongdb connection
 mongoose.set('debug', true);
