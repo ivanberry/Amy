@@ -9,7 +9,7 @@ const UserModel = require('../model/User');
  */
 module.exports = function auth(req, res, next) {
 	let _auth64base = (req.headers.authorization || '').split(' ')[1] || '';
-	const [name, password] = new Buffer(_auth64base, 'base64').toString().split(':');
+	const [name, password] = Buffer.from(_auth64base, 'base64').toString().split(':');
 
 	if (!name || !password) {
 		res.status(401);
