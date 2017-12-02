@@ -2,6 +2,7 @@ const User = require('../ultis/user');
 const URL = require('../ultis/request');
 
 const UserModel = require('../model/User');
+const unAuthorizedHelper = require('../ultis/test-helper').unAuthorized;
 
 require('../ultis/test-ultis');
 
@@ -32,7 +33,8 @@ describe('User API Test', () => {
 				done();
 			})
 			.catch(err => {
-				done(err);
+				unAuthorizedHelper(err, except);
+				done();
 			});
 	});
 
@@ -56,7 +58,8 @@ describe('User API Test', () => {
 					done();
 				})
 				.catch(err => {
-					done(err);
+					unAuthorizedHelper(err, except);
+					done();
 				});
 		});
 	});

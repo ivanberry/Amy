@@ -1,5 +1,6 @@
 const User = require('../ultis/user');
 const URL = require('../ultis/request');
+const unAuthorizedHelper = require('../ultis/test-helper').unAuthorized;
 
 const UserModel = require('../model/User');
 
@@ -18,38 +19,7 @@ describe('User Authorization Test', () => {
 		});
 	});
 
-	it('User login', done => {
-		let newUser = new User({
-			name: 'tab',
-			password: '123'
-		});
-		let options = {
-			method: 'POST',
-			uri: url,
-			body: {
-				name: 'tab',
-				password: '123'
-			},
-			json: true
-		};
-
-		newUser.createUser(err => {
-			if (err) throw new Error(err);
-
-			rp(options)
-				.then(res => {
-					except(res.statusCode).to.be.equal(200);
-					except(res.message).to.be.equal('Login Successed!');
-					done();
-				})
-				.catch(err => {
-					done(err);
-				});
-		});
-	});
-
 	it('Should Login before get Resources', done => {
-		//why status 401 will be catched?
 		rp({
 			uri: `${URL}/users`,
 			json: true
@@ -60,11 +30,41 @@ describe('User Authorization Test', () => {
 				done();
 			})
 			.catch(e => {
-				//why when status code set to 401, will be catched?
-				//why bodyParser did not parse the err messages?
-				except(e.statusCode).to.be.equal(401);
-				except(e.message).to.be.equal('User Unauthorized!');
-				done(e);
+				unAuthorizedHelper(e, except);
+				done();
 			});
+	});
+
+	it('Get Resources After login', done => {
+		let newUser = new User({
+			name: 'tab',
+			password: '123'
+		});
+
+		let _credients = Buffer.from('tab:123').toString('base64');
+
+		let options = {
+			uri: `${URL}/users`,
+			headers: {
+				Authorization: `Basic ${_credients}`
+			},
+			json: true
+		};
+
+		newUser.createUser(err => {
+			if (err) throw new Error(err);
+			rp(options)
+				.then(res => {
+					except(res.statusCode).to.be.equal(200);
+					except(res.data)
+						.to.be.an('array')
+						.with.lengthOf(1);
+					done();
+				})
+				.catch(e => {
+					throw new Error(e);
+					done();
+				});
+		});
 	});
 });
