@@ -10,7 +10,7 @@ let secret = {
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-		maxAge: 6000
+		maxAge: 600000
 	}
 };
 

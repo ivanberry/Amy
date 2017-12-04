@@ -8,15 +8,8 @@ exports.login = function(req, res, next) {
 		bcrypt.compare(password, doc.hash, (err, isUser) => {
 			if (err) next(err);
 			if (isUser) {
-
-				//user name and password
-				let _toBase64 = Buffer.from('name:name,hash: doc.hash').toString('base64');
-
-				//after login store the sessionId and userInfo into redis, but basic store in server memory
-
-				//after success login, what should do?
+				req.session.user = name;
 				res.status(200);
-				res.set('WWW-Authenticate', `Basic ${_toBase64}`);
 				res.json({
 					statusCode: 200,
 					message: 'Login Successed!'

@@ -62,7 +62,7 @@ describe('User Authorization Test', () => {
 					done();
 				})
 				.catch(e => {
-					throw new Error(e);
+					unAuthorizedHelper(e, except);
 					done();
 				});
 		});
