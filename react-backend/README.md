@@ -8,6 +8,11 @@ npm install
 mongod --dbpath /your/db/path
 ```
 
+### Run app
+```bash
+npm start
+```
+
 ### Run Test
 ```bash
 npm test
