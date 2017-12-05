@@ -10,10 +10,12 @@ module.exports = new mongoose.Schema({
         required: true
     },
     createAt: {
-        type: Date
+        type: Date,
+        default: new Date()
     },
     modifyAt: {
-        type: Date
+        type: Date,
+        default: new Date()
     },
     tag: {
         type: String,
