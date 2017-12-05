@@ -1,4 +1,4 @@
-const PostModel = require('../model/Post');
+const PostModel = require('../model/Article');
 const config = require('../config/_config');
 const bcrcyt = require('bcrypt');
 

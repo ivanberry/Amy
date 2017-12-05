@@ -4,8 +4,8 @@ var expect = chai.expect;
 require('../ultis/test-ultis');
 
 const bcrypt = require('bcrypt');
-const PostModel = require('../model/Post');
-const Post = require('../ultis/post');
+const PostModel = require('../model/Article');
+const Article = require('../ultis/article');
 
 let _p = {
 	title: 'title',
@@ -21,8 +21,8 @@ describe('Post Collection Tests', () => {
 	});
 
 	it('Create a new post normally', done => {
-		let newPost = new Post(_p);
-		newPost
+		let newArticle = new Article(_p);
+		newArticle
 			.createPost()
 			.then(post => {
 				expect(post._id).not.null;
@@ -49,12 +49,12 @@ describe('Post Collection Tests', () => {
 	});
 
 	it('Create Post without title', done => {
-		let newPost = new Post({
+		let newArticle = new Article({
 			body: 'body',
 			author: 'tab'
 		});
 
-		newPost
+		newArticle
 			.createPost()
 			.then(post => {
 				done();
@@ -68,12 +68,12 @@ describe('Post Collection Tests', () => {
     });
     
     it('Create new Post without body', done => {
-        let newPost = new Post({
+        let newArticle = new Article({
             title: 'body',
             author: 'tab'
         });
 
-        newPost
+        newArticle
             .createPost()
             .then(post => {
                 done();

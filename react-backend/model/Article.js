@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Postshemas = require('../shemas/Post');
+const Articleshemas = require('../shemas/Post');
 
-Postshemas.pre('save', next => {
+Articleshemas.pre('save', next => {
     let now = new Date();
     if (!this.createAt || !this.modifyAt) {
         this.modifyAt = this.createAt = now;
@@ -9,4 +9,4 @@ Postshemas.pre('save', next => {
     next();
 });
 
-module.exports = mongoose.model('PostModel', Postshemas);
+module.exports = mongoose.model('ArticleModel', Articleshemas);
