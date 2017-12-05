@@ -9,5 +9,4 @@ Userschema.pre('save', next => {
   next();
 });
 
-//a model is a class with which we construct documents
 module.exports = mongoose.model('UserModel', Userschema);
