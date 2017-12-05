@@ -15,8 +15,9 @@ function createOrUpdate(req, res, next) {
 	};
 
 	if (_name && name === _name) {
-		UserModel.findOne({ name: _name }, 'password')
+		UserModel.findOne({ 'name': _name }, 'password')
 			.then(doc => {
+				//TODO: if doc is null, shoud return 'You need Register First'
 				if (doc) return Object.assign(doc, { password: password });
 			})
 			.then(doc => {

@@ -1,9 +1,17 @@
 /**
  * Create new post
  */
-const PostModel = require('../model/Post');
-const Post = require('../ultis/post');
+const Article = require('../ultis/article');
+const ArticleModel = require('../model/Article');
 
-exports.getUserPost = (req, res, next)=> {
-    next();
+exports.getAllArticles = (req, res, next) => {
+	const { page } = req.params;
+	ArticleModel.count({})
+		.then(length => {
+            res.end(length);
+        })
+		.catch(err => {
+            throw new Error(err);
+        });
+	next();
 };
