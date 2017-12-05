@@ -16,12 +16,15 @@ let secret = {
 
 // var cors = require('cors');
 
-var index = require('./controllers/index');
-var users = require('./controllers/users');
 const mongoose = require('mongoose');
+
 const config = require('./config/_config');
 const basic_auth = require('./lib/basic-auth');
+
 const login = require('./controllers/login');
+const index = require('./controllers/index');
+const users = require('./controllers/users');
+const article = require('./controllers/article');
 
 var app = express();
 
@@ -48,6 +51,9 @@ app.use('/', index);
 app.get('/api/users', basic_auth, users.get);
 app.post('/api/users', users.post);
 app.post('/api/users/:name', users.post);
+
+
+app.get('/api/articles/:page', article.getAllArticles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
