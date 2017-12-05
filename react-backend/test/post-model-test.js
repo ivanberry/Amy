@@ -25,9 +25,18 @@ describe('Post Collection Tests', () => {
 		newPost
 			.createPost()
             .then(post => {
-                console.log(post);
+                expect(post._id).not.null;
+                expect(post.author).to.be.a('string').to.be.equal(_p.author);
+                expect(post.title).to.be.a('string').to.be.equal(_p.title);
+                expect(post.body).to.be.a('string').to.be.equal(_p.body);
+                expect(post.tag).to.be.a('string').to.be.equal('Default');
+                expect(post.modifyAt).to.be.a('date').not.null;
+                expect(post.createAt).to.be.a('date').not.null;
+                expect(post.viewCounter).to.be.a('number');
                 done();
             })
-			.catch(err => console.log(err));
+            .catch(err => {
+                done(err);
+            });
 	});
 });
