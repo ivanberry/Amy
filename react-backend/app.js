@@ -54,6 +54,8 @@ app.post('/api/users/:name', users.post);
 
 
 app.get('/api/articles/:page', article.getAllArticles);
+app.post('/api/articles', article.postNewArticle);
+app.post('/api/articles/:id', article.updateArticle);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

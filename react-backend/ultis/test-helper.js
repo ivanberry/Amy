@@ -6,6 +6,11 @@ exports.unAuthorized = (res, expect) => {
 }
 
 exports.notFoundError = (err, expect) => {
-  expect(err.name).to.be.equal('StatusCodeError');
+  expect(err).to.exist;
   expect(err.statusCode).to.be.a('number').to.be.equal(404);
+}
+
+exports.serverError = (err, expect) => {
+  expect(err).to.be.exist;
+  expect(err.statusCode).to.be.a('number').to.be.equal(500);
 }
