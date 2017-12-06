@@ -49,21 +49,39 @@ exports.postNewArticle = (req, res, next) => {
 
 exports.updateArticle = (req, res, next) => {
 	let { title, body } = req.body;
-    let { id } = req.params;
-    let update = {
-        title,
-        body
-    };
+	let { id } = req.params;
+	let update = {
+		title,
+		body
+	};
 	let response = {
 		statusCode: 200,
 		message: 'Success!'
 	};
-	ArticleModel.findByIdAndUpdate({_id: id}, update, { new: true })
-        .then(doc => {
-            response.id = doc.id;
+	ArticleModel.findByIdAndUpdate({ _id: id }, update, { new: true })
+		.then(doc => {
+			response.id = doc.id;
+			res.json(response);
+		})
+		.catch(err => {
+			next(err);
+		});
+};
+
+exports.deleteArticle = (req, res, next) => {
+	let { id } = req.params;
+	let response = {
+		statusCode: 200,
+		message: 'Success!'
+	};
+
+	ArticleModel.findByIdAndRemove(id)
+		.then(res => {
             res.json(response);
+            next();
         })
-        .catch(err => {
+		.catch(err => {
             next(err);
         });
+	next();
 };

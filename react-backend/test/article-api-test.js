@@ -3,7 +3,7 @@ const URL = require('../ultis/request');
 
 const ArticleModel = require('../model/Article');
 
-const {notFoundError, serverError, succeeExpect} = require('../ultis/test-helper');
+const { notFoundError, serverError, succeeExpect } = require('../ultis/test-helper');
 
 require('../ultis/test-ultis');
 
@@ -60,7 +60,7 @@ describe('User API Test', () => {
 
 	it('Create new Article without title', done => {
 		rp({
-			method: 'POST',
+			method: 'PUT',
 			uri: url,
 			body: {
 				body: 'content',
@@ -75,7 +75,7 @@ describe('User API Test', () => {
 
 	it('Create new Article without body', done => {
 		rp({
-			method: 'POST',
+			method: 'PUT',
 			uri: url,
 			body: {
 				title: 'content',
@@ -109,6 +109,35 @@ describe('User API Test', () => {
 						title: 'new Title',
 						body: 'new content'
 					},
+					json: true
+				});
+			})
+			.then(res => {
+				succeeExpect(res, expect);
+				done();
+			})
+			.catch(err => {
+				serverError(err, expect);
+				done();
+			});
+	});
+
+	it('Delete article with article id', done => {
+		let newArticle = new Article({
+			title: 'tab',
+			body: 'content',
+			author: 'tab'
+		});
+
+		newArticle
+			.createPost()
+			.then(doc => {
+				return doc.id;
+			})
+			.then(id => {
+				return rp({
+					method: 'DELETE',
+					uri: `${url}/${id}`,
 					json: true
 				});
 			})
