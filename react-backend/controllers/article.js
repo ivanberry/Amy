@@ -49,12 +49,16 @@ exports.postNewArticle = (req, res, next) => {
 
 exports.updateArticle = (req, res, next) => {
 	let { title, body } = req.body;
-	let { id } = req.params;
+    let { id } = req.params;
+    let update = {
+        title,
+        body
+    };
 	let response = {
 		statusCode: 200,
 		message: 'Success!'
 	};
-	ArticleModel.findByIdAndUpdate({_id: id}, { title: title, body: body }, { new: true })
+	ArticleModel.findByIdAndUpdate({_id: id}, update, { new: true })
         .then(doc => {
             response.id = doc.id;
             res.json(response);

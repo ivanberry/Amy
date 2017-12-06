@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const Articleshemas = require('../shemas/Post');
+const Articleshemas = require('../shemas/Article');
 
 Articleshemas.pre('save', next => {
-    let now = new Date();
-    if (!this.createAt || !this.modifyAt) {
-        this.modifyAt = this.createAt = now;
-    }
+    // let now = new Date();
+    // if (!this.createAt || !this.modifyAt) {
+        // this.modifyAt = this.createAt = now;
+    // }
     next();
 });
 
