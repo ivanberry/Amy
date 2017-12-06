@@ -14,3 +14,9 @@ exports.serverError = (err, expect) => {
   expect(err).to.be.exist;
   expect(err.statusCode).to.be.a('number').to.be.equal(500);
 }
+
+exports.succeeExpect = (res, expect) => {
+  expect(res).to.exist;
+  expect(res.statusCode).to.be.equal(200);
+  expect(res.message).to.be.a('string').to.be.equal('Success!');
+}

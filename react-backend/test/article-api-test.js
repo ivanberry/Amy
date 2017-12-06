@@ -3,8 +3,7 @@ const URL = require('../ultis/request');
 
 const ArticleModel = require('../model/Article');
 
-const notFoundError = require('../ultis/test-helper').notFoundError;
-const serverError = require('../ultis/test-helper').serverError;
+const {notFoundError, serverError, succeeExpect} = require('../ultis/test-helper');
 
 require('../ultis/test-ultis');
 
@@ -27,9 +26,7 @@ describe('User API Test', () => {
 			json: true
 		})
 			.then(res => {
-				expect(res).to.exist;
-				expect(res.statusCode).to.be.equal(200);
-				expect(res.message).to.be.equal('Success!');
+				succeeExpect(res, expect);
 				expect(res.data).to.be.an('array');
 				done();
 			})
@@ -52,8 +49,7 @@ describe('User API Test', () => {
 			json: true
 		})
 			.then(res => {
-				expect(res.statusCode).to.be.equal(200);
-				expect(res.message).to.be.equal('Success!');
+				succeeExpect(res, expect);
 				done();
 			})
 			.catch(err => {
@@ -117,11 +113,10 @@ describe('User API Test', () => {
 				});
 			})
 			.then(res => {
-				console.log(res);
+				succeeExpect(res, expect);
 				done();
 			})
 			.catch(err => {
-				console.log(err);
 				serverError(err, expect);
 				done();
 			});
