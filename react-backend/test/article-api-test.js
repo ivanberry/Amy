@@ -108,7 +108,7 @@ describe('User API Test', () => {
 			.then(id => {
 				return rp({
 					method: 'POST',
-					uri: `${url/id}`,
+					uri: `${url}/${id}`,
 					body: {
 						title: 'new Title',
 						body: 'new content'
