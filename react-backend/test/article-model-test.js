@@ -38,8 +38,6 @@ describe('Post Collection Tests', () => {
 				expect(post.tag)
 					.to.be.a('string')
 					.to.be.equal('Default');
-				expect(post.modifyAt).to.be.a('date').not.null;
-				expect(post.createAt).to.be.a('date').not.null;
 				expect(post.viewCounter).to.be.a('number');
 				done();
 			})
