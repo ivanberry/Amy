@@ -76,12 +76,16 @@ exports.deleteArticle = (req, res, next) => {
 	};
 
 	ArticleModel.findByIdAndRemove(id)
-		.then(res => {
+		.then(doc => {
+            if (!doc) {
+                response.message = 'Not Found The Article!';
+                res.json(response);
+                next();
+            }
             res.json(response);
             next();
         })
 		.catch(err => {
             next(err);
         });
-	next();
 };
