@@ -4,8 +4,12 @@ import {
 	LOGIN_OUT,
 	POST_ARTICLE,
 	UPDATE_ARTICLE,
-	DELETE_ARTICLE
+	DELETE_ARTICLE,
+	SENDING_REQUEST,
+	CHANGE_FORM
 } from '../constants/actionTypes';
+
+import axios from 'axios';
 
 /**
  * action creators: Actions describe the fact that something happened,
@@ -18,10 +22,27 @@ export const registeUser = user => {
 	};
 };
 
-export const loginIn = user => {
-	return {
-		type: LOGIN_IN,
-		user
+export const loginIn = (username, password) => {
+	return dispatch => {
+		//show the loading incicator, hide the last error
+		dispatch(sendingRequest(true));
+		//if no username or password was specified, throw a field-missing error
+		axios
+			.post('/api/user', {
+				username: 'tab',
+				password: 'tab'
+			})
+			.then(response => {
+				dispatch(sendingRequest(false));
+				changeForm({
+					username: '',
+					password: ''
+				});
+				console.log(response);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 };
 
@@ -52,3 +73,22 @@ export const deleteArticle = id => {
 		id
 	};
 };
+
+export function sendingRequest(sending) {
+	return {
+		type: SENDING_REQUEST,
+		sending
+	};
+}
+
+export function changeForm(newState) {
+	return {
+		type: CHANGE_FORM,
+		newState
+	};
+}
+
+/**
+ * ultis
+ */
+
