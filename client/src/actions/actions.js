@@ -1,14 +1,54 @@
-/**
- * actions type
- */
-export const REGISTE_USER = 'REGISTE_USER';
-export const LOGIN_IN = 'LOGIN_IN';
-export const LOGIN_OUT = 'LOGIN_OUT';
-export const POST_ARTICLE = 'POST_ARTICLE';
-export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
-export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+import {
+	REGISTE_USER,
+	LOGIN_IN,
+	LOGIN_OUT,
+	POST_ARTICLE,
+	UPDATE_ARTICLE,
+	DELETE_ARTICLE
+} from '../constants/actionTypes';
 
 /**
- * action creators
+ * action creators: Actions describe the fact that something happened,
+ * but don't specify how the application's state changes in response
  */
+export const registeUser = user => {
+	return {
+		type: REGISTE_USER,
+		user
+	};
+};
 
+export const loginIn = user => {
+	return {
+		type: LOGIN_IN,
+		user
+	};
+};
+
+export const loginOut = user => {
+	return {
+		type: LOGIN_OUT,
+		user
+	};
+};
+
+export const postArticle = article => {
+	return {
+		type: POST_ARTICLE,
+		article
+	};
+};
+
+export const updateArticle = id => {
+	return {
+		type: UPDATE_ARTICLE,
+		id
+	};
+};
+
+export const deleteArticle = id => {
+	return {
+		type: DELETE_ARTICLE,
+		id
+	};
+};
