@@ -9,8 +9,6 @@ import {
 	CHANGE_FORM
 } from '../constants/actionTypes';
 
-import axios from 'axios';
-
 /**
  * action creators: Actions describe the fact that something happened,
  * but don't specify how the application's state changes in response

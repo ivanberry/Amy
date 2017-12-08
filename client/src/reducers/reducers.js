@@ -1,7 +1,7 @@
 /**
  * specify how the application's state changes in response
  */
-import { LOGIN_IN, CHANGE_FORM, SENDING_REQUEST } from '../constants/actionTypes';
+import { /*LOGIN_IN, */ CHANGE_FORM, SENDING_REQUEST } from '../constants/actionTypes';
 
 //The initial state
 const initialState = {
