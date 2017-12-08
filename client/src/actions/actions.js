@@ -22,28 +22,11 @@ export const registeUser = user => {
 	};
 };
 
-export const loginIn = (username, password) => {
-	return dispatch => {
-		//show the loading incicator, hide the last error
-		dispatch(sendingRequest(true));
-		//if no username or password was specified, throw a field-missing error
-		axios
-			.post('/api/user', {
-				username: 'tab',
-				password: 'tab'
-			})
-			.then(response => {
-				dispatch(sendingRequest(false));
-				changeForm({
-					username: '',
-					password: ''
-				});
-				console.log(response);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-	};
+export const loginIn = (data) => {
+    return {
+        type: LOGIN_IN,
+        data
+    };
 };
 
 export const loginOut = user => {

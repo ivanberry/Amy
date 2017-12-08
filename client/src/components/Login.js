@@ -3,21 +3,34 @@
  */
 
 import React, { Component } from 'react';
-import { changeForm } from '../actions/actions';
+import { connect } from 'react-redux';
+import { loginIn } from '../actions/actions';
 
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
 	}
+
+	onSubmit(evt) {
+		let user = {
+			name: 'tab',
+			password: 'tab'
+		};
+		evt.preventDefault();
+		this.props.dispatch(loginIn(user));
+	}
+
 	render() {
 		return (
-			<form>
+			<form onSubmit={this.onSubmit.bind(this)}>
 				<input name="username" type="text" />
 				<input name="password" type="password" />
-				<input name="submit" type="submit" />
+				<button name="submit" type="submit">
+					submit
+				</button>
 			</form>
 		);
 	}
 }
 
-export default LoginForm;
+export default connect()(LoginForm);

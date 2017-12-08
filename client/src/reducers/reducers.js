@@ -1,7 +1,7 @@
 /**
  * specify how the application's state changes in response
  */
-import { LOGIN_IN, CHANGE_FORM, SENDING_REQUEST } from '../actions/actions';
+import { LOGIN_IN, CHANGE_FORM, SENDING_REQUEST } from '../constants/actionTypes';
 
 //The initial state
 const initialState = {
@@ -16,13 +16,15 @@ const initialState = {
 export function homeReducer(state = initialState, action) {
 	switch (action.type) {
 		case CHANGE_FORM:
-			return Object.assign({}, state, {
-				formState: action.newState
-			});
+            return ({
+                ...state,
+                formsState: action.formState
+            });
 		case SENDING_REQUEST:
-			return Object.assign({}, state, {
-				currentSending: action.sending
-			});
+            return ({
+                ...state,
+                currentSending: action.sending
+            });
 		default:
 			return state;
 	}
