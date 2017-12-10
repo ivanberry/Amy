@@ -3,6 +3,11 @@ import {setAuthState} from '../actions/actions';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
+/**
+ * 用户登录
+ * @param {*} name 
+ * @param {*} password 
+ */
 function loginI(name, password) {
 	return axios.post('/api/login', {
 		name,

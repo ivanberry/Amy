@@ -2,6 +2,7 @@
  * Login components
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends Component {
 
@@ -14,9 +15,13 @@ class Form extends Component {
 	}
 
 	handleSubmit = evt => {
-		const {username, password} = this.state;
 		evt.preventDefault();
+		const {username, password} = this.state;
 		this.props.onSubmit(username, password);
+		this.setState({
+			username: '',
+			password: ''
+		});
 	};
 
 	changeUsername = evt => {
@@ -43,5 +48,10 @@ class Form extends Component {
 		);
 	}
 }
+
+Form.protoTypes = {
+	onSubmit: PropTypes.func,
+	btnText: PropTypes.string
+};
 
 export default Form;

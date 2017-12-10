@@ -62,9 +62,9 @@ export const deleteArticleRequest = id => {
 	};
 };
 
-export function sendingRequest(sending) {
+export function sendingRequest(isFetching) {
 	return {
 		type: SENDING_REQUEST,
-		sending
+		isFetching
 	};
 }

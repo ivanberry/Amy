@@ -4,3 +4,7 @@
 ### Redux
 
 >只有你意思到你需要它的时候，你才需要使用它，不然直接忽略掉.
+
+### Notification Component
+
+### Loading Component
