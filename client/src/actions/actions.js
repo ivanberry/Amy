@@ -1,54 +1,61 @@
 import {
 	REGISTE_USER,
-	LOGIN_IN,
-	LOGIN_OUT,
+	LOGIN_REQUEST,
+	LOGOUT_REQUEST,
 	POST_ARTICLE,
 	UPDATE_ARTICLE,
 	DELETE_ARTICLE,
 	SENDING_REQUEST,
-	CHANGE_FORM
+	SET_AUTH
 } from '../constants/actionTypes';
 
 /**
  * action creators: Actions describe the fact that something happened,
  * but don't specify how the application's state changes in response
  */
-export const registeUser = user => {
+export const registeUserRequest = user => {
 	return {
 		type: REGISTE_USER,
 		user
 	};
 };
 
-export const loginIn = (data) => {
+export const setAuthState = loggedIn => {
+	return {
+		type: SET_AUTH,
+		loggedIn
+	};
+};
+
+export const logInRequest = (user) => {
     return {
-        type: LOGIN_IN,
-        data
+				type: LOGIN_REQUEST,
+				user
     };
 };
 
-export const loginOut = user => {
+export const logOutRequest = user => {
 	return {
-		type: LOGIN_OUT,
+		type: LOGOUT_REQUEST,
 		user
 	};
 };
 
-export const postArticle = article => {
+export const postArticleRequest = article => {
 	return {
 		type: POST_ARTICLE,
 		article
 	};
 };
 
-export const updateArticle = id => {
+export const updateArticleRequest = id => {
 	return {
 		type: UPDATE_ARTICLE,
 		id
 	};
 };
 
-export const deleteArticle = id => {
+export const deleteArticleRequest = id => {
 	return {
 		type: DELETE_ARTICLE,
 		id
@@ -61,15 +68,3 @@ export function sendingRequest(sending) {
 		sending
 	};
 }
-
-export function changeForm(newState) {
-	return {
-		type: CHANGE_FORM,
-		newState
-	};
-}
-
-/**
- * ultis
- */
-
