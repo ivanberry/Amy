@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { logOut, setAuthState } from '../actions/actions';
 
 /**
  * 根据登录态决定顶部导航的状态
@@ -21,19 +24,27 @@ class Nav extends Component {
 	}
 
 	componentWillReceiveProps(prevProps, nextProps) {
-		console.log('reveciveProps', prevProps, nextProps);
+		return prevProps === nextProps;
 	}
 
 	componentDidUpdate() {
 		console.log('component did update');
 	}
 
+	handleSubmit = () => {
+    this.props.dispatch(logOut(''));
+    this.props.dispatch(setAuthState(false));
+	};
+
 	render() {
 		return (
 			<div>
 				{this.props.loggedIn ? (
 					<div>
-						<button>{this.props.name}</button>
+						<button>{this.props.username}</button>
+						<button type="submit" onClick={this.handleSubmit}>
+							Logout
+						</button>
 					</div>
 				) : (
 					<div>
@@ -47,7 +58,15 @@ class Nav extends Component {
 
 Nav.propTypes = {
 	loggedIn: PropTypes.bool,
-	name: PropTypes.string
+	username: PropTypes.string,
+	handleSubmit: PropTypes.func
 };
 
-export default Nav;
+function mapStateToProps(state) {
+	return {
+		loggedIn: state.loggedIn,
+		username: state.username
+	};
+}
+
+export default connect(mapStateToProps)(Nav);

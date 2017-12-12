@@ -8,7 +8,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Nav loggedIn={true} name='tab' />
+				<Nav />
 				<LoginForm />
 			</div>
 		);

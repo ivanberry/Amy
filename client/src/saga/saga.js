@@ -15,7 +15,7 @@ function loginI(name, password) {
 	});
 }
 
-function* login(action) {
+function* loginFlow(action) {
 	yield put(sendingRequest(true));
 	try {
 		const result = yield call(loginI, action.user.username, action.user.password);
@@ -32,7 +32,7 @@ function* login(action) {
 }
 
 function* mySaga() {
-	yield takeEvery(ActionTypes.LOGIN_REQUEST, login); //subscribe the LOGIN_IN action
+	yield takeEvery(ActionTypes.LOGIN_REQUEST, loginFlow); //subscribe the LOGIN_IN action
 }
 
 export default mySaga;

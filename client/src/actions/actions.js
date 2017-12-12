@@ -1,7 +1,7 @@
 import {
 	REGISTE_USER,
 	LOGIN_REQUEST,
-	LOGOUT_REQUEST,
+	LOGOUT,
 	POST_ARTICLE,
 	UPDATE_ARTICLE,
 	DELETE_ARTICLE,
@@ -34,9 +34,9 @@ export const logInRequest = (user) => {
     };
 };
 
-export const logOutRequest = user => {
+export const logOut= user => {
 	return {
-		type: LOGOUT_REQUEST,
+		type: LOGOUT,
 		user
 	};
 };

@@ -6,7 +6,8 @@ import * as ActionTypes from '../constants/actionTypes';
 //The initial state
 const initialState = {
 	currentSending: false,
-	loggedIn: false
+	loggedIn: false,
+	username: ''
 };
 
 export function homeReducer(state = initialState, action) {
@@ -20,6 +21,16 @@ export function homeReducer(state = initialState, action) {
 			return {
 				...state,
 				isFetching: action.isFetching
+			};
+		case ActionTypes.LOGIN_REQUEST:
+			return {
+				...state,
+				username: action.user.username
+			};
+		case ActionTypes.LOGOUT:
+			return {
+				...state,
+				username: ''
 			};
 		default:
 			return state;
