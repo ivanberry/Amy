@@ -14,7 +14,12 @@ export function homeReducer(state = initialState, action) {
 		case ActionTypes.SET_AUTH:
 			return {
 				...state,
-				loggedIn: true
+				loggedIn: action.loggedIn
+			};
+		case ActionTypes.SENDING_REQUEST:
+			return {
+				...state,
+				isFetching: action.isFetching
 			};
 		default:
 			return state;
