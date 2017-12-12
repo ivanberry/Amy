@@ -22,6 +22,7 @@ const config = require('./config/_config');
 const basic_auth = require('./lib/basic-auth');
 
 const login = require('./controllers/login');
+const logout = require('./controllers/logout');
 const index = require('./controllers/index');
 const users = require('./controllers/users');
 const article = require('./controllers/article');
@@ -46,6 +47,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/api/login', login.login);
+app.get('/api/logout', logout.logout);
 
 app.use('/', index);
 app.get('/api/users', basic_auth, users.get);
