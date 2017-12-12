@@ -9,10 +9,23 @@ import PropTypes from 'prop-types';
 class Nav extends Component {
 	constructor(props) {
 		super(props);
+		console.log(props);
+	}
+
+	componentWillMount() {
+		console.log('component will mount');
 	}
 
 	componentDidMount() {
 		console.log('component did mount');
+	}
+
+	componentWillReceiveProps(prevProps, nextProps) {
+		console.log('reveciveProps', prevProps, nextProps);
+	}
+
+	componentDidUpdate() {
+		console.log('component did update');
 	}
 
 	render() {
