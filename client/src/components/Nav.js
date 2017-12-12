@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { logOut, setAuthState } from '../actions/actions';
+import { logOut } from '../actions/actions';
 
 /**
  * 根据登录态决定顶部导航的状态
@@ -24,16 +24,18 @@ class Nav extends Component {
 	}
 
 	componentWillReceiveProps(prevProps, nextProps) {
-		return prevProps === nextProps;
+		console.log(prevProps, nextProps);
+		console.log('props receive');
+		return prevProps.loggedIn !== nextProps.loggedIn;
 	}
 
+	//why twice call?
 	componentDidUpdate() {
 		console.log('component did update');
 	}
 
 	handleSubmit = () => {
-    this.props.dispatch(logOut(''));
-    this.props.dispatch(setAuthState(false));
+		this.props.dispatch(logOut(''));
 	};
 
 	render() {

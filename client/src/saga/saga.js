@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/actionTypes';
 import { setAuthState, sendingRequest } from '../actions/actions';
-import { call, put, takeEvery, fork } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 /**
