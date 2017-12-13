@@ -12,26 +12,26 @@ import { logOut } from '../actions/actions';
 class Nav extends Component {
 	constructor(props) {
 		super(props);
-		console.log(props);
+		console.table(props);
 	}
 
 	componentWillMount() {
-		console.log('component will mount');
+		console.log('Nav component will mount');
 	}
 
 	componentDidMount() {
-		console.log('component did mount');
+		console.log('Nav component did mount');
 	}
 
 	componentWillReceiveProps(prevProps, nextProps) {
 		console.log(prevProps, nextProps);
-		console.log('props receive');
+		console.log('Nav component props receive');
 		return prevProps.loggedIn !== nextProps.loggedIn;
 	}
 
 	//why twice call?
 	componentDidUpdate() {
-		console.log('component did update');
+		console.log('Nav component did update');
 	}
 
 	handleSubmit = () => {
@@ -50,6 +50,7 @@ class Nav extends Component {
 					</div>
 				) : (
 					<div>
+						<button>Index</button>
 						<button>Login</button>
 					</div>
 				)}
