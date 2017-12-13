@@ -11,7 +11,7 @@ exports.getAllArticles = (req, res, next) => {
 		data: [],
 		total: 0
 	};
-	ArticleModel.find({}, { lean: true })
+	ArticleModel.find().lean()
 		.then(doc => {
 			response.total = doc.length;
 			response.data = doc;
