@@ -2,6 +2,7 @@ import {
 	REGISTE_USER,
 	LOGIN_REQUEST,
 	LOGOUT,
+	GET_ARTICLE,
 	POST_ARTICLE,
 	UPDATE_ARTICLE,
 	DELETE_ARTICLE,
@@ -27,17 +28,24 @@ export const setAuthState = loggedIn => {
 	};
 };
 
-export const logInRequest = (user) => {
-    return {
-				type: LOGIN_REQUEST,
-				user
-    };
+export const logInRequest = user => {
+	return {
+		type: LOGIN_REQUEST,
+		user
+	};
 };
 
-export const logOut= user => {
+export const logOut = user => {
 	return {
 		type: LOGOUT,
 		user
+	};
+};
+
+export const getArticleRequest = articles => {
+	return {
+		type: GET_ARTICLE,
+		articles	
 	};
 };
 

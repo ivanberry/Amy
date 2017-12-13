@@ -3,6 +3,7 @@ import './App.css';
 
 import LoginForm from './components/Login';
 import Nav from './components/Nav';
+import Article from './components/Article';
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
 			<div>
 				<Nav />
 				<LoginForm />
+				<Article />
 			</div>
 		);
 	}

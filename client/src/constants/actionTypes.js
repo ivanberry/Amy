@@ -4,6 +4,8 @@
 export const REGISTE_USER = 'REGISTE_USER';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGOUT = 'LOGOUT';
+
+export const GET_ARTICLE = 'GET_ARTICLE';
 export const POST_ARTICLE = 'POST_ARTICLE';
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';

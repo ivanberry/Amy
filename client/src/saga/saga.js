@@ -19,6 +19,10 @@ function _logOut() {
 	return axios.get('/api/logout');
 }
 
+function _getArticles() {
+	return axios.get('/api/articles');
+}
+
 function* loginFlow(action) {
 	yield put(sendingRequest(true));
 	try {
@@ -50,6 +54,12 @@ function* logoutFlow() {
 		yield put({type: 'LOGOUT_IN_FAIL', message: e.message});
 		yield put(sendingRequest(false));
 	}
+}
+
+
+
+function* getAllArticle() {
+
 }
 
 function* mySaga() {

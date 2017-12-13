@@ -32,6 +32,11 @@ export function homeReducer(state = initialState, action) {
 				...state,
 				username: ''
 			};
+		case ActionTypes.GET_ARTICLE:
+			return {
+				...state,
+				articles: action.articles
+			};
 		default:
 			return state;
 	}
