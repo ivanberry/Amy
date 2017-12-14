@@ -17,17 +17,18 @@ class Article extends Component {
 
 	//fetch Data
 	componentDidMount() {
-    console.log('Article component did mount');
+		console.log('Article component did mount');
 		this.props.dispatch(getArticleRequest());
 	}
 
 	render() {
 		const { articles } = this.props;
+		debugger;
 		return (
 			<ul>
-				{articles.length > 0 ? (
+				{articles && articles.length > 0 ? (
 					articles.map(article => (
-						<List key={article.id} {...article} onClick={this.handleArticleClick} />
+						<List key={article._id} {...article} onClick={this.handleArticleClick} />
 					))
 				) : (
 					<p>Add new article</p>
@@ -44,7 +45,7 @@ Article.propType = {
 
 function mapStateToProps(state) {
 	return {
-		articles: []
+		articles: state.articles
 	};
 }
 

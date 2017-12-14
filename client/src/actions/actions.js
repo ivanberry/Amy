@@ -7,7 +7,8 @@ import {
 	UPDATE_ARTICLE,
 	DELETE_ARTICLE,
 	SENDING_REQUEST,
-	SET_AUTH
+	SET_AUTH,
+	GET_ARTICLE_SUCCESS
 } from '../constants/actionTypes';
 
 /**
