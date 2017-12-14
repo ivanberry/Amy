@@ -10,10 +10,6 @@ import { logOut } from '../actions/actions';
  * 1:已登录，(用户名)
  */
 class Nav extends Component {
-	constructor(props) {
-		super(props);
-		console.table(props);
-	}
 
 	componentWillMount() {
 		console.log('Nav component will mount');
@@ -23,10 +19,9 @@ class Nav extends Component {
 		console.log('Nav component did mount');
 	}
 
-	componentWillReceiveProps(prevProps, nextProps) {
-		console.log(prevProps, nextProps);
+	componentWillReceiveProps(prevProps) {
 		console.log('Nav component props receive');
-		return prevProps.loggedIn !== nextProps.loggedIn;
+		console.log(prevProps);
 	}
 
 	//why twice call?

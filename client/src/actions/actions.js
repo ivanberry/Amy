@@ -43,10 +43,9 @@ export const logOut = user => {
 	};
 };
 
-export const getArticleRequest = articles => {
+export const getArticleRequest = () => {
 	return {
-		type: GET_ARTICLE,
-		articles	
+		type: GET_ARTICLE
 	};
 };
 

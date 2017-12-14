@@ -23,7 +23,6 @@ class Article extends Component {
 
 	render() {
 		const { articles } = this.props;
-		debugger;
 		return (
 			<ul>
 				{articles && articles.length > 0 ? (

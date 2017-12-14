@@ -63,7 +63,7 @@ function* getAllArticle() {
 			yield put(sendingRequest(false));
 			yield put({
 				type: 'GET_ARTICLE_SUCCESS',
-				data: result.data.data
+				articles: result.data.data
 			});
 		}
 	} catch (e) {

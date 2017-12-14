@@ -35,7 +35,7 @@ export function homeReducer(state = initialState, action) {
 		case ActionTypes.GET_ARTICLE_SUCCESS:
 			return {
 				...state,
-				articles: action.data
+				articles: action.articles
 			};
 		default:
 			return state;
