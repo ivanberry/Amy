@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/actionTypes';
-import { setAuthState, sendingRequest } from '../actions/actions';
+import { setAuthState, sendingRequest, getArticleSuccess } from '../actions/actions';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
@@ -61,10 +61,7 @@ function* getAllArticle() {
 		const result = yield call(_getArticles);
 		if (result.status === 200) {
 			yield put(sendingRequest(false));
-			yield put({
-				type: 'GET_ARTICLE_SUCCESS',
-				articles: result.data.data
-			});
+			yield put(getArticleSuccess(result.data.data));
 		}
 	} catch (e) {
 		yield put(sendingRequest(false));

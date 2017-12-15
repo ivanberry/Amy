@@ -49,6 +49,13 @@ export const getArticleRequest = () => {
 	};
 };
 
+export const getArticleSuccess = articles => {
+	return {
+		type: GET_ARTICLE_SUCCESS,
+		articles
+	};
+};
+
 export const postArticleRequest = article => {
 	return {
 		type: POST_ARTICLE,
