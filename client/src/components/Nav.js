@@ -11,24 +11,6 @@ import { logOut } from '../actions/actions';
  */
 class Nav extends Component {
 
-	componentWillMount() {
-		console.log('Nav component will mount');
-	}
-
-	componentDidMount() {
-		console.log('Nav component did mount');
-	}
-
-	componentWillReceiveProps(prevProps) {
-		console.log('Nav component props receive');
-		console.log(prevProps);
-	}
-
-	//why twice call?
-	componentDidUpdate() {
-		console.log('Nav component did update');
-	}
-
 	handleSubmit = () => {
 		this.props.dispatch(logOut(''));
 	};

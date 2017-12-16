@@ -6,18 +6,11 @@ import List from './common/List';
 import { getArticleRequest } from '../actions/actions';
 
 class Article extends Component {
-	constructor(props) {
-		super(props);
-		console.log(props);
-	}
 
-	handleArticleClick = () => {
-		console.log('Article clicked');
-	};
+	handleArticleClick = () => {};
 
 	//fetch Data
 	componentDidMount() {
-		console.log('Article component did mount');
 		this.props.dispatch(getArticleRequest());
 	}
 
@@ -37,7 +30,7 @@ class Article extends Component {
 	}
 }
 
-Article.propType = {
+Article.propTypes = {
 	articles: PropTypes.array,
 	onClick: PropTypes.func
 };
