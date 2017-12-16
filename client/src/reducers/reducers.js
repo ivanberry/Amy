@@ -5,7 +5,7 @@ import * as ActionTypes from '../constants/actionTypes';
 
 //The initial state
 const initialState = {
-	currentSending: false,
+	isFetching: false,
 	loggedIn: false,
 	username: ''
 };
