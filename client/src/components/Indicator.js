@@ -5,7 +5,15 @@ import { connect } from 'react-redux';
 class Indicator extends Component {
 	render() {
 		const { isFetching } = this.props;
-		return <div>{isFetching ? 'loading' : 'done'}</div>;
+		return (
+			<div>
+				{isFetching ? (
+					'Fetching Datas'
+				) : (
+					''
+				)}
+			</div>
+		);
 	}
 }
 

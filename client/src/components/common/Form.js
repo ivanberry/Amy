@@ -5,7 +5,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Form extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,7 +15,7 @@ class Form extends Component {
 
 	handleSubmit = evt => {
 		evt.preventDefault();
-		const {username, password} = this.state;
+		const { username, password } = this.state;
 		this.props.onSubmit(username, password);
 		this.setState({
 			username: '',
