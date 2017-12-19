@@ -6,6 +6,10 @@ import Form from './common/Form';
 import { logInRequest } from '../actions/actions';
 
 class Login extends Component {
+	constructor(props) {
+		super(props);
+		console.log(props);
+	}
 	_login = (username, password) => {
 		this.props.dispatch(logInRequest({ username, password }));
 	};

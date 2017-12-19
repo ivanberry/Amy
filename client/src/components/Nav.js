@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { logOut } from '../actions/actions';
-import LoginForm from '../components/Login';
 
 /**
  * 根据登录态决定顶部导航的状态
@@ -21,25 +20,20 @@ class Nav extends Component {
 			<div>
 				{this.props.loggedIn ? (
 					<div>
-						<button>{this.props.username}</button>
+						<Link to="/dashboard">{this.props.username}</Link>
 						<button type="submit" onClick={this.handleSubmit}>
 							Logout
 						</button>
 					</div>
 				) : (
-					<div>
-						<nav>
-							<ul>
-								<li>
-									<Link to='/'>Index</Link>
-									<Link to="/login">Login</Link>
-								</li>
-							</ul>
-						</nav>
-						<div>
-							<Route path="/login" component={LoginForm} />
-						</div>
-					</div>
+					<nav>
+						<ul>
+							<li>
+								<Link to="/">Index</Link>
+								<Link to="/login">Login</Link>
+							</li>
+						</ul>
+					</nav>
 				)}
 			</div>
 		);
