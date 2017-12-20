@@ -37,6 +37,22 @@ describe('User API Test', () => {
 			});
 	});
 
+	it('Get user\'s Article', done => {
+		rp({
+			uri: `${url}/tab`,
+			json: true
+		})
+		.then(res => {
+			succeeExpect(res, expect);
+			expect(res.data).to.be.an('array');
+			done();
+		})
+		.catch(err => {
+			notFoundError(err, expect);
+			done();
+		})
+	})
+
 	it('Create new Article', done => {
 		rp({
 			method: 'POST',
