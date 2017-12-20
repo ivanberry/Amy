@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = new mongoose.Schema(
+module.exports = new Schema(
 	{
 		title: {
 			type: String,
@@ -15,8 +16,8 @@ module.exports = new mongoose.Schema(
 			default: 'Default'
 		},
 		author: {
-			type: String,
-			required: true
+			type: Schema.Types.ObjectId,
+			ref: 'User'
 		},
 		viewCounter: {
 			type: Number,

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = new mongoose.Schema({
+module.exports = new Schema({
 	name: {
 		type: String,
 		unique: true,
@@ -15,5 +16,8 @@ module.exports = new mongoose.Schema({
 	updatedAt: {
 		type: Date,
 		default: Date.now
-	}
+	},
+	posts: [{
+		type: Schema.Types.ObjectId, ref: 'Articles'
+	}]
 });

@@ -4,14 +4,15 @@
 const Article = require('../ultis/article');
 const ArticleModel = require('../model/Article');
 
-exports.getAllArticles = (req, res, next) => {
+function getAllArticles(page, res, next) {
 	let response = {
 		statusCode: 200,
 		message: 'Success!',
 		data: [],
 		total: 0
 	};
-	ArticleModel.find().lean()
+	ArticleModel.find()
+		.lean()
 		.then(doc => {
 			response.total = doc.length;
 			response.data = doc;
@@ -20,6 +21,38 @@ exports.getAllArticles = (req, res, next) => {
 		.catch(err => {
 			next(err);
 		});
+}
+
+function getUserArticles(user, page, res, next) {
+	let response = {
+		statusCode: 200,
+		message: 'Success!',
+		data: [],
+		total: 0
+	};
+	ArticleModel.find({
+		name: user 
+	})
+		.lean()
+		.then(doc => {
+			response.data = doc;
+			response.total = doc.length;
+			res.json(response);
+		})
+		.catch(err => {
+			next(err);
+		});
+}
+
+exports.getArticles = (req, res, next) => {
+	let user = req.params.username || req.session.user;
+	let page = req.params.page || 1;
+
+	if(user) {
+		getUserArticles(user, page, res, next);
+	} else {
+		getAllArticles(page, res, next);
+	}
 };
 
 exports.postNewArticle = (req, res, next) => {
@@ -77,15 +110,15 @@ exports.deleteArticle = (req, res, next) => {
 
 	ArticleModel.findByIdAndRemove(id)
 		.then(doc => {
-            if (!doc) {
-                response.message = 'Not Found The Article!';
-                res.json(response);
-                next();
-            }
-            res.json(response);
-            next();
-        })
+			if (!doc) {
+				response.message = 'Not Found The Article!';
+				res.json(response);
+				next();
+			}
+			res.json(response);
+			next();
+		})
 		.catch(err => {
-            next(err);
-        });
+			next(err);
+		});
 };
