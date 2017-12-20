@@ -30,6 +30,7 @@ class Nav extends Component {
 						<ul>
 							<li>
 								<Link to="/">Index</Link>
+								<Link to='/articles'>Articles</Link>
 								<Link to="/login">Login</Link>
 							</li>
 						</ul>

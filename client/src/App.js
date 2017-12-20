@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Nav from './components/Nav';
-import Article from './components/Article';
 import Indicator from './components/Indicator';
 
 import Routes from './routes/Routes';
@@ -14,7 +13,6 @@ class App extends Component {
 			<div>
 				<Indicator />
 				<Nav />
-				<Article />
 				<div className="routeContainer">
 					<Routes />
 				</div>
