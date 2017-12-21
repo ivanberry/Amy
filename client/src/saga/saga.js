@@ -20,7 +20,7 @@ function _logOut() {
 }
 
 function _getArticles() {
-	return axios.get('/api/articles/1');
+	return axios.get('/api/articles');
 }
 
 function* loginFlow(action) {

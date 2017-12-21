@@ -4,7 +4,7 @@
 const Article = require('../ultis/article');
 const ArticleModel = require('../model/Article');
 
-function getAllArticles(page, res, next) {
+function getAllArticles(page = 1, res, next) {
 	let response = {
 		statusCode: 200,
 		message: 'Success!',
@@ -23,7 +23,7 @@ function getAllArticles(page, res, next) {
 		});
 }
 
-function getUserArticles(user, page, res, next) {
+function getUserArticles(user, page = 1, res, next) {
 	let response = {
 		statusCode: 200,
 		message: 'Success!',
@@ -46,7 +46,7 @@ function getUserArticles(user, page, res, next) {
 
 exports.getArticles = (req, res, next) => {
 	let user = req.params.username || req.session.user;
-	let page = req.params.page || 1;
+	let page = req.params.page;
 
 	if(user) {
 		getUserArticles(user, page, res, next);
