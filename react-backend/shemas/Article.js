@@ -16,7 +16,7 @@ module.exports = new Schema(
 			default: 'Default'
 		},
 		author: {
-			type: Schema.Types.ObjectId,
+			type: String,
 			ref: 'User'
 		},
 		viewCounter: {

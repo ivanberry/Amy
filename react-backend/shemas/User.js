@@ -17,7 +17,7 @@ module.exports = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	posts: [{
+	articles: [{
 		type: Schema.Types.ObjectId, ref: 'Articles'
 	}]
 });

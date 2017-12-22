@@ -10,16 +10,16 @@ PostModel.on('index', function(err) {
 	}
 });
 
-class Post {
+class Article {
 	constructor(opt) {
 		Object.assign(this, opt);
 	}
 
 	//invoke as promise
-	createPost(resolve, reject) {
+	createPost() {
 		let newPost = new PostModel(this);
 		return newPost.save();
 	}
 }
 
-module.exports = Post;
+module.exports = Article;

@@ -109,8 +109,7 @@ describe('User API Test', () => {
 		// creat new article first
 		let newArticle = new Article({
 			title: 'tab',
-			body: 'content',
-			author: 'tab'
+			body: 'content'
 		});
 
 		newArticle
@@ -142,8 +141,7 @@ describe('User API Test', () => {
 	it('Delete article with article id', done => {
 		let newArticle = new Article({
 			title: 'tab',
-			body: 'content',
-			author: 'tab'
+			body: 'content'
 		});
 
 		newArticle
