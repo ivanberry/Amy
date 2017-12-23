@@ -12,6 +12,13 @@ exports.login = function(req, res, next) {
 	} else {
 		UserModel.findOne({ name: name }, 'hash', { lean: true }, (err, doc) => {
 			if (err) next(err);
+			if (!doc) {
+				res.status(401);
+				res.json({
+					statusCode: 401,
+					message: 'User Not Exists!'
+				});
+			}
 			bcrypt.compare(password, doc.hash, (err, isUser) => {
 				if (err) next(err);
 				if (isUser) {
