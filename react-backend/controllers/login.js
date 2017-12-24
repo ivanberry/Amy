@@ -12,6 +12,7 @@ exports.login = function(req, res, next) {
 	} else {
 		UserModel.findOne({ name: name }, 'hash', { lean: true }, (err, doc) => {
 			if (err) next(err);
+			let _id = doc._id;
 			if (!doc) {
 				res.status(401);
 				res.json({
@@ -23,6 +24,7 @@ exports.login = function(req, res, next) {
 				if (err) next(err);
 				if (isUser) {
 					req.session.user = name;
+					req.session.userId = _id;
 					res.status(200);
 					res.json({
 						statusCode: 200,
