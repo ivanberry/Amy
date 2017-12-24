@@ -18,6 +18,6 @@ module.exports = new Schema({
 		default: Date.now
 	},
 	articles: [{
-		type: Schema.Types.ObjectId, ref: 'Articles'
+		type: Schema.Types.ObjectId, ref: 'ArticleModel'
 	}]
 });
