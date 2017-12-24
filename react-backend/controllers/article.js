@@ -3,6 +3,7 @@
  */
 const Article = require('../ultis/article');
 const ArticleModel = require('../model/Article');
+const UserModel = require('../model/User');
 
 function getAllArticles(page = 1, res, next) {
 	let response = {
@@ -23,20 +24,17 @@ function getAllArticles(page = 1, res, next) {
 		});
 }
 
-function getUserArticles(user, page = 1, res, next) {
+function getUserArticles(id, page = 1, res, next) {
 	let response = {
 		statusCode: 200,
 		message: 'Success!',
 		data: [],
 		total: 0
 	};
-	ArticleModel.find({
-		name: user 
-	})
-		.lean()
-		.then(doc => {
-			response.data = doc;
-			response.total = doc.length;
+
+	ArticleModel.find({ authorId: id })
+		.then(docs => {
+			response.data = docs;
 			res.json(response);
 		})
 		.catch(err => {
@@ -45,33 +43,48 @@ function getUserArticles(user, page = 1, res, next) {
 }
 
 exports.getArticles = (req, res, next) => {
-	let user = req.params.username || req.session.user;
+	let authorId = req.session.userId;
 	let page = req.params.page;
 
-	if(user) {
-		getUserArticles(user, page, res, next);
+	if (authorId) {
+		getUserArticles(authorId, page, res, next);
 	} else {
 		getAllArticles(page, res, next);
 	}
 };
 
+/**
+ * once post new articles, join the article id to the post user
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ */
 exports.postNewArticle = (req, res, next) => {
-	let { title, body, author } = req.body;
-	let newArticle = new Article({
-		title,
-		body,
-		author
-	});
-
+	let { title, body } = req.body;
+	let author = req.session.user;
+	let _id = req.session.userId;
 	let response = {
 		statusCode: 200,
 		message: 'Success!'
 	};
 
+	let newArticle = new Article({
+		title,
+		body,
+		authorId: _id
+	});
+
+	//push new article _id to user document articles field
 	newArticle
 		.createPost()
 		.then(doc => {
-			response.id = doc.id;
+			return UserModel.findOneAndUpdate(
+				{ name: author },
+				{ $push: { articles: doc.id } },
+				{ lean: true }
+			);
+		})
+		.then(() => {
 			res.json(response);
 			next();
 		})
