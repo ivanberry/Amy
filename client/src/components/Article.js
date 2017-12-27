@@ -7,6 +7,11 @@ import { getArticleRequest } from '../actions/actions';
 
 class Article extends Component {
 
+	constructor(props) {
+		super(props);
+		console.log(props);
+	}
+
 	handleArticleClick = () => {};
 
 	//fetch Data
@@ -32,12 +37,14 @@ class Article extends Component {
 
 Article.propTypes = {
 	articles: PropTypes.array,
-	onClick: PropTypes.func
+	onClick: PropTypes.func,
+	loggedIn: PropTypes.bool
 };
 
 function mapStateToProps(state) {
 	return {
-		articles: state.articles
+		articles: state.articles,
+		loggedIn: state.loggedIn
 	};
 }
 
