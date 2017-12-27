@@ -29,7 +29,7 @@ class Login extends Component {
 
 	render() {
 		const { loggedIn } = this.props;
-		return loggedIn ? <Redirect to='/' /> : <Form onSubmit={this._login} btnText="Login" />;
+		return loggedIn ? <Redirect to='/articles' /> : <Form onSubmit={this._login} btnText="Login" />;
 	}
 }
 
@@ -43,4 +43,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default withRouter(connect()(Login));
+export default withRouter(connect(mapStateToProps)(Login));
