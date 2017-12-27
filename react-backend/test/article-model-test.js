@@ -26,9 +26,6 @@ describe('Post Collection Tests', () => {
 			.createPost()
 			.then(post => {
 				expect(post._id).not.null;
-				expect(post.author)
-					.to.be.a('string')
-					.to.be.equal(_p.author);
 				expect(post.title)
 					.to.be.a('string')
 					.to.be.equal(_p.title);
