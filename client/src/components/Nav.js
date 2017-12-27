@@ -19,21 +19,17 @@ class Nav extends Component {
 		return (
 			<div>
 				{this.props.loggedIn ? (
-					<div>
-						<Link to="/dashboard">{this.props.username}</Link>
-						<Link to="/articles">Articles</Link>
+					<nav>
+						<Link to="/dashboard">{this.props.username} </Link>
+						<Link to="/dashboard">Dashboard </Link>
 						<button type="submit" onClick={this.handleSubmit}>
 							Logout
 						</button>
-					</div>
+					</nav>
 				) : (
 					<nav>
-						<ul>
-							<li>
 								<Link to="/">Index</Link>
 								<Link to="/login">Login</Link>
-							</li>
-						</ul>
 					</nav>
 				)}
 			</div>

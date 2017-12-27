@@ -29,7 +29,7 @@ class Login extends Component {
 
 	render() {
 		const { loggedIn } = this.props;
-		return loggedIn ? <Redirect to='/articles' /> : <Form onSubmit={this._login} btnText="Login" />;
+		return loggedIn ? <Redirect to='/dashboard' /> : <Form onSubmit={this._login} btnText="Login" />;
 	}
 }
 
