@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import LoginForm from '../components/Login';
 import Dashboard from '../components/Dashboard';
 import ArticleFeed from '../components/ArticleFeed';
+import PrivateRoute from '../components/PrivateRoute';
 
 class Routes extends Component {
 	render() {
@@ -11,7 +12,7 @@ class Routes extends Component {
 			<div>
 				<Route exact path="/" component={ArticleFeed} />
 				<Route path="/login" component={LoginForm} />
-				<Route path="/dashboard" component={Dashboard} />
+				<PrivateRoute path='dashboard' component={Dashboard} />
 			</div>
 		);
 	}

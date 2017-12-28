@@ -9,9 +9,12 @@ class Article extends Component {
 
 	handleArticleClick = () => {};
 
-	//fetch Data
 	componentDidMount() {
 		this.props.dispatch(getArticleRequest());
+	}
+
+	componentDidUpdate() {
+		console.log('Article component Update');
 	}
 
 	render() {
