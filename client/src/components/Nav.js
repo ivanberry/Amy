@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { logOut } from '../actions/actions';
 
@@ -13,6 +13,7 @@ import { logOut } from '../actions/actions';
 class Nav extends Component {
 	handleSubmit = () => {
 		this.props.dispatch(logOut(''));
+		setTimeout(this.props.history.goBack(), 300);
 	};
 
 	render() {
@@ -28,8 +29,8 @@ class Nav extends Component {
 					</nav>
 				) : (
 					<nav>
-								<Link to="/">Index</Link>
-								<Link to="/login">Login</Link>
+						<Link to="/">Index</Link>
+						<Link to="/login">Login</Link>
 					</nav>
 				)}
 			</div>
@@ -50,4 +51,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(Nav);
+export default withRouter(connect(mapStateToProps)(Nav));
