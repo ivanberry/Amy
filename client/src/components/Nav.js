@@ -33,6 +33,7 @@ class Nav extends Component {
 						<Link to="/login">Login</Link>
 					</nav>
 				)}
+				<hr />
 			</div>
 		);
 	}
