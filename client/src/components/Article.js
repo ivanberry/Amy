@@ -7,11 +7,6 @@ import { getArticleRequest } from '../actions/actions';
 
 class Article extends Component {
 
-	constructor(props) {
-		super(props);
-		console.log(props);
-	}
-
 	handleArticleClick = () => {};
 
 	//fetch Data
@@ -28,7 +23,7 @@ class Article extends Component {
 						<List key={article._id} {...article} onClick={this.handleArticleClick} />
 					))
 				) : (
-					<p>Add new article</p>
+					<p>No more articles</p>
 				)}
 			</ul>
 		);
