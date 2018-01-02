@@ -13,7 +13,7 @@ function getAllArticles(page = 1, res, next) {
 		total: 0
 	};
 	ArticleModel.find()
-		.populate('authorId', 'name')
+		.populate({path: 'authorId', select: 'name -_id'})
 		.lean()
 		.then(docs => {
 			response.total = docs.length;
