@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 export const List = (post) => {
-	let { title, body, author, viewCounter, tag, createdAt, updatedAt } = post;
+	let { title, body, authorId, viewCounter, tag, createdAt, updatedAt } = post;
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
 	return (
@@ -12,7 +12,7 @@ export const List = (post) => {
 			<h2>{title}</h2>
 			<p>{body}</p>
 			<div>
-				<span>作者: {author} </span>
+				<span>作者: {authorId.name} </span>
 				<span>类别: {tag} </span>
 				<span>阅读数: {viewCounter} </span>
 				<span>创建于: {moment(createdAt).format('YYYY-MM-DD')} </span>
