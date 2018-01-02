@@ -38,7 +38,7 @@ function getUserArticles(id, page = 1, res, next) {
 	 */
 	ArticleModel.find({ authorId: id })
 		.lean()
-		.populate('authorId','name')
+		.populate('authorId','name -_id')
 		.then(docs => {
 			response.data = docs;
 			res.json(response);
