@@ -13,10 +13,11 @@ function getAllArticles(page = 1, res, next) {
 		total: 0
 	};
 	ArticleModel.find()
+		.populate('authorId', 'name')
 		.lean()
-		.then(doc => {
-			response.total = doc.length;
-			response.data = doc;
+		.then(docs => {
+			response.total = docs.length;
+			response.data = docs;
 			res.json(response);
 		})
 		.catch(err => {
@@ -32,7 +33,12 @@ function getUserArticles(id, page = 1, res, next) {
 		total: 0
 	};
 
+	/**
+	 * population query
+	 */
 	ArticleModel.find({ authorId: id })
+		.lean()
+		.populate('authorId','name')
 		.then(docs => {
 			response.data = docs;
 			res.json(response);
