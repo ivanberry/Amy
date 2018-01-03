@@ -7,8 +7,6 @@ import { getArticleRequest } from '../actions/actions';
 
 class Article extends Component {
 
-	handleArticleClick = () => {};
-
 	componentDidMount() {
 		this.props.dispatch(getArticleRequest());
 	}
@@ -23,7 +21,7 @@ class Article extends Component {
 			<ul>
 				{articles && articles.length > 0 ? (
 					articles.map(article => (
-						<List key={article._id} {...article} onClick={this.handleArticleClick} />
+						<List key={article._id} {...article} />
 					))
 				) : (
 					<p>No more articles</p>
