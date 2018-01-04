@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class ArticleDetails extends Component {
 	constructor(props) {
@@ -12,7 +13,7 @@ class ArticleDetails extends Component {
 
 	refactorArticle(articles) {
 		let id = this.props.location.hash.split('#')[1],
-			_article = { id: id };
+			_article = { id: id, article_details: {} };
 		articles
 			? articles.forEach(article => {
 					let _id = article._id;
@@ -56,5 +57,10 @@ function mapStateToProps(state) {
 		articles: state.articles
 	};
 }
+
+ArticleDetails.propTypes = {
+	articles: PropTypes.array,
+	location: PropTypes.object
+};
 
 export default connect(mapStateToProps)(ArticleDetails);
