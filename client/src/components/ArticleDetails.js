@@ -8,8 +8,12 @@ class ArticleDetails extends Component {
 		let _articles = props.articles;
 		this.state = {
 			article: this.refactorArticle(_articles)
-		};
-	}
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps);
+    }
 
 	refactorArticle(articles) {
 		let id = this.props.location.hash.split('#')[1],
@@ -28,7 +32,7 @@ class ArticleDetails extends Component {
 				})
 			: [];
 		return _article;
-	}
+    }
 
 	render() {
 		let article = this.state.article;

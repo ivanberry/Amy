@@ -15,18 +15,6 @@ class Login extends Component {
 		this.props.dispatch(logInRequest({ username, password }));
 	};
 
-	componentDidMount() {
-		console.log('Login Component did mount');
-	}
-
-	componentDidUpdate() {
-		console.log('Login Component did update');
-	}
-
-	componentWillUnmount() {
-		console.log('Login Component will unmount');
-	}
-
 	render() {
 		const { loggedIn } = this.props;
 		return loggedIn ? <Redirect to='/dashboard' /> : <Form onSubmit={this._login} btnText="Login" />;

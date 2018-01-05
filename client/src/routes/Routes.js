@@ -14,7 +14,7 @@ class Routes extends Component {
 				<Route exact path="/" component={ArticleFeed} />
 				<Route path="/login" component={LoginForm} />
 				<Route path="/articles/:title" component={ArticleDetails} />
-				<PrivateRoute path="dashboard" component={Dashboard} />
+				<PrivateRoute exact path="/dashboard" component={Dashboard} />
 			</div>
 		);
 	}
