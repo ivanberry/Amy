@@ -38,21 +38,21 @@ describe('User API Test', () => {
 	});
 
 	//how to get this name
-	it('Get user\'s Article', done => {
+	it("Get user's Article", done => {
 		rp({
 			uri: `${url}/tab`,
 			json: true
 		})
-		.then(res => {
-			succeeExpect(res, expect);
-			expect(res.data).to.be.an('array');
-			done();
-		})
-		.catch(err => {
-			notFoundError(err, expect);
-			done();
-		})
-	})
+			.then(res => {
+				succeeExpect(res, expect);
+				expect(res.data).to.be.an('array');
+				done();
+			})
+			.catch(err => {
+				notFoundError(err, expect);
+				done();
+			});
+	});
 
 	it('Create new Article', done => {
 		rp({
@@ -152,6 +152,34 @@ describe('User API Test', () => {
 			.then(id => {
 				return rp({
 					method: 'DELETE',
+					uri: `${url}/${id}`,
+					json: true
+				});
+			})
+			.then(res => {
+				succeeExpect(res, expect);
+				done();
+			})
+			.catch(err => {
+				serverError(err, expect);
+				done();
+			});
+	});
+
+	it('Get particular article with id', done => {
+		let newArticle = new Article({
+			title: 'tab',
+			body: 'content'
+		});
+
+		newArticle
+			.createPost()
+			.then(doc => {
+				return doc.id;
+			})
+			.then(id => {
+				return rp({
+					method: 'GET',
 					uri: `${url}/${id}`,
 					json: true
 				});
