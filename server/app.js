@@ -28,7 +28,7 @@ const article = require('./controllers/article');
 
 var app = express();
 
-app.set('env', 'test');
+app.set('env', process.env.NODE_ENV || 'test');
 
 if(app.get('env') === 'production') {
   app.set('trust proxy', 1);
@@ -54,9 +54,8 @@ app.post('/api/users', users.post);
 app.post('/api/users/:name', users.post);
 
 
-// app.get('/api/articles/:username/:page', article.getArticles);
 app.get('/api/articles', article.getArticles);
-app.get('/api/articles/:id', article.getArticleDetailById);
+app.get('/api/article/:id', article.getArticleDetailById);
 app.put('/api/articles', article.postNewArticle);
 app.post('/api/articles/:id', article.updateArticle);
 app.delete('/api/articles/:id', article.deleteArticle);
