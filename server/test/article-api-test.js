@@ -166,7 +166,7 @@ describe('User API Test', () => {
 			});
 	});
 
-	it('Get particular article with id', done => {
+	it.only('Get particular article with id', done => {
 		let newArticle = new Article({
 			title: 'tab',
 			body: 'content'

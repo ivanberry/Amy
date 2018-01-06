@@ -11,7 +11,7 @@ const Article = props => {
 				articles.map(article => (
 					<List
 						key={article._id}
-						listsData={article}
+						{...article}
 						onClickHandler={showArticleDetail}
 					/>
 				))

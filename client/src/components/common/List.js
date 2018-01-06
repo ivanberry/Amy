@@ -4,8 +4,19 @@ import { Link } from 'react-router-dom';
 
 import moment from 'moment';
 
-const List = ({ listsData, onClickHandler }) => {
-	let { title, body, authorId, viewCounter, tag, createdAt, updatedAt, _id } = listsData;
+const List = props => {
+	let {
+		title,
+		body,
+		authorId,
+		viewCounter,
+		tag,
+		createdAt,
+		updatedAt,
+		_id,
+		onClickHandler
+	} = props;
+
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
 	return (
@@ -26,7 +37,14 @@ const List = ({ listsData, onClickHandler }) => {
 };
 
 List.propTypes = {
-	listsData: PropTypes.object,
+	title: PropTypes.string,
+	body: PropTypes.string,
+	authorId: PropTypes.object,
+	viewCounter: PropTypes.number,
+	tag: PropTypes.array,
+	createdAt: PropTypes.object,
+	updatedAt: PropTypes.object,
+	_id: PropTypes.string,
 	onClickHandler: PropTypes.func
 };
 

@@ -13,7 +13,7 @@ function getAllArticles(page = 1, res, next) {
 		total: 0
 	};
 	ArticleModel.find()
-		.populate({path: 'authorId', select: 'name -_id'})
+		.populate({ path: 'authorId', select: 'name -_id' })
 		.lean()
 		.then(docs => {
 			response.total = docs.length;
@@ -38,7 +38,7 @@ function getUserArticles(id, page = 1, res, next) {
 	 */
 	ArticleModel.find({ authorId: id })
 		.lean()
-		.populate('authorId','name -_id')
+		.populate('authorId', 'name -_id')
 		.then(docs => {
 			response.data = docs;
 			res.json(response);
@@ -140,4 +140,24 @@ exports.deleteArticle = (req, res, next) => {
 		.catch(err => {
 			next(err);
 		});
+};
+
+exports.getArticleDetailById = (req, res, next) => {
+	let { id } = req.params;
+	let response = {
+		statusCode: 200,
+		message: 'Success!'
+	};
+
+	ArticleModel.findById(id).then(doc => {
+		if (!doc) {
+			response.message = 'Not Found The Article!';
+			res.json(response);
+			next();
+		}
+		res.json(response);
+		next();
+	}).catch(err => {
+		next(err);
+	});
 };
