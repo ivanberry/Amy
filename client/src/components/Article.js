@@ -9,7 +9,11 @@ const Article = props => {
 		<ul>
 			{articles && articles.length > 0 ? (
 				articles.map(article => (
-					<List key={article._id} listsData={article} onClickHandler={showArticleDetail} />
+					<List
+						key={article._id}
+						listsData={article}
+						onClickHandler={showArticleDetail}
+					/>
 				))
 			) : (
 				<p>No more articles</p>

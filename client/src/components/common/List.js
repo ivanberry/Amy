@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import moment from 'moment';
 
-export const List = ({listsData, onClickHandler}) => {
+const List = ({ listsData, onClickHandler }) => {
 	let { title, body, authorId, viewCounter, tag, createdAt, updatedAt, _id } = listsData;
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
