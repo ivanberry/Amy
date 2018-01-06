@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Article from './Article';
+import ArticleContainer from '../container/ArticleContainer';
 
 class ArticleFeed extends Component {
 
 	render() {
-		return <Article />;
+		return <ArticleContainer />;
 	}
 }
 

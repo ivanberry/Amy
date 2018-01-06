@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 import moment from 'moment';
 
-export const List = articles => {
-	let { title, body, authorId, viewCounter, tag, createdAt, updatedAt, _id } = articles;
+export const List = ({listsData, onClickHandler}) => {
+	let { title, body, authorId, viewCounter, tag, createdAt, updatedAt, _id } = listsData;
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
 	return (
-		<Link to={`/articles/${title}#${_id}`}>
+		<Link to={`/articles/${title}/${_id}`} onClick={onClickHandler}>
 			<li>
 				<h2>{title}</h2>
 				<p>{body}</p>
@@ -26,7 +26,8 @@ export const List = articles => {
 };
 
 List.propTypes = {
-	articles: PropTypes.array
+	listsData: PropTypes.object,
+	onClickHandler: PropTypes.func
 };
 
 export default List;

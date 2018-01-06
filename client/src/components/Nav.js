@@ -11,6 +11,7 @@ import { logOut } from '../actions/actions';
  * 1:已登录，(用户名)
  */
 class Nav extends Component {
+
 	handleSubmit = () => {
 		this.props.dispatch(logOut(''));
 		setTimeout(this.props.history.goBack(), 300);
