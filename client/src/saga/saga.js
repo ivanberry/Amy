@@ -23,6 +23,10 @@ function _getArticles() {
 	return axios.get('/api/articles');
 }
 
+function _getArticleWithId(id) {
+	return axios.get(`/api/article/${id}`);
+}
+
 function* loginFlow(action) {
 	yield put(sendingRequest(true));
 	try {
@@ -69,10 +73,25 @@ function* getAllArticle() {
 	}
 }
 
+function* getArticleWithId(action) {
+	yield put(sendingRequest(true));
+	try {
+		const result = yield call(_getArticleWithId, action.id);
+		if (result.status === 200) {
+			yield put(sendingRequest(false));
+			yield put(getArticleSuccess(result.data.data));
+		}
+	} catch (e) {
+		yield put(sendingRequest(false));
+		yield put({ type: 'GET_ARTICLE_FAIL', message: e.message });
+	}
+}
+
 function* mySaga() {
 	yield takeEvery(ActionTypes.LOGIN_REQUEST, loginFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.LOGOUT, logoutFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.GET_ARTICLE, getAllArticle); //subscribe the GET_ARTICLE action
+	yield takeEvery(ActionTypes.GET_ARTICLE_WITH_ID, getArticleWithId);
 }
 
 export default mySaga;

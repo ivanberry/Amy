@@ -13,7 +13,7 @@ class Routes extends Component {
 			<div>
 				<Route exact path="/" component={ArticleFeed} />
 				<Route path="/login" component={LoginForm} />
-				<Route path="/articles/:title/:id" component={ArticleDetailContainer} />
+				<Route path="/articles/:id" component={ArticleDetailContainer} />
 				<PrivateRoute exact path="/dashboard" component={Dashboard} />
 			</div>
 		);

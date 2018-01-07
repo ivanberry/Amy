@@ -20,7 +20,7 @@ const List = props => {
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
 	return (
-		<Link to={`/articles/${title}/${_id}`} onClick={onClickHandler}>
+		<Link to={`/articles/${_id}`} onClick={onClickHandler}>
 			<li>
 				<h2>{title}</h2>
 				<p>{body}</p>
@@ -41,9 +41,9 @@ List.propTypes = {
 	body: PropTypes.string,
 	authorId: PropTypes.object,
 	viewCounter: PropTypes.number,
-	tag: PropTypes.array,
-	createdAt: PropTypes.object,
-	updatedAt: PropTypes.object,
+	tag: PropTypes.string,
+	createdAt: PropTypes.string,
+	updatedAt: PropTypes.string,
 	_id: PropTypes.string,
 	onClickHandler: PropTypes.func
 };
