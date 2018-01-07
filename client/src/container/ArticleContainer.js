@@ -28,7 +28,6 @@ ArticleContainer.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-		dispatch: state.dispatch,
 		articles: state.articles
 	};
 }
