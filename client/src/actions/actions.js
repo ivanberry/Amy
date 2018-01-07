@@ -8,7 +8,8 @@ import {
 	DELETE_ARTICLE,
 	SENDING_REQUEST,
 	SET_AUTH,
-	GET_ARTICLE_SUCCESS
+	GET_ARTICLE_SUCCESS,
+	GET_ARTICLE_WITH_ID
 } from '../constants/actionTypes';
 
 /**
@@ -46,6 +47,13 @@ export const logOut = user => {
 export const getArticleRequest = () => {
 	return {
 		type: GET_ARTICLE
+	};
+};
+
+export const getArticleWithId = id => {
+	return {
+		type: GET_ARTICLE_WITH_ID,
+		id
 	};
 };
 
