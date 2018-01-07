@@ -146,18 +146,25 @@ exports.getArticleDetailById = (req, res, next) => {
 	let { id } = req.params;
 	let response = {
 		statusCode: 200,
+		data: [],
 		message: 'Success!'
 	};
 
-	ArticleModel.findById(id).then(doc => {
-		if (!doc) {
-			response.message = 'Not Found The Article!';
+	ArticleModel.findById(id)
+		.lean()
+		.populate('authorId', 'name -_id')
+		.then(doc => {
+			if (!doc) {
+				response.message = 'Not Found The Article!';
+				response.statusCode = '404';
+				res.json(response);
+				next();
+			}
+			response.data.push(doc);
 			res.json(response);
 			next();
-		}
-		res.json(response);
-		next();
-	}).catch(err => {
-		next(err);
-	});
+		})
+		.catch(err => {
+			next(err);
+		});
 };
