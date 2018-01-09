@@ -1,16 +1,4 @@
-import {
-	REGISTE_USER,
-	LOGIN_REQUEST,
-	LOGOUT,
-	GET_ARTICLE,
-	POST_ARTICLE,
-	UPDATE_ARTICLE,
-	DELETE_ARTICLE,
-	SENDING_REQUEST,
-	SET_AUTH,
-	GET_ARTICLE_SUCCESS,
-	GET_ARTICLE_WITH_ID
-} from '../constants/actionTypes';
+import * as ActionTypes from '../constants/actionTypes';
 
 /**
  * action creators: Actions describe the fact that something happened,
@@ -18,76 +6,76 @@ import {
  */
 export const registeUserRequest = user => {
 	return {
-		type: REGISTE_USER,
+		type: ActionTypes.REGISTE_USER,
 		user
 	};
 };
 
 export const setAuthState = loggedIn => {
 	return {
-		type: SET_AUTH,
+		type: ActionTypes.SET_AUTH,
 		loggedIn
 	};
 };
 
 export const logInRequest = user => {
 	return {
-		type: LOGIN_REQUEST,
+		type: ActionTypes.LOGIN_REQUEST,
 		user
 	};
 };
 
 export const logOut = user => {
 	return {
-		type: LOGOUT,
+		type: ActionTypes.LOGOUT,
 		user
 	};
 };
 
 export const getArticleRequest = () => {
 	return {
-		type: GET_ARTICLE
+		type: ActionTypes.GET_ARTICLE
 	};
 };
 
 export const getArticleWithId = id => {
 	return {
-		type: GET_ARTICLE_WITH_ID,
+		type: ActionTypes.GET_ARTICLE_WITH_ID,
 		id
 	};
 };
 
 export const getArticleSuccess = articles => {
 	return {
-		type: GET_ARTICLE_SUCCESS,
+		type: ActionTypes.GET_ARTICLE_SUCCESS,
 		articles
 	};
 };
 
 export const postArticleRequest = article => {
 	return {
-		type: POST_ARTICLE,
+		type: ActionTypes.POST_ARTICLE,
 		article
 	};
 };
 
 export const updateArticleRequest = id => {
 	return {
-		type: UPDATE_ARTICLE,
+		type: ActionTypes.UPDATE_ARTICLE,
 		id
 	};
 };
 
 export const deleteArticleRequest = id => {
 	return {
-		type: DELETE_ARTICLE,
+		type: ActionTypes.DELETE_ARTICLE,
 		id
 	};
 };
 
 export function sendingRequest(isFetching) {
 	return {
-		type: SENDING_REQUEST,
+		type: ActionTypes.SENDING_REQUEST,
 		isFetching
 	};
 }
