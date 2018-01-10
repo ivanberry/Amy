@@ -1,7 +1,9 @@
 import * as ActionTypes from '../constants/actionTypes';
-import { setAuthState, sendingRequest, getArticleSuccess } from '../actions/actions';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
+
+import * as helper from '../ulti';
+import { setAuthState, sendingRequest, getArticleSuccess } from '../actions/actions';
 
 /**
  * 用户登录
@@ -36,6 +38,7 @@ function* loginFlow(action) {
 			isAuth = true;
 		}
 		yield put(setAuthState(isAuth));
+		helper.storeInfo('user', action.user.username);
 		yield put(sendingRequest(false));
 	} catch (e) {
 		yield put(sendingRequest(false));
@@ -52,6 +55,7 @@ function* logoutFlow() {
 			isAuth = false;
 		}
 		yield put(setAuthState(isAuth));
+		helper.clearInfo('user');
 		yield put(sendingRequest(false));
 	} catch (e) {
 		yield put({ type: 'LOGOUT_IN_FAIL', message: e.message });
