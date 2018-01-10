@@ -8,7 +8,7 @@ const ArticleDetail = props => {
 			<h2>{title}</h2>
 			<hr />
 			<p>{body}</p>
-			<ul>
+		<ul>
 				<li>{updatedAt}</li>
 				<li>{createdAt}</li>
 				<li>{viewCounter}</li>
