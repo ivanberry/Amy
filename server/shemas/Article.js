@@ -12,8 +12,8 @@ module.exports = new Schema(
 			required: true
 		},
 		tag: {
-			type: String,
-			default: 'Default'
+			type: Array,
+			ref: 'TagModel'
 		},
 		authorId: {
 			type: Schema.Types.ObjectId,
