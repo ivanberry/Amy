@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ArticleDetail = props => {
-	let { title, body, viewCounter, tag, createdAt, updatedAt, location } = props;
+	let { title, body, viewCounter, tag, createdAt, updatedAt } = props;
 
 	return (
 		<div>

@@ -13,7 +13,6 @@ class ArticleDetailContainer extends Component {
 	}
 
 	componentDidMount() {
-		console.log('artile detail container did mount');
 		let _id = this.props.match.params['id'];
 		axios.get(`/api/article/${_id}`).then(res => {
 		this.setState({ article: res.data.data[0] });
@@ -21,7 +20,7 @@ class ArticleDetailContainer extends Component {
 	}
 
 	render() {
-		return <ArticleDetail {...this.state.article} location={this.props.location} />;
+		return <ArticleDetail {...this.state.article}  />;
 	}
 }
 
