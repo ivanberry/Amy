@@ -20,7 +20,7 @@ const List = props => {
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
 	return (
-		<Link to={`/articles/${_id}`} onClick={onClickHandler}>
+		<Link to={`/article/${_id}`} onClick={onClickHandler}>
 			<li>
 				<h2>{title}</h2>
 				<p>{body}</p>
