@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import List from './common/List';
 
 const Article = props => {
-	const { articles, showArticleDetail } = props;
+	const { articles, dispatch} = props;
+
 	return (
 		<ul>
 			{articles && articles.length > 0 ? (
@@ -12,7 +13,7 @@ const Article = props => {
 					<List
 						key={article._id}
 						{...article}
-						onClickHandler={showArticleDetail}
+						dispatch={dispatch}
 					/>
 				))
 			) : (
