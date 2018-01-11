@@ -38,10 +38,17 @@ export const getArticleRequest = () => {
 	};
 };
 
-export const getArticleWithId = id => {
+export const getCurrArticle = id => {
 	return {
 		type: ActionTypes.GET_ARTICLE_WITH_ID,
 		id
+	};
+};
+
+export const getCurrArticleSucc = currentArticle => {
+	return {
+		type: ActionTypes.GET_CURR_ARTICLE_SUCCESS,
+		currentArticle
 	};
 };
 
