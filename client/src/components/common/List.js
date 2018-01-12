@@ -2,25 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import { getCurrArticle } from '../../actions/actions';
+
 import moment from 'moment';
 
 const List = props => {
-	let {
-		title,
-		body,
-		authorId,
-		viewCounter,
-		tag,
-		createdAt,
-		updatedAt,
-		_id,
-		onClickHandler
-	} = props;
+	let { title, body, authorId, viewCounter, tag, createdAt, updatedAt, _id } = props;
 
 	moment(createdAt).format('YYYY-MM-DD: HH-MM');
 
 	return (
-		<Link to={`/article/${_id}`} onClick={onClickHandler}>
+		<Link to={`/article/${_id}`} onClick={() => props.dispatch(getCurrArticle(_id))}>
 			<li>
 				<h2>{title}</h2>
 				<p>{body}</p>
@@ -45,7 +37,7 @@ List.propTypes = {
 	createdAt: PropTypes.string,
 	updatedAt: PropTypes.string,
 	_id: PropTypes.string,
-	onClickHandler: PropTypes.func
+	dispatch: PropTypes.func
 };
 
 export default List;

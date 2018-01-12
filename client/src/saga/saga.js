@@ -3,7 +3,12 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 import * as helper from '../ulti';
-import { setAuthState, sendingRequest, getArticleSuccess } from '../actions/actions';
+import {
+	setAuthState,
+	sendingRequest,
+	getArticleSuccess,
+	getCurrArticleSucc
+} from '../actions/actions';
 
 /**
  * 用户登录
@@ -25,7 +30,7 @@ function _getArticles() {
 	return axios.get('/api/articles');
 }
 
-function _getArticleWithId(id) {
+function _getCurrArticle(id) {
 	return axios.get(`/api/article/${id}`);
 }
 
@@ -77,13 +82,13 @@ function* getAllArticle() {
 	}
 }
 
-function* getArticleWithId(action) {
+function* getCurrArticle(action) {
 	yield put(sendingRequest(true));
 	try {
-		const result = yield call(_getArticleWithId, action.id);
+		const result = yield call(_getCurrArticle, action.id);
 		if (result.status === 200) {
 			yield put(sendingRequest(false));
-			yield put(getArticleSuccess(result.data.data));
+			yield put(getCurrArticleSucc(result.data.data[0]));
 		}
 	} catch (e) {
 		yield put(sendingRequest(false));
@@ -95,7 +100,7 @@ function* mySaga() {
 	yield takeEvery(ActionTypes.LOGIN_REQUEST, loginFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.LOGOUT, logoutFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.GET_ARTICLE, getAllArticle); //subscribe the GET_ARTICLE action
-	yield takeEvery(ActionTypes.GET_ARTICLE_WITH_ID, getArticleWithId);
+	yield takeEvery(ActionTypes.GET_ARTICLE_WITH_ID, getCurrArticle);
 }
 
 export default mySaga;

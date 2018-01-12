@@ -7,7 +7,8 @@ import * as ActionTypes from '../constants/actionTypes';
 const initialState = {
 	isFetching: false,
 	loggedIn: false,
-	username: ''
+	username: '',
+	currentArticle: {}
 };
 
 export function homeReducer(state = initialState, action) {
@@ -36,6 +37,11 @@ export function homeReducer(state = initialState, action) {
 			return {
 				...state,
 				articles: action.articles
+			};
+		case ActionTypes.GET_CURR_ARTICLE_SUCCESS:
+			return {
+				...state,
+				currentArticle: action.currentArticle
 			};
 		default:
 			return state;

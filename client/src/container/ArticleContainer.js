@@ -11,19 +11,16 @@ class ArticleContainer extends Component {
 		this.props.dispatch(getArticleRequest());
 	}
 
-	showArticleDetail = article => {
-		console.log('show article detail!');
-	};
-
 	render() {
 		return (
-			<Article articles={this.props.articles} showArticleDetail={this.showArticleDetail} />
+			<Article articles={this.props.articles} dispatch={this.props.dispatch}/>
 		);
 	}
 }
 
 ArticleContainer.propTypes = {
-	dispatch: PropTypes.func
+	dispatch: PropTypes.func,
+	articles: PropTypes.array
 };
 
 function mapStateToProps(state) {
