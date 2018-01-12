@@ -25,7 +25,7 @@ ArticleDetail.propTypes = {
 	title: PropTypes.string,
 	body: PropTypes.string,
 	viewCounter: PropTypes.number,
-	tag: PropTypes.string,
+	tag: PropTypes.array,
 	createdAt: PropTypes.string,
 	updatedAt: PropTypes.string
 };

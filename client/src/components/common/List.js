@@ -41,7 +41,7 @@ List.propTypes = {
 	body: PropTypes.string,
 	authorId: PropTypes.object,
 	viewCounter: PropTypes.number,
-	tag: PropTypes.string,
+	tag: PropTypes.array,
 	createdAt: PropTypes.string,
 	updatedAt: PropTypes.string,
 	_id: PropTypes.string,
