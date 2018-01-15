@@ -17,7 +17,10 @@ module.exports = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	articles: [{
-		type: Schema.Types.ObjectId, ref: 'ArticleModel'
-	}]
+	articles: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'ArticleModel'
+		}
+	]
 });
