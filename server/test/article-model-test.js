@@ -32,9 +32,8 @@ describe('Post Collection Tests', () => {
 				expect(post.body)
 					.to.be.a('string')
 					.to.be.equal(_p.body);
-				expect(post.tag)
-					.to.be.a('string')
-					.to.be.equal('Default');
+				expect(post.tags)
+					.to.be.an('array')
 				expect(post.viewCounter).to.be.a('number');
 				done();
 			})
