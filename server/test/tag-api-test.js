@@ -12,8 +12,7 @@ describe('Tag api test collection', () => {
   1. custom tags to chose from
   2. pick tag(s) from new post article
   3. find articles with particular tag
-  4. delete particular article's tag(s)
-  5. edit
+  4. edit particular article's tag
   */
 });
 
