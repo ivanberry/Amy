@@ -10,7 +10,7 @@ const Tag = require('../ultis/tag');
 Tag: 模型的建立，查询，删除等等
 */
 let o = {
-	tag: 'React'
+	name: 'React'
 };
 
 describe('Tag Model test collection', () => {
@@ -25,9 +25,9 @@ describe('Tag Model test collection', () => {
 		newTag
 			.createNewTag()
 			.then(doc => {
-				expect(doc.tag).to.be.exist;
-				expect(doc.tag).to.be.a('string');
-				expect(doc.tag).to.be.equal('React');
+				expect(doc.name).to.be.exist;
+				expect(doc.name).to.be.a('string');
+				expect(doc.name).to.be.equal('React');
 				done();
 			})
 			.catch(err => {
@@ -40,7 +40,7 @@ describe('Tag Model test collection', () => {
 		newTag
 			.createNewTag()
 			.then(doc => {
-				expect(doc.tag).to.be.equal('Default');
+				expect(doc.name).to.be.equal('Default');
 				done();
 			})
 			.catch(err => {
@@ -53,7 +53,7 @@ describe('Tag Model test collection', () => {
 		newTag
 			.createNewTag()
 			.then(doc => {
-				expect(doc.tag).to.be.exist;
+				expect(doc.name).to.be.exist;
 				expect(doc.articles).to.be.exist;
 				expect(doc.articles).to.be.an('array');
 				done();
