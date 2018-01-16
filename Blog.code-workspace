@@ -1,7 +1,7 @@
 {
 	"folders": [
 		{
-			"path": "react-backend"
+			"path": "server"
 		},
 		{
 			"path": "client"

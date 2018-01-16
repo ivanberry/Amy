@@ -9,7 +9,7 @@ module.exports = new Schema({
 	},
 	articles: [
 		{
-			type: Array,
+			type: Schema.Types.ObjectId,
 			ref: 'ArtileModel'
 		}
 	]
