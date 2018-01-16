@@ -13,8 +13,8 @@ module.exports = new Schema(
 		},
 		tags: [
 			{
-				type: Schema.Types.ObjectId,
-				ref: 'TagModel'
+				type: String,
+				require: true
 			}
 		],
 		authorId: {

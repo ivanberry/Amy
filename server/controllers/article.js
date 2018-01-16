@@ -77,7 +77,8 @@ exports.postNewArticle = (req, res, next) => {
 	let newArticle = new Article({
 		title,
 		body,
-		authorId: _id
+		authorId: _id,
+		tags: ['React']
 	});
 
 	//push new article _id to user document articles field

@@ -1,4 +1,6 @@
 var chai = require('chai');
+var assertArrays = require('chai-arrays');
+chai.use(assertArrays);
 var expect = chai.expect;
 
 require('../ultis/test-ultis');
@@ -10,7 +12,8 @@ const Article = require('../ultis/article');
 let _p = {
 	title: 'title',
 	body: 'body',
-	author: 'tab'
+	author: 'tab',
+	tags: ['React']
 };
 
 describe('Post Collection Tests', () => {
@@ -20,11 +23,12 @@ describe('Post Collection Tests', () => {
 		});
 	});
 
-	it('Create a new post normally', done => {
+	it.only('Create a new post normally', done => {
 		let newArticle = new Article(_p);
 		newArticle
 			.createPost()
 			.then(post => {
+				console.log(post);
 				expect(post._id).not.null;
 				expect(post.title)
 					.to.be.a('string')
@@ -33,7 +37,10 @@ describe('Post Collection Tests', () => {
 					.to.be.a('string')
 					.to.be.equal(_p.body);
 				expect(post.tags)
-					.to.be.an('array')
+					.not.null
+					.to.be.array()
+					.to.be.ofSize(1)
+					.to.be.equalTo(['React'])
 				expect(post.viewCounter).to.be.a('number');
 				done();
 			})
