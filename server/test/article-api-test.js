@@ -180,7 +180,7 @@ describe('User API Test', () => {
 			.then(id => {
 				return rp({
 					method: 'GET',
-					uri: `${url}/${id}`,
+					uri: `${URL}/article/${id}`,
 					json: true
 				});
 			})
