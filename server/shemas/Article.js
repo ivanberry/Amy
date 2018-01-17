@@ -11,12 +11,10 @@ module.exports = new Schema(
 			type: String,
 			required: true
 		},
-		tags: [
-			{
-				type: String,
-				require: true
-			}
-		],
+		tags: {
+			type: String,
+			require: true
+		},
 		authorId: {
 			type: Schema.Types.ObjectId,
 			ref: 'UserModel'

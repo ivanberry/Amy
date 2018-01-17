@@ -13,7 +13,7 @@ let _p = {
 	title: 'title',
 	body: 'body',
 	author: 'tab',
-	tags: ['React']
+	tags: 'React'
 };
 
 describe('Post Collection Tests', () => {
@@ -23,7 +23,7 @@ describe('Post Collection Tests', () => {
 		});
 	});
 
-	it('Create a new post normally', done => {
+	it.only('Create a new post normally', done => {
 		let newArticle = new Article(_p);
 		newArticle
 			.createPost()
@@ -37,10 +37,8 @@ describe('Post Collection Tests', () => {
 					.to.be.a('string')
 					.to.be.equal(_p.body);
 				expect(post.tags)
-					.not.null
-					.to.be.array()
-					.to.be.ofSize(1)
-					.to.be.equalTo(['React'])
+					.to.be.a('string')
+					.to.be.equal(_p.tags)
 				expect(post.viewCounter).to.be.a('number');
 				done();
 			})
