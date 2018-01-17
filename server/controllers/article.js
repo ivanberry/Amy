@@ -82,6 +82,8 @@ exports.postNewArticle = (req, res, next) => {
 		tags
 	});
 
+	let tagsArr = tags.split(',');
+
 	//push new article _id to user document articles field
 	newArticle
 		.createPost()
@@ -94,11 +96,14 @@ exports.postNewArticle = (req, res, next) => {
 			return doc;
 		})
 		.then(doc => {
-			return TagsModel.findOneAndUpdate(
-				{ name: doc.tags[0] },
-				{ $push: { articles: doc.id } },
-				{ upsert: true, setDefaultOnInsert: true }
-			);
+			for (let i = 0; i < tagsArr.length; i++) {
+				let _t = tagsArr[i];
+				return TagsModel.findOneAndUpdate(
+					{ name: _t },
+					{ $push: { articles: doc.id } },
+					{ upsert: true }
+				);
+			}
 		})
 		.then(() => {
 			res.json(response);

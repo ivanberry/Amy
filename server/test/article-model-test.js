@@ -23,12 +23,11 @@ describe('Post Collection Tests', () => {
 		});
 	});
 
-	it.only('Create a new post normally', done => {
+	it('Create a new post normally', done => {
 		let newArticle = new Article(_p);
 		newArticle
 			.createPost()
 			.then(post => {
-				console.log(post);
 				expect(post._id).not.null;
 				expect(post.title)
 					.to.be.a('string')
@@ -47,6 +46,22 @@ describe('Post Collection Tests', () => {
 			});
 	});
 
+	it.only('Create default tag for new post', done => {
+		let newArticle = new Article({
+			title: 'title',
+			body: 'body',
+			author: 'tab',
+		});
+		newArticle
+			.createPost()
+			.then(doc => {
+				expect(doc.tags)
+					.to.be.a('string')
+					.to.be.equal('Default')
+				done();
+			})
+	})
+
 	it('Create Post without title', done => {
 		let newArticle = new Article({
 			body: 'body',
@@ -59,28 +74,28 @@ describe('Post Collection Tests', () => {
 				done();
 			})
 			.catch(err => {
-                let _err = err.errors.title;
+				let _err = err.errors.title;
 				expect(_err.name).to.be.equal('ValidatorError');
 				expect(_err.message).to.be.equal('Path `title` is required.');
 				done();
 			});
-    });
-    
-    it('Create new Post without body', done => {
-        let newArticle = new Article({
-            title: 'body',
-            author: 'tab'
-        });
+	});
 
-        newArticle
-            .createPost()
-            .then(post => {
-                done();
-            }).catch(err => {
-                let _err = err.errors.body;
-                expect(_err.name).to.be.equal('ValidatorError');
-                expect(_err.message).to.be.equal('Path `body` is required.');
-                done();
-            });
-    });
+	it('Create new Post without body', done => {
+		let newArticle = new Article({
+			title: 'body',
+			author: 'tab'
+		});
+
+		newArticle
+			.createPost()
+			.then(post => {
+				done();
+			}).catch(err => {
+				let _err = err.errors.body;
+				expect(_err.name).to.be.equal('ValidatorError');
+				expect(_err.message).to.be.equal('Path `body` is required.');
+				done();
+			});
+	});
 });

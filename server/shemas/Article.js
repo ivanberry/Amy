@@ -13,6 +13,7 @@ module.exports = new Schema(
 		},
 		tags: {
 			type: String,
+			default: 'Default',
 			require: true
 		},
 		authorId: {
