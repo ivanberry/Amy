@@ -4,6 +4,7 @@
 const Article = require('../ultis/article');
 const ArticleModel = require('../model/Article');
 const UserModel = require('../model/User');
+const TagsModel = require('../model/Tag');
 
 function getAllArticles(page = 1, res, next) {
 	let response = {
@@ -66,7 +67,7 @@ exports.getArticles = (req, res, next) => {
  * @param {*} next
  */
 exports.postNewArticle = (req, res, next) => {
-	let { title, body } = req.body;
+	let { title, body, tags } = req.body;
 	let author = req.session.user;
 	let _id = req.session.userId;
 	let response = {
@@ -78,18 +79,26 @@ exports.postNewArticle = (req, res, next) => {
 		title,
 		body,
 		authorId: _id,
-		tags: ['React']
+		tags 
 	});
 
 	//push new article _id to user document articles field
 	newArticle
 		.createPost()
 		.then(doc => {
-			return UserModel.findOneAndUpdate(
+			UserModel.findOneAndUpdate(
 				{ name: author },
 				{ $push: { articles: doc.id } },
 				{ lean: true }
 			);
+			return doc;
+		})
+		.then(doc => {
+			return TagsModel.findOneAndUpdate(
+				{ name: doc.tags[0] },
+				{ $push: { articles: doc.id } },
+				{ upsert: true, setDefaultOnInsert: true }
+			)
 		})
 		.then(() => {
 			res.json(response);
