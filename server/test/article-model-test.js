@@ -23,7 +23,7 @@ describe('Post Collection Tests', () => {
 		});
 	});
 
-	it.only('Create a new post normally', done => {
+	it('Create a new post normally', done => {
 		let newArticle = new Article(_p);
 		newArticle
 			.createPost()

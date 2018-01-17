@@ -79,7 +79,7 @@ exports.postNewArticle = (req, res, next) => {
 		title,
 		body,
 		authorId: _id,
-		tags 
+		tags
 	});
 
 	//push new article _id to user document articles field
@@ -98,7 +98,7 @@ exports.postNewArticle = (req, res, next) => {
 				{ name: doc.tags[0] },
 				{ $push: { articles: doc.id } },
 				{ upsert: true, setDefaultOnInsert: true }
-			)
+			);
 		})
 		.then(() => {
 			res.json(response);
