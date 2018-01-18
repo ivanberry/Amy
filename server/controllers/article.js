@@ -88,26 +88,24 @@ exports.postNewArticle = (req, res, next) => {
 	newArticle
 		.createPost()
 		.then(doc => {
-			UserModel.findOneAndUpdate(
-				{ name: author },
-				{ $push: { articles: doc.id } },
-				{ lean: true }
-			);
+			UserModel.findOneAndUpdate({ name: author }, { $push: { articles: doc.id } }, { lean: true });
 			return doc;
 		})
 		.then(doc => {
 			let _tagUpdateP = [];
 			for (let i = 0; i < tagsArr.length; i++) {
 				let _t = tagsArr[i];
-				_tagUpdateP.push(TagsModel.findOneAndUpdate(
-					{ name: _t },
-					{ $push: { articles: doc.id } },
-					{ upsert: true }
-				));
+				_tagUpdateP.push(
+					TagsModel.findOneAndUpdate(
+						{ name: _t },
+						{ $push: { articles: doc.id } },
+						{ upsert: true }
+					)
+				);
 			}
-			return Promise.all(_tagUpdateP)
+			return Promise.all(_tagUpdateP);
 		})
-		.then((r) => {
+		.then(() => {
 			res.json(response);
 			next();
 		})
