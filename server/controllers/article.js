@@ -88,10 +88,6 @@ exports.postNewArticle = (req, res, next) => {
 	newArticle
 		.createPost()
 		.then(doc => {
-			UserModel.findOneAndUpdate({ name: author }, { $push: { articles: doc.id } }, { lean: true });
-			return doc;
-		})
-		.then(doc => {
 			let _tagUpdateP = [];
 			for (let i = 0; i < tagsArr.length; i++) {
 				let _t = tagsArr[i];
@@ -103,6 +99,14 @@ exports.postNewArticle = (req, res, next) => {
 					)
 				);
 			}
+
+			_tagUpdateP.push(
+				UserModel.findOneAndUpdate(
+					{ name: author },
+					{ $push: { articles: doc.id } },
+					{ lean: true })
+			)
+
 			return Promise.all(_tagUpdateP);
 		})
 		.then(() => {
