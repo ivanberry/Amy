@@ -46,7 +46,7 @@ describe('Post Collection Tests', () => {
 			});
 	});
 
-	it.only('Create default tag for new post', done => {
+	it('Create default tag for new post', done => {
 		let newArticle = new Article({
 			title: 'title',
 			body: 'body',
