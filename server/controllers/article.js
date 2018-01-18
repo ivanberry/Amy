@@ -96,16 +96,18 @@ exports.postNewArticle = (req, res, next) => {
 			return doc;
 		})
 		.then(doc => {
+			let _tagUpdateP = [];
 			for (let i = 0; i < tagsArr.length; i++) {
 				let _t = tagsArr[i];
-				return TagsModel.findOneAndUpdate(
+				_tagUpdateP.push(TagsModel.findOneAndUpdate(
 					{ name: _t },
 					{ $push: { articles: doc.id } },
 					{ upsert: true }
-				);
+				));
 			}
+			return Promise.all(_tagUpdateP)
 		})
-		.then(() => {
+		.then((r) => {
 			res.json(response);
 			next();
 		})
