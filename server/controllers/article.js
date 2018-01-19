@@ -104,8 +104,9 @@ exports.postNewArticle = (req, res, next) => {
 				UserModel.findOneAndUpdate(
 					{ name: author },
 					{ $push: { articles: doc.id } },
-					{ lean: true })
-			)
+					{ lean: true }
+				)
+			);
 
 			return Promise.all(_tagUpdateP);
 		})

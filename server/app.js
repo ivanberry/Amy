@@ -25,6 +25,7 @@ const logout = require('./controllers/logout');
 const index = require('./controllers/index');
 const users = require('./controllers/users');
 const article = require('./controllers/article');
+const tag = require('./controllers/tag');
 
 var app = express();
 
@@ -59,6 +60,9 @@ app.get('/api/article/:id', article.getArticleDetailById);
 app.put('/api/articles', article.postNewArticle);
 app.post('/api/articles/:id', article.updateArticle);
 app.delete('/api/articles/:id', article.deleteArticle);
+
+app.post('/api/addTag', tag.addNewTag);
+app.post('/api/deleteTag', tag.deleteTag);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
