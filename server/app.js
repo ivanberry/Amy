@@ -56,6 +56,7 @@ app.post('/api/users/:name', users.post);
 
 
 app.get('/api/articles', article.getArticles);
+app.post('/api/articles', article.getArticleWithTag);
 app.get('/api/article/:id', article.getArticleDetailById);
 app.put('/api/articles', article.postNewArticle);
 app.post('/api/articles/:id', article.updateArticle);

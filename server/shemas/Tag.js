@@ -10,7 +10,7 @@ module.exports = new Schema({
 	articles: [
 		{
 			type: Schema.Types.ObjectId,
-			ref: 'ArtileModel'
+			ref: 'ArticleModel'
 		}
 	]
 });

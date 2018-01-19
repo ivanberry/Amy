@@ -188,3 +188,39 @@ exports.getArticleDetailById = (req, res, next) => {
 			next(err);
 		});
 };
+
+
+/**
+ * find articles with particular tag
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+exports.getArticleWithTag = (req, res, next) => {
+	let { tag } = req.body;
+	let response = {
+		statusCode: 200,
+		message: 'Success!',
+		data: [],
+		total: 0
+	};
+	if (tag) {
+		TagsModel.find({ name: tag })
+			.lean()
+			.populate('articles', '-_id')
+			.then(docs => {
+				response.data = docs;
+				res.json(response);
+				next();
+			})
+			.catch(err => {
+				res.status(err.statusCode);
+				next(err);
+			});
+	} else {
+		response.statusCode = 404;
+		response.message = 'Tag name needed to query';
+		res.status(404);
+		res.json(response);
+	}
+}

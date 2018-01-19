@@ -193,4 +193,57 @@ describe('User API Test', () => {
 				done();
 			});
 	});
+
+	it('Get articles with particular tag', done => {
+		let newArticle = new Article({
+			title: 'test',
+			content: 'test',
+			body: 'test',
+			tags: 'React'
+		});
+
+		newArticle
+			.createPost()
+			.then(doc => {
+				return rp({
+					method: 'POST',
+					uri: `${URL}/articles`,
+					body: {
+						tag: 'React'
+					},
+					json: true
+				})
+			})
+			.then(res => {
+				succeeExpect(res, expect);
+				expect(res.data).to.be.an('array');
+				expect(res.data).to.have.lengthOf(1);
+				done();
+			})
+			.catch(err => {
+				expect(err).to.be.exist;
+				expect(err.error.statusCode).to.be.equal(404);
+				expect(err.error.message).to.be.equal('tag name needed');
+				done(err);
+			});
+	});
+
+	it('Get articles without tag name', done => {
+		rp({
+			method: 'POST',
+			uri: `${URL}/articles`,
+			body: {},
+			json: true
+		})
+			.then(res => {
+				done();
+			})
+			.catch(err => {
+				expect(err).to.be.exist;
+				expect(err.error.statusCode).to.be.equal(404);
+				expect(err.error.message).to.be.equal('Tag name needed to query');
+				done();
+			});
+	});
+
 });
