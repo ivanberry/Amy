@@ -66,33 +66,20 @@ describe('Tag api test collection', () => {
 			})
 			.catch(err => {
 				notFoundError(err, expect);
-				done(err);
+				done();
 			});
 	});
 
 	it('Delete particular tag without name', done => {
-		let newTag = new Tag({
-			name: 'tag'
+		rp({
+			method: 'POST',
+			uri: `${URL}/deleteTag`,
+			json: true
+		}).catch(err => {
+			expect(err).to.be.exist;
+			expect(err.error.statusCode).to.be.equal(404);
+			expect(err.error.message).to.be.equal('tag name needed');
+			done();
 		});
-
-		newTag
-			.createNewTag()
-			.then(doc => {
-				return rp({
-					method: 'POST',
-					uri: `${URL}/deleteTag`,
-					json: true
-				});
-			})
-			.then(res => {
-				succeeExpect(res, expect);
-				done();
-			})
-			.catch(err => {
-        expect(err).to.be.exist;
-        expect(err.statusCode).to.be.equal(404);
-        expect(err).message = 'tag name needed';
-				done(err);
-			});
 	});
 });
