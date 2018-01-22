@@ -189,12 +189,11 @@ exports.getArticleDetailById = (req, res, next) => {
 		});
 };
 
-
 /**
  * find articles with particular tag
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
 exports.getArticleWithTag = (req, res, next) => {
 	let { tag } = req.body;
@@ -207,7 +206,7 @@ exports.getArticleWithTag = (req, res, next) => {
 	if (tag) {
 		TagsModel.find({ name: tag })
 			.lean()
-			.populate('articles', '-_id')
+			.populate('articles', '-tags')
 			.then(docs => {
 				response.data = docs;
 				res.json(response);
@@ -223,4 +222,4 @@ exports.getArticleWithTag = (req, res, next) => {
 		res.status(404);
 		res.json(response);
 	}
-}
+};
