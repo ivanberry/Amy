@@ -5,8 +5,6 @@ import ArticleNavItem from '../components/ArticleNavItem';
 
 class ArticleNavContainer extends Component {
 	// fetch all tag
-	componentDidMount() { }
-
 	render() {
 		return (
 			<ul>

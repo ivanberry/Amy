@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ArticleNavItem = ({ tag }) => {
 	return (
-		<Link to={`/articles/${tag}`}>
+		<Link to={`/t_articles/${tag}`}>
 			<li>{tag}</li>
 		</Link>
 	);

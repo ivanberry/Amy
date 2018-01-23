@@ -11,6 +11,10 @@ class ArticleContainer extends Component {
 		this.props.dispatch(getArticleRequest());
 	}
 
+	componentWillReceiveProps() {
+		console.log('receive Props');
+	}
+
 	render() {
 		return <Article articles={this.props.articles} dispatch={this.props.dispatch} />;
 	}
