@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import Article from '../components/Article';
-import { getArticleRequest } from '../actions/actions';
+// import { getArticleRequest } from '../actions/actions';
 
 class ArticleContainer extends Component {
-
-	componentDidMount() {
-		//fetch all articles once component did mount
-		this.props.dispatch(getArticleRequest());
-	}
-
-	componentWillReceiveProps() {
-		console.log('receive Props');
-	}
 
 	render() {
 		return <Article articles={this.props.articles} dispatch={this.props.dispatch} />;
@@ -22,14 +13,14 @@ class ArticleContainer extends Component {
 }
 
 ArticleContainer.propTypes = {
-	dispatch: PropTypes.func,
+	dispatch: PropTypes.any,
 	articles: PropTypes.array
 };
 
-function mapStateToProps(state) {
-	return {
-		articles: state.articles
-	};
-}
+// function mapStateToProps(state) {
+// 	return {
+// 		articles: state.articles
+// 	};
+// }
 
-export default connect(mapStateToProps)(ArticleContainer);
+export default ArticleContainer;

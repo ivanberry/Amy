@@ -16,7 +16,7 @@ class ArticleNavContainer extends Component {
 			<ul>
 				{
 					this.props.tags.map(tag => (
-						<ArticleNavItem key={tag} tag={tag.name} />
+						<ArticleNavItem key={tag.name} tag={tag.name} />
 					))
 				}
 			</ul>
