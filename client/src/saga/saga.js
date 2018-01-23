@@ -7,7 +7,8 @@ import {
 	setAuthState,
 	sendingRequest,
 	getArticleSuccess,
-	getCurrArticleSucc
+	getCurrArticleSucc,
+	getTagsSuccess
 } from '../actions/actions';
 
 /**
@@ -32,6 +33,10 @@ function _getArticles() {
 
 function _getCurrArticle(id) {
 	return axios.get(`/api/article/${id}`);
+}
+
+function _getAllTags() {
+	return axios.get('/api/getTags');
 }
 
 function* loginFlow(action) {
@@ -96,11 +101,26 @@ function* getCurrArticle(action) {
 	}
 }
 
+function* getAllTags() {
+	yield put(sendingRequest(true));
+	try {
+		const result = yield call(_getAllTags);
+		if (result.status === 200) {
+			yield put(sendingRequest(false));
+			yield put(getTagsSuccess(result.data.data));
+		}
+	} catch (e) {
+		yield put(sendingRequest(false));
+		yield put({ type: 'GET_ARTICLE_FAIL', message: e.message });
+	}
+}
+
 function* mySaga() {
 	yield takeEvery(ActionTypes.LOGIN_REQUEST, loginFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.LOGOUT, logoutFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.GET_ARTICLE, getAllArticle); //subscribe the GET_ARTICLE action
 	yield takeEvery(ActionTypes.GET_ARTICLE_WITH_ID, getCurrArticle);
+	yield takeEvery(ActionTypes.GET_TAGS, getAllTags);
 }
 
 export default mySaga;

@@ -2,15 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTyps from 'prop-types';
 import ArticleNavItem from '../components/ArticleNavItem';
+import { getTagsRequest } from '../actions/actions';
 
 class ArticleNavContainer extends Component {
+
+    componentDidMount() {
+        this.props.dispatch(getTagsRequest());
+    }
+
 	// fetch all tag
 	render() {
 		return (
 			<ul>
 				{
-					['React', 'Vue'].map(tag => (
-						<ArticleNavItem key={tag} tag={tag} />
+					this.props.tags.map(tag => (
+						<ArticleNavItem key={tag} tag={tag.name} />
 					))
 				}
 			</ul>
@@ -19,12 +25,13 @@ class ArticleNavContainer extends Component {
 }
 
 ArticleNavContainer.propTypes = {
-	tags: PropTyps.array
+    tags: PropTyps.array,
+    dispatch: PropTyps.dispatch
 };
 
 function mapStateToProps(state) {
 	return {
-		tags: state.tags
+        tags: state.tags
 	};
 }
 

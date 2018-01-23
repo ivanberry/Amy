@@ -6,6 +6,7 @@ import Article from '../components/Article';
 import { getArticleRequest } from '../actions/actions';
 
 class ArticleContainer extends Component {
+
 	componentDidMount() {
 		//fetch all articles once component did mount
 		this.props.dispatch(getArticleRequest());

@@ -44,7 +44,7 @@ export function homeReducer(state = initialState, action) {
 				...state,
 				currentArticle: action.currentArticle
 			};
-		case ActionTypes.GET_TAGS:
+		case ActionTypes.GET_TAGS_SUCCESS:
 			return {
 				...state,
 				tags: action.tags

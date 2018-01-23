@@ -87,9 +87,15 @@ export function sendingRequest(isFetching) {
 	};
 }
 
-export function getTagsRequest(tags) {
+export function getTagsRequest() {
 	return {
-		type: ActionTypes.GET_TAGS,
+		type: ActionTypes.GET_TAGS
+	};
+}
+
+export function getTagsSuccess(tags) {
+	return {
+		type: ActionTypes.GET_TAGS_SUCCESS,
 		tags
 	};
 }
