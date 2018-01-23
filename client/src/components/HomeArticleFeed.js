@@ -7,12 +7,12 @@ class AllArticleFeed extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			articles: []
+			articles: this.props.articles
 		};
 	}
 
 	componentDidMount() {
-		this.props.dispatch(getArticleRequest());
+		this.props.dispatch(getArticleRequest()); //async request
 	}
 
 	filterArticleWithTag = tag => {
@@ -28,19 +28,21 @@ class AllArticleFeed extends Component {
 		}
 	};
 
+	//wont be called on component initlize process
 	componentWillReceiveProps(nextProps) {
-		let { tag } = nextProps.match.params;
-		tag && this.filterArticleWithTag(tag);
+		// let { tag } = nextProps.match.params;
+		// tag && this.filterArticleWithTag(tag);
 	}
 
 	render() {
-		return <ArticleContainer articles={this.state.articles} dispatch={this.props.dispatch} />;
+		return <ArticleContainer articles={this.props.articles} dispatch={this.props.dispatch} />;
 	}
 }
 
 function mapStateToProps(state) {
 	return {
-		articles: state.articles
+		articles: state.articles,
+		dispatch: state.dispatch
 	};
 }
 
