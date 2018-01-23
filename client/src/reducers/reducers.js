@@ -8,7 +8,8 @@ const initialState = {
 	isFetching: false,
 	loggedIn: false,
 	username: '',
-	currentArticle: {}
+	currentArticle: {},
+	tags: []
 };
 
 export function homeReducer(state = initialState, action) {
@@ -42,6 +43,11 @@ export function homeReducer(state = initialState, action) {
 			return {
 				...state,
 				currentArticle: action.currentArticle
+			};
+		case ActionTypes.GET_TAGS:
+			return {
+				...state,
+				tags: action.tags
 			};
 		default:
 			return state;

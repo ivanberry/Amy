@@ -6,15 +6,13 @@ import Article from '../components/Article';
 import { getArticleRequest } from '../actions/actions';
 
 class ArticleContainer extends Component {
-	//fetch data with saga
 	componentDidMount() {
+		//fetch all articles once component did mount
 		this.props.dispatch(getArticleRequest());
 	}
 
 	render() {
-		return (
-			<Article articles={this.props.articles} dispatch={this.props.dispatch}/>
-		);
+		return <Article articles={this.props.articles} dispatch={this.props.dispatch} />;
 	}
 }
 

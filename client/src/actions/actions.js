@@ -86,3 +86,10 @@ export function sendingRequest(isFetching) {
 		isFetching
 	};
 }
+
+export function getTagsRequest(tags) {
+	return {
+		type: ActionTypes.GET_TAGS,
+		tags
+	};
+}
