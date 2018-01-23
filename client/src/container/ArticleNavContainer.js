@@ -31,7 +31,8 @@ ArticleNavContainer.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-        tags: state.tags
+				tags: state.tags,
+				dispatch: state.dispatch
 	};
 }
 
