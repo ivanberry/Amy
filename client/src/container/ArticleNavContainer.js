@@ -5,12 +5,16 @@ import ArticleNavItem from '../components/ArticleNavItem';
 
 class ArticleNavContainer extends Component {
 	// fetch all tag
-	componentDidMount() {}
+	componentDidMount() { }
 
 	render() {
 		return (
 			<ul>
-				<ArticleNavItem tags={this.props.tags} />
+				{
+					['React', 'Vue'].map(tag => (
+						<ArticleNavItem key={tag} tag={tag} />
+					))
+				}
 			</ul>
 		);
 	}

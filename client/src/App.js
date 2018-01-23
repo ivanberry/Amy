@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import Indicator from './components/Indicator';
 
 import Routes from './routes/Routes';
+import ArticleNavContainer from './container/ArticleNavContainer';
 
 class App extends Component {
 	render() {
@@ -13,6 +14,7 @@ class App extends Component {
 			<div>
 				<Indicator />
 				<Nav />
+				<ArticleNavContainer />
 				<div className="routeContainer">
 					<Routes />
 				</div>
