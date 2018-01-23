@@ -64,6 +64,7 @@ app.delete('/api/articles/:id', article.deleteArticle);
 
 app.post('/api/addTag', tag.addNewTag);
 app.post('/api/deleteTag', tag.deleteTag);
+app.get('/api/getTags', tag.getTags);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

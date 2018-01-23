@@ -52,10 +52,10 @@ exports.deleteTag = function(req, res, next) {
 					res.json(response);
 				} else {
 					response.statusCode = 502;
-                    response.message = 'Server Error!';
-                    res.status(502);
-                    res.json(response);
-                    next();
+					response.message = 'Server Error!';
+					res.status(502);
+					res.json(response);
+					next();
 				}
 				next();
 			})
@@ -66,9 +66,24 @@ exports.deleteTag = function(req, res, next) {
 		response = {
 			statusCode: 404,
 			message: 'tag name needed'
-        };
-        res.status(404);
-        res.json(response);
+		};
+		res.status(404);
+		res.json(response);
 		next();
 	}
+};
+
+exports.getTags = function(req, res, next) {
+	let response = {
+		statusCode: 200,
+		message: 'Success!',
+		data: []
+	};
+	TagModel.find({}, 'name -_id')
+		.then(docs => {
+			response.data = docs;
+			res.json(response);
+			next();
+		})
+		.catch(err => next(err));
 };
