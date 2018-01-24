@@ -6,33 +6,25 @@ import { getTagsRequest } from '../actions/actions';
 
 class ArticleNavContainer extends Component {
 
-    componentDidMount() {
-        this.props.dispatch(getTagsRequest());
-    }
+	componentDidMount() {
+		this.props.dispatch(getTagsRequest());
+	}
 
 	// fetch all tag
 	render() {
-		return (
-			<ul>
-				{
-					this.props.tags.map(tag => (
-						<ArticleNavItem key={tag.name} tag={tag.name} />
-					))
-				}
-			</ul>
-		);
+		return <ul>{this.props.tags.map(tag => <ArticleNavItem key={tag.name} tag={tag.name} />)}</ul>;
 	}
 }
 
 ArticleNavContainer.propTypes = {
-    tags: PropTyps.array,
-    dispatch: PropTyps.dispatch
+	tags: PropTyps.array,
+	dispatch: PropTyps.func
 };
 
 function mapStateToProps(state) {
 	return {
-				tags: state.tags,
-				dispatch: state.dispatch
+		tags: state.tags,
+		dispatch: state.dispatch
 	};
 }
 
