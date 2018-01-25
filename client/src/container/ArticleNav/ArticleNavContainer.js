@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTyps from 'prop-types';
-import ArticleNavItem from '../components/ArticleNavItem';
-import { getTagsRequest } from '../actions/actions';
+import ArticleNavItem from '../../components/ArticleNavItem';
+import styles from './ArticleNav.module.css';
+import { getTagsRequest } from '../../actions/actions';
 
 class ArticleNavContainer extends Component {
 
@@ -12,7 +13,7 @@ class ArticleNavContainer extends Component {
 
 	// fetch all tag
 	render() {
-		return <ul>{this.props.tags.map(tag => <ArticleNavItem key={tag.name} tag={tag.name} />)}</ul>;
+		return <ul className={styles.container}>{this.props.tags.map(tag => <ArticleNavItem key={tag.name} tag={tag.name} />)}</ul>;
 	}
 }
 

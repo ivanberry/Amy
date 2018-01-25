@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import Main from './App.module.css';
 
-import Nav from './components/Nav';
+import Nav from './components/Nav/Nav';
 import Indicator from './components/Indicator';
 
 import Routes from './routes/Routes';
-import ArticleNavContainer from './container/ArticleNavContainer';
+import ArticleNavContainer from './container/ArticleNav/ArticleNavContainer';
 
 class App extends Component {
 	render() {
 		return (
-			<div>
+			<div className={Main.maxWidth}>
 				<Indicator />
 				<Nav />
+				<hr />
 				<ArticleNavContainer />
-				<div className="routeContainer">
-					<Routes />
-				</div>
+				<Routes />
 			</div>
 		);
 	}

@@ -25,7 +25,8 @@ const Article = props => {
 
 Article.propTypes = {
 	articles: PropTypes.array,
-	showArticleDetail: PropTypes.func
+	showArticleDetail: PropTypes.func,
+	dispatch: PropTypes.func
 };
 
 export default Article;

@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+.container li {
+    display: inline-block;
+    height: 20px;
+    z-index: 1;
+    color: rgba(0,0,0,.54);
+    font-size: 18px; 
+    line-height: 1.4;
+    margin-right: 10px;
+}
+
+.container li.is-active {
+    color: rgba(0,0,0,.86);
+}
