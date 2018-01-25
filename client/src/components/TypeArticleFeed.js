@@ -14,9 +14,10 @@ class TypeArticleFeed extends Component {
   }
 
   filterArticleWithTag = tag => {
-    if (tag) {
+    let { articles } = this.props;
+    if (articles && tag) {
       //why not return the filter new article
-      let articles_filtered = this.props.articles.filter(article => {
+      let articles_filtered = articles.filter(article => {
         let { tags } = article;
         return tags.indexOf(tag) > -1;
       });
