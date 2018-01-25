@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { Profile } from './common/Profile';
 import HomeArticleFeed from '../components/HomeArticleFeed';
 
 class Dashboard extends Component {
@@ -24,7 +23,6 @@ class Dashboard extends Component {
 		return (
 			<div>
 				<HomeArticleFeed />
-				<Profile avator={avator} name ={this.state.name} />
 			</div>
 		);
 	}

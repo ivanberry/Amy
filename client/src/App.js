@@ -13,9 +13,11 @@ class App extends Component {
 		return (
 			<div className={Main.maxWidth}>
 				<Indicator />
-				<Nav />
-				<hr />
-				<ArticleNavContainer />
+				<div className={Main.navContainer}>
+					<Nav />
+					<hr />
+					<ArticleNavContainer />
+				</div>
 				<Routes />
 			</div>
 		);

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 const ArticleNavItem = ({ tag }) => {
 	return (
-		<Link to={`/t_articles/${tag}`}>
-			<li>{tag}</li>
-		</Link>
+		<NavLink activeStyle={{ color: 'rgba(0,0,0,.85)' }} to={`/t_articles/${tag}`}>
+			{tag}
+		</NavLink>
 	);
 };
 

@@ -13,7 +13,7 @@ class ArticleNavContainer extends Component {
 
 	// fetch all tag
 	render() {
-		return <ul className={styles.container}>{this.props.tags.map(tag => <ArticleNavItem key={tag.name} tag={tag.name} />)}</ul>;
+		return <div className={styles.container}>{this.props.tags.map(tag => <ArticleNavItem key={tag.name} tag={tag.name} />)}</div>;
 	}
 }
 
