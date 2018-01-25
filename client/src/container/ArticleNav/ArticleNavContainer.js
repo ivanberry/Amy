@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTyps from 'prop-types';
+import {withRouter} from 'react-router-dom';
+
 import ArticleNavItem from '../../components/ArticleNavItem';
 import styles from './ArticleNav.module.css';
 import { getTagsRequest } from '../../actions/actions';
@@ -29,4 +31,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(ArticleNavContainer);
+export default withRouter(connect(mapStateToProps)(ArticleNavContainer));
