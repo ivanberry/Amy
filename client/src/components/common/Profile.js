@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 export const Profile = ( props ) => {
 	const { avator } = props;
 	return (
-		<div>
-			<img src={avator} alt='user avator' />
-		</div>
+			<img src={avator} style={{borderRadius: '100%'}} alt='user avator' width='50' height='50' />
 	);
 };
 

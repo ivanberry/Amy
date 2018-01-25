@@ -32,16 +32,14 @@ class Nav extends Component {
 				{this.props.loggedIn ? (
 					<div>
 						<NavLink to="/dashboard">{this.props.username}</NavLink>
-						<button>
-							<Profile avator={avator} />
-						</button>
+						<Profile avator={avator} />
 						{/* <button type="submit" onClick={this.handleSubmit}>
 							Logout
 						</button> */}
 					</div>
 				) : (
-					<NavLink to="/login">Login</NavLink>
-				)}
+						<NavLink to="/login">Login</NavLink>
+					)}
 			</nav>
 		);
 	}
