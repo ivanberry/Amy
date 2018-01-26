@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
+import './typo.css';
 import Main from './App.module.css';
 
 import Nav from './components/Nav/Nav';
@@ -14,9 +16,9 @@ class App extends Component {
 			<div className={Main.maxWidth}>
 				<Indicator />
 				<div className={Main.navContainer}>
-					<Nav />
+					<Route component={Nav} />
 					<hr />
-					<ArticleNavContainer />
+					<Route component={ArticleNavContainer} />
 				</div>
 				<Routes />
 			</div>

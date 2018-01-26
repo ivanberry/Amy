@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { Profile } from '../common/Profile';
+import PopOver from '../common/PopOver/PopOver';
 
 import { logOut } from '../../actions/actions';
 import styles from './Nav.module.css';
@@ -14,9 +15,22 @@ import styles from './Nav.module.css';
  * 1:已登录，(用户名)
  */
 class Nav extends Component {
+	constructor() {
+		super();
+		this.state = {
+			isActive: false
+		};
+	}
+
 	handleSubmit = () => {
 		this.props.dispatch(logOut(''));
 		setTimeout(this.props.history.goBack(), 300);
+	};
+
+	onClickHandler = () => {
+		this.setState({
+			isActive: !this.state.isActive
+		});
 	};
 
 	render() {
@@ -31,13 +45,18 @@ class Nav extends Component {
 				</NavLink>
 				{this.props.loggedIn ? (
 					<div>
-						<NavLink to="/dashboard">{this.props.username}</NavLink>
-						<button>
+						<div onClick={this.onClickHandler}>
+							{/* <NavLink to="/dashboard">{this.props.username}</NavLink> */}
 							<Profile avator={avator} />
-						</button>
-						{/* <button type="submit" onClick={this.handleSubmit}>
+							{this.state.isActive ? (
+								<PopOver
+									items={[{ content: 'new story xxxxxxxxxx', path: '/' }, { content: 'Profile', path: '/' }]}
+								/>
+							) : null}
+						</div>
+						<button type="submit" onClick={this.handleSubmit}>
 							Logout
-						</button> */}
+						</button>
 					</div>
 				) : (
 					<NavLink to="/login">Login</NavLink>
@@ -60,4 +79,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default withRouter(connect(mapStateToProps)(Nav));
+export default connect(mapStateToProps)(Nav);
