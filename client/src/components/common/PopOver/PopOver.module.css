@@ -1,0 +1,23 @@
+.container {
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 2px;
+    position: relative;
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0,0,0,.5);
+}
+
+.container a {
+    color: rgba(0,0,0,.5);
+}
+
+.container li {
+    text-decoration: none;
+}
