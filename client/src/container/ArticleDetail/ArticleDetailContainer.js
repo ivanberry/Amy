@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 
-import ArticleDetail from '../components/ArticleDetail';
-import { getCurrArticle } from '../actions/actions';
+import ArticleDetail from '../../components/ArticleDetail/ArticleDetail';
+import { getCurrArticle } from '../../actions/actions';
 
 class ArticleDetailContainer extends Component {
 

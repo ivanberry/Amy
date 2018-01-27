@@ -17,7 +17,6 @@ class App extends Component {
 				<Indicator />
 				<div className={Main.navContainer}>
 					<Route component={Nav} />
-					<hr />
 					<Route component={ArticleNavContainer} />
 				</div>
 				<Routes />

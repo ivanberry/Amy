@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Form from './common/Form';
-import { logInRequest } from '../actions/actions';
+import Form from '../common/Form';
+import { logInRequest } from '../../actions/actions';
 
 class Login extends Component {
 	constructor(props) {

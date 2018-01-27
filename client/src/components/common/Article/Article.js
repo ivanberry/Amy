@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import List from './common/List';
+import List from '../List';
+import styles from './Article.module.css';
 
 const Article = props => {
 	const { articles, dispatch} = props;
 
 	return (
-		<ul>
+		<ul className={styles.container}>
 			{articles && articles.length > 0 ? (
 				articles.map(article => (
 					<List

@@ -1,6 +1,7 @@
 .container {
     display: flex;
     justify-content: flex-start;
+    margin: .5em 0;
 }
 .container a {
     display: inline-block;

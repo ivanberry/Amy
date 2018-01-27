@@ -1,0 +1,10 @@
+.container {
+  margin: 0 20px;
+}
+
+.container li {
+  display: inline-block;
+  font-size: 12px;
+  color: rgba(0,0,0,.5);
+  margin-right: 8px;
+}

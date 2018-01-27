@@ -1,21 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
+
+import styles from './ArticleDetail.module.css';
 
 const ArticleDetail = props => {
-	let { title, body, viewCounter, tag, createdAt, updatedAt } = props;
+	let { title, body, viewCounter, createdAt, updatedAt } = props;
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<h2>{title}</h2>
-			<hr />
 			<p>{body}</p>
 		<ul>
-				<li>{updatedAt}</li>
-				<li>{createdAt}</li>
-				<li>{viewCounter}</li>
-				<li>{createdAt}</li>
-				<li>{viewCounter}</li>
-				<li>{tag}</li>
+				<li>阅读数：{viewCounter}</li>
+				<li>创建于：{moment(createdAt).format('YYYY-MM-DD: HH-MM')}</li>
+				<li>更新于：{moment(updatedAt).format('YYYY-MM-DD: HH-MM')}</li>
 			</ul>
 		</div>
 	);
