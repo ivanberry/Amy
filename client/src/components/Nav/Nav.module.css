@@ -5,3 +5,7 @@
 
     height: 65px;
 }
+
+.user-container {
+    position: relative;
+}

@@ -9,11 +9,6 @@ import PopOver from '../common/PopOver/PopOver';
 import { logOut } from '../../actions/actions';
 import styles from './Nav.module.css';
 
-/**
- * 根据登录态决定顶部导航的状态
- * 0:未登录，（登录）
- * 1:已登录，(用户名)
- */
 class Nav extends Component {
 	constructor() {
 		super();
@@ -45,18 +40,18 @@ class Nav extends Component {
 				</NavLink>
 				{this.props.loggedIn ? (
 					<div>
-						<div onClick={this.onClickHandler}>
+						<div className={styles['user-container']} onClick={this.onClickHandler}>
 							{/* <NavLink to="/dashboard">{this.props.username}</NavLink> */}
 							<Profile avator={avator} />
-							{this.state.isActive ? (
-								<PopOver
-									items={[{ content: 'new story xxxxxxxxxx', path: '/' }, { content: 'Profile', path: '/' }]}
-								/>
-							) : null}
 						</div>
-						<button type="submit" onClick={this.handleSubmit}>
-							Logout
-						</button>
+						{this.state.isActive ? (
+							<PopOver
+								items={[{ content: 'new story xxxxxxxxxx', path: '/' }, { content: 'Profile', path: '/' }]}
+							/>
+						) : null}
+						{/* <button type="submit" onClick={this.handleSubmit}> */}
+						{/* Logout */}
+						{/* </button> */}
 					</div>
 				) : (
 						<NavLink to="/login">Login</NavLink>
