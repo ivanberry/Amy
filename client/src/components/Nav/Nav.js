@@ -46,7 +46,7 @@ class Nav extends Component {
 						</div>
 						{this.state.isActive ? (
 							<PopOver
-								items={[{ content: 'new story xxxxxxxxxx', path: '/' }, { content: 'Profile', path: '/' }]}
+								items={[{ content: 'new story', path: '/new-story' }, { content: 'Profile', path: '/' }]}
 							/>
 						) : null}
 						{/* <button type="submit" onClick={this.handleSubmit}> */}

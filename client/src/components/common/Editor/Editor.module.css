@@ -1,0 +1,58 @@
+.container {
+    border: 1px solid green;
+}
+
+.container::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+.container button {
+	height: 37px;
+	line-height: 35px;
+	padding: 0 16px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+}
+
+.container textarea {
+    width: 100%;
+}
+
+.nav {
+    border: 1px solid blue;
+}
+
+.content-container {
+    border: 1px solid lime;
+}
+
+.selected {
+	color: #03a87c;
+}
+
+.float-right-button {
+    float: right;
+}
+
+.publish {
+	border: 1px solid #03a87c;
+	color: #03a87c;
+}
+
+.publish-container {
+    border: 1px solid red;
+}
+
+.publish-container::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+.unpublish {
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	color: rgba(0, 0, 0, 0.5);
+	cursor: not-allowed;
+}

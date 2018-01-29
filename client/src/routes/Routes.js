@@ -6,6 +6,7 @@ import Dashboard from '../components/Dashboard';
 import HomeArticleFeed from '../components/HomeArticleFeed';
 import ArticleDetailContainer from '../container/ArticleDetail/ArticleDetailContainer';
 import TypeArticleFeed from '../components/TypeArticleFeed';
+import EditorContainer from '../container/EditorContainer/EditorContainer';
 import PrivateRoute from '../components/PrivateRoute';
 
 class Routes extends Component {
@@ -16,6 +17,7 @@ class Routes extends Component {
 				<Route path="/login" component={LoginForm} />
 				<Route path="/article/:id" component={ArticleDetailContainer} />
 				<Route path="/t_articles/:tag" component={TypeArticleFeed} />
+				<Route path="/new-story" component={EditorContainer} />
 				<PrivateRoute exact path="/dashboard" component={Dashboard} />
 			</Switch>
 		);
