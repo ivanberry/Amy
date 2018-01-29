@@ -115,6 +115,7 @@ function* getAllTags() {
 	}
 }
 
+
 function* mySaga() {
 	yield takeEvery(ActionTypes.LOGIN_REQUEST, loginFlow); //subscribe the LOGIN_IN action
 	yield takeEvery(ActionTypes.LOGOUT, logoutFlow); //subscribe the LOGIN_IN action

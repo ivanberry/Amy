@@ -18,6 +18,7 @@
 
 .container textarea {
     width: 100%;
+    min-height: 15rem;
 }
 
 .nav {
