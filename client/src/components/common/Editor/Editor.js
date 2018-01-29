@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import { Profile } from '../Profile';
 import styles from './Editor.module.css';
@@ -20,7 +21,6 @@ class Editor extends Component {
 
 	toggleEditorState = event => {
 		let _target = event.target,
-			_isPreview = this.state.isPreview,
 			_state = _target.dataset.state === 'prev';
 		if (_state) {
 			this.setState({
@@ -33,9 +33,18 @@ class Editor extends Component {
 		}
 	};
 
-    publishArticle = () => {
-        console.log(this.state);
-    };
+	publishArticle = () => {
+		axios.put('/api/articles', {
+			title: this.state.title,
+			body: this.state.content,
+			tags: 'React,NodeJs'
+		}).then(res => {
+			this.resetInput();
+			this.props.history.goBack();
+		}).catch(err => {
+			console.log(err);
+		})
+	};
 
 	titleChange = () => {
 		if (this.title.value) {
@@ -59,6 +68,15 @@ class Editor extends Component {
 		}
 	};
 
+	resetInput = () => {
+		this.title.value = '';
+		this.content.value = '';
+		this.setState({
+			title: '',
+			content: ''
+		})
+	}
+
 	render() {
 		let _isPreview = this.state.isPreview,
 			_hasContent = this.state.hasContent;
@@ -80,11 +98,11 @@ class Editor extends Component {
 					{this.state.isPreview ? (
 						<div>xxx</div>
 					) : (
-						<div>
-							<input role="title" ref={title => (this.title = title)} onChange={this.titleChange} />
-							<textarea onChange={this.contentChange} ref={input => (this.content = input)} />
-						</div>
-					)}
+							<div>
+								<input ref={title => (this.title = title)} onChange={this.titleChange} />
+								<textarea onChange={this.contentChange} ref={input => (this.content = input)} />
+							</div>
+						)}
 				</article>
 				<div className={styles['publish-container']}>
 					<button

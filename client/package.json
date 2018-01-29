@@ -7,6 +7,8 @@
     "custom-react-scripts": "^0.2.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "highlight": "^0.2.4",
+    "marked": "^0.3.12",
     "moment": "^2.19.4",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
