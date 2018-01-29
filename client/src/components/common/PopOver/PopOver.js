@@ -12,13 +12,16 @@ import styles from './PopOver.module.css';
 const PopOver = props => {
 	let { items } = props;
 	return (
-		<ul className={styles.container}>
-			{items.map((item, index) => (
-				<li key={index}>
-					<Link to={item['path']}>{item['content']}</Link>
-				</li>
-			))}
-		</ul>
+		<div className={styles.container}>
+			<div className='popover-arrow'></div>
+			<ul>
+				{items.map((item, index) => (
+					<li key={index}>
+						<Link to={item['path']}>{item['content']}</Link>
+					</li>
+				))}
+			</ul>
+		</div>
 	);
 };
 

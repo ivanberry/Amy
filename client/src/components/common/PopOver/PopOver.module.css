@@ -1,5 +1,4 @@
 .container {
-    border: 1px solid rgba(0,0,0,.25);
     border-radius: 2px;
     position: absolute;
     top: 60px;
@@ -7,29 +6,44 @@
     background-color: #fff;
 }
 
-.container::after {
-    content: '';
-    position: absolute;
-    top: -6px;
-    right: 2px;
-    width: 8px;
-    height: 8px;
+.container ul {
     border: 1px solid rgba(0,0,0,.25);
-    transform: rotate(45deg);
-    z-index: -1;
 }
 
 .container a {
     color: rgba(0,0,0,.5);
-    font: 400;
     font-size: 14px;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-decoration: none;
 }
+
 
 .container li {
     text-decoration: none;
-    padding: 6px 10px;
+    text-align: left;
+    line-height: 1.4;
+    border: 0;
 }
 
 .container li.seperator {
     margin: 10px 0;
+}
+
+.container div {
+    position: absolute;
+    top: -5px;
+    right: 6px;
+}
+
+.container div::after {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    background-color: #fff;
+    box-shadow: -1px -1px 1px -1px rgba(0,0,0,.54);
 }
