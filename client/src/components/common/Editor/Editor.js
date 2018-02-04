@@ -86,7 +86,6 @@ class Editor extends Component {
 		} else {
 			_html = '#### 请输入文章';
 		}
-		console.log(_html);
 		return {
 			__html: marked(_html)
 		}
