@@ -1,5 +1,5 @@
 .container {
-    border: 1px solid green;
+    border: 1px solid yellow;
 }
 
 .container::after {
@@ -30,7 +30,7 @@
 }
 
 .selected {
-	color: #03a87c;
+    color: #03a87c;
 }
 
 .float-right-button {
@@ -56,4 +56,13 @@
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	color: rgba(0, 0, 0, 0.5);
 	cursor: not-allowed;
+}
+
+.tags-container {
+    border: 1px solid greenyellow;
+    padding: 4px;
+}
+
+.tag {
+    margin-right: 4px;
 }

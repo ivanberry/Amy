@@ -99,7 +99,14 @@ class Editor extends Component {
 						<div>xxx</div>
 					) : (
 							<div>
-								<input ref={title => (this.title = title)} onChange={this.titleChange} />
+                                <div className={styles['tags-container']}>
+                                    <button className={styles.tag}>React</button>
+                                    <button className={styles.tag}>Vue</button>
+                                    <button className={styles.tag}>NodeJs</button>
+                                    <button className={styles.tag}>JavaScript</button>
+                                    <button className={styles.tag}>Java</button>
+                                </div>
+								Title: <input ref={title => (this.title = title)} onChange={this.titleChange} />
 								<textarea onChange={this.contentChange} ref={input => (this.content = input)} />
 							</div>
 						)}
