@@ -21,6 +21,7 @@ npm install
 cd client
 npm install
 ```
+
 ### Run tests
 
 Run tests seperately:
@@ -32,9 +33,8 @@ npm test
 
 ### Roadmap
 
-[ ] 编辑器
-  [ ] md
-  [ ] 图床
-  [ ] 富文本编辑
-  [ ] 文章标签自定义
- 
+- [ ] 编辑器
+- [ ] md
+- [ ] 图床
+- [ ] 富文本编辑
+- [ ] 文章标签自定义
