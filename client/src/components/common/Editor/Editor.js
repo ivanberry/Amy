@@ -5,6 +5,7 @@ import marked from 'marked';
 import { Profile } from '../Profile';
 import styles from './Editor.module.css';
 
+
 class Editor extends Component {
 	constructor() {
 		super();
@@ -12,12 +13,12 @@ class Editor extends Component {
 			isPreview: false,
 			hasContent: false,
 			content: '',
-			title: ''
+			title: '',
+			selected_tags: ''
 		};
 	}
 
 	componentDidMount() {
-		//get drafts from localStorage
 	}
 
 	toggleEditorState = event => {
@@ -114,11 +115,9 @@ class Editor extends Component {
 					) : (
 							<div>
 								<div className={styles['tags-container']}>
-									<button className={styles.tag}>React</button>
-									<button className={styles.tag}>Vue</button>
-									<button className={styles.tag}>NodeJs</button>
-									<button className={styles.tag}>JavaScript</button>
-									<button className={styles.tag}>Java</button>
+									{this.props.tags.map(tag => {
+										return <button className={styles.tag}>{tag['name']}</button>
+									})}
 								</div>
 								Title: <input ref={title => (this.title = title)} onChange={this.titleChange} value={this.state.title} />
 								<textarea onChange={this.contentChange} ref={input => (this.content = input)} value={this.state.content} />
