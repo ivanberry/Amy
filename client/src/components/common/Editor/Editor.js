@@ -13,7 +13,7 @@ class Editor extends Component {
 			hasContent: false,
 			content: '',
 			title: '',
-			tags: []
+			tags: ''
 		};
 	}
 
@@ -39,6 +39,9 @@ class Editor extends Component {
 	 * 前端需要拦截未选择分类标签的提交
 	 */
 	publishArticle = () => {
+		if (this.state.tags === '') {
+			return false;
+		}
 		axios
 			.put('/api/articles', {
 				title: this.state.title,
@@ -81,7 +84,7 @@ class Editor extends Component {
 		if (_target.checked) {
 			this.tags.push(_target.value);
 		} else {
-			this.tags = this.tags.filter(value => value != _target.value);
+			this.tags = this.tags.filter(value => value !== _target.value);
 		}
 		this.setState({
 			tags: this.tags.concat().toString()
