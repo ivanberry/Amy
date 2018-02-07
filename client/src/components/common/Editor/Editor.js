@@ -35,6 +35,9 @@ class Editor extends Component {
 		}
 	};
 
+	/**
+	 * 前端需要拦截未选择分类标签的提交
+	 */
 	publishArticle = () => {
 		axios
 			.put('/api/articles', {
