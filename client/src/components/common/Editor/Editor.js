@@ -5,7 +5,6 @@ import marked from 'marked';
 import { Profile } from '../Profile';
 import styles from './Editor.module.css';
 
-
 class Editor extends Component {
 	constructor() {
 		super();
@@ -14,12 +13,13 @@ class Editor extends Component {
 			hasContent: false,
 			content: '',
 			title: '',
-			selected_tags: ''
+			tags: []
 		};
 	}
 
-	componentDidMount() {
-	}
+	tags = [];
+
+	componentDidMount() {}
 
 	toggleEditorState = event => {
 		let _target = event.target,
@@ -36,16 +36,19 @@ class Editor extends Component {
 	};
 
 	publishArticle = () => {
-		axios.put('/api/articles', {
-			title: this.state.title,
-			body: this.state.content,
-			tags: 'React,NodeJs'
-		}).then(res => {
-			this.resetInput();
-			this.props.history.goBack();
-		}).catch(err => {
-			console.log(err);
-		})
+		axios
+			.put('/api/articles', {
+				title: this.state.title,
+				body: this.state.content,
+				tags: this.state.tags
+			})
+			.then(res => {
+				this.resetInput();
+				this.props.history.goBack();
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	};
 
 	titleChange = () => {
@@ -70,14 +73,27 @@ class Editor extends Component {
 		}
 	};
 
+	checkBoxChangeHandler = e => {
+		let _target = e.target;
+		if (_target.checked) {
+			this.tags.push(_target.value);
+		} else {
+			this.tags = this.tags.filter(value => value != _target.value);
+		}
+		this.setState({
+			tags: this.tags.concat().toString()
+		});
+	};
+
 	resetInput = () => {
 		this.title.value = '';
 		this.content.value = '';
 		this.setState({
 			title: '',
-			content: ''
-		})
-	}
+			content: '',
+			tags: []
+		});
+	};
 
 	markedToHtml = () => {
 		let _html = '';
@@ -89,8 +105,8 @@ class Editor extends Component {
 		}
 		return {
 			__html: marked(_html)
-		}
-	}
+		};
+	};
 
 	render() {
 		let _isPreview = this.state.isPreview,
@@ -111,18 +127,38 @@ class Editor extends Component {
 						<Profile avator={avator} />
 					</header>
 					{this.state.isPreview ? (
-						<div dangerouslySetInnerHTML={this.markedToHtml()}></div>
+						<div dangerouslySetInnerHTML={this.markedToHtml()} />
 					) : (
-							<div>
-								<div className={styles['tags-container']}>
-									{this.props.tags.map(tag => {
-										return <button className={styles.tag}>{tag['name']}</button>
-									})}
-								</div>
-								Title: <input ref={title => (this.title = title)} onChange={this.titleChange} value={this.state.title} />
-								<textarea onChange={this.contentChange} ref={input => (this.content = input)} value={this.state.content} />
-							</div>
-						)}
+						<div>
+							<fieldset className={styles['tags-container']}>
+								<legend>Choose your tag</legend>
+								{this.props.tags.map((tag, index) => {
+									return (
+										<label>
+											<input
+												onChange={e => this.checkBoxChangeHandler(e)}
+												type="checkbox"
+												className={styles.tag}
+												value={tag['name']}
+											/>
+											{tag['name']}
+										</label>
+									);
+								})}
+							</fieldset>
+							Title:{' '}
+							<input
+								ref={title => (this.title = title)}
+								onChange={this.titleChange}
+								value={this.state.title}
+							/>
+							<textarea
+								onChange={this.contentChange}
+								ref={input => (this.content = input)}
+								value={this.state.content}
+							/>
+						</div>
+					)}
 				</article>
 				<div className={styles['publish-container']}>
 					<button
