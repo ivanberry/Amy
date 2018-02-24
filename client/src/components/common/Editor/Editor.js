@@ -57,26 +57,28 @@ class Editor extends Component {
 			});
 	};
 
-	titleChange = () => {
-		if (this.title.value) {
-			this.setState({
-				title: this.title.value
-			});
-		}
+	titleChange = e => {
+		let _target = e.target,
+			_value = _target.value;
+
+		this.setState({
+			title: _value
+		});
 	};
 
-	contentChange = () => {
-		if (!this.state.hasContent && this.content.value) {
+	contentChange = e => {
+		let _target = e.target,
+			_value = _target.value;
+
+		if (!this.state.hasContent) {
 			this.setState({
 				hasContent: true
 			});
 		}
 
-		if (this.content.value) {
-			this.setState({
-				content: this.content.value
-			});
-		}
+		this.setState({
+			content: _value
+		});
 	};
 
 	checkBoxChangeHandler = e => {
@@ -92,8 +94,6 @@ class Editor extends Component {
 	};
 
 	resetInput = () => {
-		this.title.value = '';
-		this.content.value = '';
 		this.setState({
 			title: '',
 			content: '',
