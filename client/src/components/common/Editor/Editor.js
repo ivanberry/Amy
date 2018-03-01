@@ -140,7 +140,7 @@ class Editor extends Component {
 								<legend>Choose your tag</legend>
 								{this.props.tags.map((tag, index) => {
 									return (
-										<label>
+										<label key={tag['name']}>
 											<input
 												onChange={e => this.checkBoxChangeHandler(e)}
 												type="checkbox"
