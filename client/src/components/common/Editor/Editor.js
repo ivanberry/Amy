@@ -45,7 +45,7 @@ class Editor extends Component {
 		axios
 			.put('/api/articles', {
 				title: this.state.title,
-				body: this.state.content,
+				body: marked(this.state.content),
 				tags: this.state.tags
 			})
 			.then(res => {

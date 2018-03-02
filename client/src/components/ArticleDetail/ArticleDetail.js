@@ -10,7 +10,7 @@ const ArticleDetail = props => {
 	return (
 		<div className={styles.container}>
 			<h2>{title}</h2>
-			<p>{body}</p>
+			<div dangerouslySetInnerHTML={{__html: body}} />
 		<ul>
 				<li>阅读数：{viewCounter}</li>
 				<li>创建于：{moment(createdAt).format('YYYY-MM-DD: HH-MM')}</li>
