@@ -54,7 +54,6 @@ app.get('/api/users', basic_auth, users.get);
 app.post('/api/users', users.post);
 app.post('/api/users/:name', users.post);
 
-
 app.get('/api/articles', article.getArticles);
 app.post('/api/articles', article.getArticleWithTag);
 app.get('/api/article/:id', article.getArticleDetailById);
@@ -65,6 +64,8 @@ app.delete('/api/articles/:id', article.deleteArticle);
 app.post('/api/addTag', tag.addNewTag);
 app.post('/api/deleteTag', tag.deleteTag);
 app.get('/api/getTags', tag.getTags);
+
+app.post('/api/image', image.postImage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
