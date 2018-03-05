@@ -2,12 +2,13 @@
  * specify how the application's state changes in response
  */
 import * as ActionTypes from '../constants/actionTypes';
+import * as helper from '../ulti/index';
 
 //The initial state
 const initialState = {
 	isFetching: false,
-	loggedIn: false,
-	username: '',
+	loggedIn: helper.isLogin('user') || false,
+	username: helper.getInfo('user') || '',
 	currentArticle: {},
 	tags: []
 };
