@@ -26,6 +26,7 @@ const index = require('./controllers/index');
 const users = require('./controllers/users');
 const article = require('./controllers/article');
 const tag = require('./controllers/tag');
+const image = require('./controllers/image');
 
 var app = express();
 

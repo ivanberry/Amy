@@ -101,6 +101,21 @@ class Editor extends Component {
 		});
 	};
 
+	handlePaste = e => {
+		let _image = e.clipboardData.files[0];
+		axios
+			.put('/api/image', {
+				file: _image,
+				type: _image.type
+			})
+			.then(res => {
+				console.log(res);
+			})
+			.then(err => {
+				console.log(err);
+			});
+	};
+
 	markedToHtml = () => {
 		let _html = '';
 		if (this.state.title || this.state.content) {
@@ -162,6 +177,7 @@ class Editor extends Component {
 								onChange={this.contentChange}
 								ref={input => (this.content = input)}
 								value={this.state.content}
+								onPaste={this.handlePaste}
 							/>
 						</div>
 					)}
