@@ -66,7 +66,7 @@ app.post('/api/addTag', tag.addNewTag);
 app.post('/api/deleteTag', tag.deleteTag);
 app.get('/api/getTags', tag.getTags);
 
-app.post('/api/image', image.postImage);
+app.put('/api/image', image.postImage);
 app.get('/api/image/:name', image.getImage);
 
 // catch 404 and forward to error handler

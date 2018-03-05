@@ -24,11 +24,11 @@ function postImage(req, res, next) {
 }
 
 function getImage(req, res, next) {
-    let { name } = req.body;
+    let { name } = req.params;
     if (!name) {
-        res.send('Suck my dick', UPLOADS);
+        res.end('Suck my dick!');
     }
-    let _readStream = fs.createReadStream(path.join(__dirname, `public/upoads/${name}.jpeg`));
+    let _readStream = fs.createReadStream(path.join(UPLOADS, `uploads/${name}.jpeg`));
     _readStream.pipe(res);
 }
 
