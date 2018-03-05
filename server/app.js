@@ -67,6 +67,7 @@ app.post('/api/deleteTag', tag.deleteTag);
 app.get('/api/getTags', tag.getTags);
 
 app.post('/api/image', image.postImage);
+app.get('/api/image', image.getImage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
