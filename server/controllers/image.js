@@ -12,9 +12,11 @@ function postImage(req, res, next) {
     form.parse(req, function (err, fields, files) {
         if (err) {
             res.status(500);
-            res.end('Suck my dick');
+            res.end('Server error');
         } else {
-            res.end('Good');
+            let image = files['image'],
+                md_path = `![${image.name}](${image.path})`;
+            res.end(md_path);
         }
     });
 
