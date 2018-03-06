@@ -11,7 +11,7 @@ let secret = {
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-		maxAge: 600000
+		maxAge: 600000000 //how to manage the maxAge
 	}
 };
 
@@ -67,7 +67,7 @@ app.post('/api/deleteTag', tag.deleteTag);
 app.get('/api/getTags', tag.getTags);
 
 app.put('/api/image', image.postImage);
-app.get('/api/image/:name', image.getImage);
+app.get('/api/image/:image', image.getImage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

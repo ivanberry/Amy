@@ -46,7 +46,11 @@ class Nav extends Component {
 						</div>
 						{this.state.isActive ? (
 							<PopOver
-								items={[{ content: 'new story', path: '/new-story' }, { content: 'Profile', path: '/' }]}
+								items={[
+									{ content: 'new story', path: '/new-story' },
+									{ content: 'Profile', path: '/' },
+									{ content: 'Logout', path: '/logout' }
+								]}
 							/>
 						) : null}
 						{/* <button type="submit" onClick={this.handleSubmit}> */}
@@ -54,8 +58,8 @@ class Nav extends Component {
 						{/* </button> */}
 					</div>
 				) : (
-						<NavLink to="/login">Login</NavLink>
-					)}
+					<NavLink to="/login">Login</NavLink>
+				)}
 			</nav>
 		);
 	}

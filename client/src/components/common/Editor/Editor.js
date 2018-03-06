@@ -103,11 +103,14 @@ class Editor extends Component {
 
 	handlePaste = e => {
 		let _image = e.clipboardData.files[0];
+		let data = new FormData();
+		data.append('image', _image);
 		axios
-			.put('/api/image', {
-				file: _image,
-				type: _image.type
-			})
+			.put(
+				'/api/image',
+				data,
+				{ 'content-type': 'multipart/form-data' }
+			)
 			.then(res => {
 				console.log(res);
 			})
