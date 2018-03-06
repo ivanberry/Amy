@@ -1,35 +1,33 @@
 const fs = require('fs');
 const path = require('path');
+const formidable = require('formidable');
 
-const UPLOADS = path.join(__dirname, '..');
+const UPLOADS = path.join(__dirname, '..', `uploads`);
 
 function postImage(req, res, next) {
-	let { file, type, name } = req.body;
-	let sufix = new Date().getTime();
-    let _name = `name_${sufix}`;
-    let data = '';
+    let form = new formidable.IncomingForm();
+    form.uploadDir = UPLOADS;
+    form.keepExtensions = true;
 
-	let _readStream = fs.createReadStream(file);
-    file.on('data', chunk => {
-        data += chunk;
+    form.parse(req, function (err, fields, files) {
+        if (err) {
+            res.status(500);
+            res.end('Suck my dick');
+        } else {
+            res.end('Good');
+        }
     });
 
-    file.on('end', () => {
-        fs.write(path.join(__dirname, 'public/uploads'));
-    });
-
-    file.on('error', (err) => {
-        next(err);
-    });
+	return;
 }
 
 function getImage(req, res, next) {
-    let { name } = req.body;
-    if (!name) {
-        res.send('Suck my dick', UPLOADS);
-    }
-    let _readStream = fs.createReadStream(path.join(__dirname, `public/upoads/${name}.jpeg`));
-    _readStream.pipe(res);
+	let { name } = req.params;
+	if (!name) {
+		res.send('Suck my dick');
+	}
+	let _readStream = fs.createReadStream(path.join(UPLOADS, `${name}.jpeg`));
+	_readStream.pipe(res);
 }
 
 exports.postImage = postImage;
