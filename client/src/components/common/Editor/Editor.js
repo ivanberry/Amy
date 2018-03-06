@@ -112,7 +112,12 @@ class Editor extends Component {
 				{ 'content-type': 'multipart/form-data' }
 			)
 			.then(res => {
-				console.log(res);
+				let md_image = res.data;
+				console.log(md_image);
+
+				this.setState({
+					content: this.state.content + '\n'+ md_image
+				});
 			})
 			.then(err => {
 				console.log(err);
@@ -181,6 +186,7 @@ class Editor extends Component {
 								ref={input => (this.content = input)}
 								value={this.state.content}
 								onPaste={this.handlePaste}
+								id='editor'
 							/>
 						</div>
 					)}
