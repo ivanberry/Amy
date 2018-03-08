@@ -21,3 +21,7 @@
 .user-container {
     position: relative;
 }
+
+.user-image-container:hover #popup {
+    display: block;
+}
