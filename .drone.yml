@@ -3,4 +3,5 @@ pipeline:
     image: node:latest
     commands:
       - cd client
+      - npm install
       - npm build
