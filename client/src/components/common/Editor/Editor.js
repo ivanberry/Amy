@@ -108,17 +108,13 @@ class Editor extends Component {
 		let data = new FormData();
 		data.append('image', _image);
 		axios
-			.put(
-				'/api/image',
-				data,
-				{ 'content-type': 'multipart/form-data' }
-			)
+			.put('/api/image', data, { 'content-type': 'multipart/form-data' })
 			.then(res => {
 				let md_image = res.data;
 				console.log(md_image);
 
 				this.setState({
-					content: this.state.content + '\n'+ md_image
+					content: this.state.content + '\n' + md_image
 				});
 			})
 			.then(err => {
@@ -127,15 +123,26 @@ class Editor extends Component {
 	};
 
 	handleNewTagAdd = e => {
-		let _t = e.target
+		let _t = e.target;
 		if (e.key === 'Enter') {
 			this.setState({
-				tags: this.state.tags.concat({name: _t.value.trim() })
+				tags: this.state.tags.concat({ name: _t.value.trim() })
 			});
-			_t.value = '';
 			//push to server as a new tag
+
+			axios
+				.post('/api/addTag', {
+					name: _t.value
+				})
+				.then(res => {
+					console.log(res);
+					_t.value = '';
+				})
+				.catch(err => {
+					console.log(err);
+				});
 		}
-	}
+	};
 
 	markedToHtml = () => {
 		let _html = '';
@@ -188,7 +195,7 @@ class Editor extends Component {
 									);
 								})}
 							</fieldset>
-							<input placeholder='添加新标签，多个用空格隔开' onKeyPress={this.handleNewTagAdd} />
+							<input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} />
 							Title:{' '}
 							<input
 								ref={title => (this.title = title)}
@@ -200,7 +207,7 @@ class Editor extends Component {
 								ref={input => (this.content = input)}
 								value={this.state.content}
 								onPaste={this.handlePaste}
-								id='editor'
+								id="editor"
 							/>
 						</div>
 					)}

@@ -14,7 +14,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className={Main.maxWidth}>
-				<Indicator />
+				{/* <Indicator /> */}
 				<div className={Main.navContainer}>
 					<Route component={Nav} />
 					<Route component={ArticleNavContainer} />
