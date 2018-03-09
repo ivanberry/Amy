@@ -6,14 +6,16 @@ import { Profile } from '../Profile';
 import styles from './Editor.module.css';
 
 class Editor extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			isPreview: false,
 			hasContent: false,
 			content: '',
 			title: '',
-			tags: ''
+			tags: this.props.tags || [],
+			articleTags: '',
+			newTags: []
 		};
 	}
 
@@ -89,7 +91,7 @@ class Editor extends Component {
 			this.tags = this.tags.filter(value => value !== _target.value);
 		}
 		this.setState({
-			tags: this.tags.concat().toString()
+			articleTags: this.tags.concat().toString()
 		});
 	};
 
@@ -123,6 +125,17 @@ class Editor extends Component {
 				console.log(err);
 			});
 	};
+
+	handleNewTagAdd = e => {
+		let _t = e.target
+		if (e.key === 'Enter') {
+			this.setState({
+				tags: this.state.tags.concat({name: _t.value.trim() })
+			});
+			_t.value = '';
+			//push to server as a new tag
+		}
+	}
 
 	markedToHtml = () => {
 		let _html = '';
@@ -161,7 +174,7 @@ class Editor extends Component {
 						<div>
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
-								{this.props.tags.map((tag, index) => {
+								{this.state.tags.map((tag, index) => {
 									return (
 										<label key={tag['name']}>
 											<input
@@ -175,6 +188,7 @@ class Editor extends Component {
 									);
 								})}
 							</fieldset>
+							<input placeholder='添加新标签，多个用空格隔开' onKeyPress={this.handleNewTagAdd} />
 							Title:{' '}
 							<input
 								ref={title => (this.title = title)}
