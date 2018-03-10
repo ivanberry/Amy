@@ -48,7 +48,7 @@ class Editor extends Component {
 			.put('/api/articles', {
 				title: this.state.title,
 				body: marked(this.state.content),
-				tags: this.state.tags
+				tags: this.state.articleTags
 			})
 			.then(res => {
 				this.resetInput();
