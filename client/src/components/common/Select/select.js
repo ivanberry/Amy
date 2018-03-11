@@ -1,3 +1,4 @@
+import React from 'react';
 /**
  * options: @param []
  * onchange: func
@@ -6,18 +7,14 @@
 
 const Select = (props) => {
   let { options } = props;
-  render() {
-    return (
-      <div>
-        <input list='' />
-        <datalist id=''>
-          options.map(option => {
-            <option>{option}</option>
-          })
-         </datalist>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <input id='' />
+      <datalist id=''>
+        <option>xx</option>
+      </datalist>
+    </div>
+  );
 };
 
 export default Select;
