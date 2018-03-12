@@ -20,7 +20,7 @@ module.exports = (loader, test, exclude, modules) => isDev => {
         { importLoaders: 1 },
         modules === true
           ? {
-              localIdentName: '[sha512:hash:base32]-[name]-[local]',
+              localIdentName: '[hash:base64:5]-[name]-[local]',
               modules: true,
             }
           : {}
