@@ -3,6 +3,7 @@ import axios from 'axios';
 import marked from 'marked';
 
 import { Profile } from '../Profile';
+import  Select  from '../Select/select';
 import styles from './Editor.module.css';
 
 class Editor extends Component {
@@ -181,7 +182,8 @@ class Editor extends Component {
 						<div>
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
-								{this.state.tags.map((tag, index) => {
+								<Select options={this.state.tags} />
+								{/* {this.state.tags.map((tag, index) => {
 									return (
 										<label key={tag['name']}>
 											<input
@@ -193,7 +195,7 @@ class Editor extends Component {
 											{tag['name']}
 										</label>
 									);
-								})}
+								})} */}
 							</fieldset>
 							<input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} />
 							Title:{' '}
