@@ -3,7 +3,7 @@ import axios from 'axios';
 import marked from 'marked';
 
 import { Profile } from '../Profile';
-import  Select  from '../Select/select';
+import Select from '../Select/select';
 import styles from './Editor.module.css';
 
 class Editor extends Component {
@@ -96,6 +96,10 @@ class Editor extends Component {
 		});
 	};
 
+	testChange = () => {
+		console.log('xxx')
+	};
+
 	resetInput = () => {
 		this.setState({
 			title: '',
@@ -182,7 +186,7 @@ class Editor extends Component {
 						<div>
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
-								<Select options={this.state.tags} />
+								<Select options={this.state.tags} testFunc={this.testChange} />
 								{/* {this.state.tags.map((tag, index) => {
 									return (
 										<label key={tag['name']}>

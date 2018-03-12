@@ -13,7 +13,8 @@ class Select extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isFocus: false
+			isFocus: false,
+			hasTags: true
 		};
 	}
 
@@ -25,27 +26,40 @@ class Select extends Component {
 		});
 	};
 
+	handleInputBlur = e => {
+		this.setState({
+			isFocus: false
+		});
+	};
+
+	handleKeydown = e => {
+		if (e.keyCode === 'Enter') {
+			this.props.testFunc();
+		}
+	};
+
 	render() {
-    let { options } = this.props;
-    let focus = classNames({
-      [styles['tag-choice']]: true,
-      [styles['isFocus']]: this.state.isFocus
-    });
+		let { options } = this.props;
+		let focus = classNames({
+			[styles['tag-choice']]: true,
+			[styles['isFocus']]: this.state.isFocus
+		});
 		return (
 			<div>
 				<div>
 					<div className={styles['tag-choice-container']}>
 						{/* placeholder container */}
-						<div
-							onClick={this.placeholderClick}
-							className={focus}
-						>
+						<div onClick={this.placeholderClick} className={focus}>
 							placeholder
 						</div>
-						{/* selected items from dropdown lists */}
+						{/* selected items from dropdown lists or input directly */}
 						<ul>
 							<li className={styles['tag-choice__item']}>
-								<input ref={saveRef(this, 'tagInput')} />
+								<input
+									ref={saveRef(this, 'tagInput')}
+									onBlur={this.handleInputBlur}
+									onKeydown={this.props.testFunc()}
+								/>
 							</li>
 						</ul>
 					</div>
