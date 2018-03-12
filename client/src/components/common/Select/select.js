@@ -28,9 +28,8 @@ class Select extends Component {
 	render() {
     let { options } = this.props;
     let focus = classNames({
-      test: true,
-      'tag-choice': true,
-      'tag-choice__isFocus': this.state.isFocus
+      [styles['tag-choice']]: true,
+      [styles['isFocus']]: this.state.isFocus
     });
 		return (
 			<div>
