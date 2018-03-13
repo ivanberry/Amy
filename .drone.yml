@@ -4,4 +4,4 @@ pipeline:
     commands:
       - cd client
       - npm config set registry https://registry.npm.taobao.org
-      - npm build
+      - npm run start -p 3001
