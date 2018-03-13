@@ -155,7 +155,7 @@ class Editor extends Component {
 			let _article = '## ' + this.state.title + '\n' + this.state.content;
 			_html = _article;
 		} else {
-			_html = '#### 请输入文章';
+			_html = '### 请输入文章';
 		}
 		return {
 			__html: marked(_html)

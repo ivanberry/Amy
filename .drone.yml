@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: node:latest
+    image: node:7
     commands:
       - cd client
       - npm config set registry https://registry.npm.taobao.org
