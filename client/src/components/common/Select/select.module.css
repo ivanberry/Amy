@@ -1,0 +1,19 @@
+.tag-choice-container {
+    position: relative;
+}
+
+.tag-choice {
+    position: absolute;
+}
+
+.tag-choice__item {
+    float: left;
+}
+
+.tag-choice__carvet {
+    width: 10px;
+}
+
+.isFocus {
+    display: none;
+}

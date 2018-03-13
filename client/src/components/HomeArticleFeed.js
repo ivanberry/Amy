@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import ArticleContainer from '../container/ArticleContainer';
 import { getArticleRequest } from '../actions/actions';
 
+import LoaderHOC from '../HOC/Loader';
+
 class AllArticleFeed extends Component {
 	constructor(props) {
 		super(props);
@@ -42,7 +44,8 @@ class AllArticleFeed extends Component {
 function mapStateToProps(state) {
 	return {
 		articles: state.articles,
-		dispatch: state.dispatch
+		dispatch: state.dispatch,
+		isFetching: state.isFetching
 	};
 }
 

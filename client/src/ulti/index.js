@@ -8,9 +8,14 @@ export const clearInfo = k => {
 
 export const getInfo = k => {
 	return JSON.parse(localStorage.getItem(k));
-}
+};
 
-export const isLogin = (k) => {
+export const isLogin = k => {
 	return JSON.parse(localStorage.getItem(k)) !== null;
-}
+};
 
+export function saveRef(instance, name) {
+	return node => {
+		instance[name] = node;
+	};
+}

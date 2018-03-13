@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 import { Profile } from '../common/Profile';
 import PopOver from '../common/PopOver/PopOver';
 
-import { logOut } from '../../actions/actions';
 import styles from './Nav.module.css';
 
 class Nav extends Component {
@@ -16,11 +15,7 @@ class Nav extends Component {
 			isActive: false
 		};
 	}
-
-	handleSubmit = () => {
-		this.props.dispatch(logOut(''));
-		setTimeout(this.props.history.goBack(), 300);
-	};
+;
 
 	onClickHandler = () => {
 		this.setState({
@@ -53,9 +48,6 @@ class Nav extends Component {
 								]}
 							/>
 						) : null}
-						{/* <button type="submit" onClick={this.handleSubmit}> */}
-						{/* Logout */}
-						{/* </button> */}
 					</div>
 				) : (
 					<NavLink to="/login">Login</NavLink>

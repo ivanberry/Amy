@@ -10,9 +10,9 @@ import styles from './PopOver.module.css';
  * @param {*} props 
  */
 const PopOver = props => {
-	let { items } = props;
+	let { items, isActive } = props;
 	return (
-		<div className={styles.container}>
+		<div className={styles.container } id='popup'>
 			<div className='popover-arrow'></div>
 			<ul>
 				{items.map((item, index) => (
@@ -26,7 +26,8 @@ const PopOver = props => {
 };
 
 PopOver.propTypes = {
-	items: PropTypes.array
+	items: PropTypes.array,
+	isActive: PropTypes.bool
 };
 
 export default PopOver;

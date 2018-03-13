@@ -3,17 +3,20 @@ import axios from 'axios';
 import marked from 'marked';
 
 import { Profile } from '../Profile';
+import Select from '../Select/select';
 import styles from './Editor.module.css';
 
 class Editor extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			isPreview: false,
 			hasContent: false,
 			content: '',
 			title: '',
-			tags: ''
+			tags: this.props.tags || [],
+			articleTags: '',
+			newTags: []
 		};
 	}
 
@@ -46,7 +49,7 @@ class Editor extends Component {
 			.put('/api/articles', {
 				title: this.state.title,
 				body: marked(this.state.content),
-				tags: this.state.tags
+				tags: this.state.articleTags
 			})
 			.then(res => {
 				this.resetInput();
@@ -89,8 +92,12 @@ class Editor extends Component {
 			this.tags = this.tags.filter(value => value !== _target.value);
 		}
 		this.setState({
-			tags: this.tags.concat().toString()
+			articleTags: this.tags.concat().toString()
 		});
+	};
+
+	testChange = () => {
+		console.log('xxx')
 	};
 
 	resetInput = () => {
@@ -106,22 +113,40 @@ class Editor extends Component {
 		let data = new FormData();
 		data.append('image', _image);
 		axios
-			.put(
-				'/api/image',
-				data,
-				{ 'content-type': 'multipart/form-data' }
-			)
+			.put('/api/image', data, { 'content-type': 'multipart/form-data' })
 			.then(res => {
 				let md_image = res.data;
 				console.log(md_image);
 
 				this.setState({
-					content: this.state.content + '\n'+ md_image
+					content: this.state.content + '\n' + md_image
 				});
 			})
 			.then(err => {
 				console.log(err);
 			});
+	};
+
+	handleNewTagAdd = e => {
+		let _t = e.target;
+		if (e.key === 'Enter') {
+			this.setState({
+				tags: this.state.tags.concat({ name: _t.value.trim() })
+			});
+			//push to server as a new tag
+
+			axios
+				.post('/api/addTag', {
+					name: _t.value
+				})
+				.then(res => {
+					console.log(res);
+					_t.value = '';
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}
 	};
 
 	markedToHtml = () => {
@@ -161,7 +186,8 @@ class Editor extends Component {
 						<div>
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
-								{this.props.tags.map((tag, index) => {
+								<Select options={this.state.tags} testFunc={this.testChange} />
+								{/* {this.state.tags.map((tag, index) => {
 									return (
 										<label key={tag['name']}>
 											<input
@@ -173,8 +199,9 @@ class Editor extends Component {
 											{tag['name']}
 										</label>
 									);
-								})}
+								})} */}
 							</fieldset>
+							<input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} />
 							Title:{' '}
 							<input
 								ref={title => (this.title = title)}
@@ -186,7 +213,7 @@ class Editor extends Component {
 								ref={input => (this.content = input)}
 								value={this.state.content}
 								onPaste={this.handlePaste}
-								id='editor'
+								id="editor"
 							/>
 						</div>
 					)}

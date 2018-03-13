@@ -13,7 +13,7 @@ const List = props => {
 		<li onClick={() => props.dispatch(getCurrArticle(_id))}>
 			<Link to={`/article/${_id}`}>
 				<h3>{title}</h3>
-				<div>{body}</div>
+				<div dangerouslySetInnerHTML={{ __html: body }} />
 				<div>
 					<span>作者: {authorId.name} </span>
 					<span>阅读数: {viewCounter} </span>

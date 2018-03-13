@@ -10,7 +10,7 @@ class Indicator extends Component {
 				{isFetching ? (
 					'Fetching Datas'
 				) : (
-					''
+			''
 				)}
 			</div>
 		);
