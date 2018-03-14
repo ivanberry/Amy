@@ -44,31 +44,34 @@ class Select extends Component {
 			[styles['tag-choice']]: true,
 			[styles['isFocus']]: this.state.isFocus
 		});
+
+		let blur = classNames({
+			[styles['isFocus']]: !this.state.isFocus
+		});
+
 		return (
-			<div>
-				<div>
-					<div className={styles['tag-choice-container']}>
-						{/* placeholder container */}
-						<div onClick={this.placeholderClick} className={focus}>
-							placeholder
-						</div>
-						{/* selected items from dropdown lists or input directly */}
-						<ul>
-							<li className={styles['tag-choice__item']}>
-								<input
-									ref={saveRef(this, 'tagInput')}
-									onBlur={this.handleInputBlur}
-									onKeydown={this.props.testFunc()}
-								/>
-							</li>
-						</ul>
+			<div className={styles['tag-choice__container']}>
+				<div className={styles['tag-choice__wrapper']}>
+					{/* placeholder container */}
+					<div onClick={this.placeholderClick} className={focus}>
+						placeholder
 					</div>
-					{/* dropdown lists */}
-					<div>
-						<ul style={{ display: 'none' }}>
-							{options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>)}
-						</ul>
-					</div>
+					{/* selected items from dropdown lists or input directly */}
+					<ul>
+						<li className={styles['tag-choice__item']}>
+							<input
+								ref={saveRef(this, 'tagInput')}
+								onBlur={this.handleInputBlur}
+								onKeydown={this.handleKeydown}
+							/>
+						</li>
+					</ul>
+				</div>
+				{/* dropdown lists */}
+				<div className={styles['tag-options__wrapper']}>
+					<ul iclassName={blur}>
+						{options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>)}
+					</ul>
 				</div>
 			</div>
 		);
