@@ -5,7 +5,7 @@ import './typo.css';
 import Main from './App.module.css';
 
 import Nav from './components/Nav/Nav';
-import Indicator from './components/common/Indicator/Indicator';
+// import Indicator from './components/common/Indicator/Indicator';
 
 import Routes from './routes/Routes';
 import ArticleNavContainer from './container/ArticleNav/ArticleNavContainer';

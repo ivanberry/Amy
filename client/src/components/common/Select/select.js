@@ -19,7 +19,6 @@ class Select extends Component {
 	}
 
 	placeholderClick = e => {
-		let _target = e.target;
 		this.tagInput.focus();
 		this.setState({
 			isFocus: true

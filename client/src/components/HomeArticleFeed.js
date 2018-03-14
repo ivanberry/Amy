@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ArticleContainer from '../container/ArticleContainer';
 import { getArticleRequest } from '../actions/actions';
 
-import LoaderHOC from '../HOC/Loader';
+// import LoaderHOC from '../HOC/Loader';
 
 class AllArticleFeed extends Component {
 	constructor(props) {
