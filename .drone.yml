@@ -7,4 +7,4 @@ pipeline:
       - npm install --no-optional
       - yarn run build
       - pwd
-      - mv ./build /var/www/react
+      - mv $PWD/build /var/www/react
