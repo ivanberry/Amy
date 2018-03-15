@@ -96,8 +96,11 @@ class Editor extends Component {
 		});
 	};
 
-	testChange = () => {
-		console.log('xxx')
+	articleTagsChange = () => {
+		console.log('xx');
+		this.setState({
+			articleTags: 'React'
+		});
 	};
 
 	resetInput = () => {
@@ -186,7 +189,7 @@ class Editor extends Component {
 						<div>
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
-								<Select options={this.state.tags} testFunc={this.testChange} />
+								<Select options={this.state.tags} onSelectTags={this.articleTagsChange} />
 								{/* {this.state.tags.map((tag, index) => {
 									return (
 										<label key={tag['name']}>
