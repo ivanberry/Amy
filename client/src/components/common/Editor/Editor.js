@@ -22,7 +22,7 @@ class Editor extends Component {
 
 	tags = [];
 
-	componentDidMount() {}
+	componentDidMount() { }
 
 	toggleEditorState = event => {
 		let _target = event.target,
@@ -186,27 +186,27 @@ class Editor extends Component {
 					{this.state.isPreview ? (
 						<div dangerouslySetInnerHTML={this.markedToHtml()} />
 					) : (
-						<div>
-							<fieldset className={styles['tags-container']}>
-								<legend>Choose your tag</legend>
-								<Select options={this.state.tags} onSelectTags={this.articleTagsChange} />
-							</fieldset>
-							{/* <input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} /> */}
-							Title:{' '}
-							<input
-								ref={title => (this.title = title)}
-								onChange={this.titleChange}
-								value={this.state.title}
-							/>
-							<textarea
-								onChange={this.contentChange}
-								ref={input => (this.content = input)}
-								value={this.state.content}
-								onPaste={this.handlePaste}
-								id="editor"
-							/>
-						</div>
-					)}
+							<div>
+								<fieldset className={styles['tags-container']}>
+									<legend>Choose your tag</legend>
+									<Select options={this.state.tags} onSelectTags={this.articleTagsChange} notFoundContent='暂无标签' />
+								</fieldset>
+								{/* <input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} /> */}
+								Title:{' '}
+								<input
+									ref={title => (this.title = title)}
+									onChange={this.titleChange}
+									value={this.state.title}
+								/>
+								<textarea
+									onChange={this.contentChange}
+									ref={input => (this.content = input)}
+									value={this.state.content}
+									onPaste={this.handlePaste}
+									id="editor"
+								/>
+							</div>
+						)}
 				</article>
 				<div className={styles['publish-container']}>
 					<button

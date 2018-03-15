@@ -85,7 +85,7 @@ class Select extends Component {
         {/* dropdown lists */}
         <div className={styles['tag-options__wrapper']}>
           <ul className={blur}>
-            {options.length ? options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>) : <li>暂无标签</li>}
+            {options.length ? options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>) : <li>{this.props.notFoundContent}</li>}
           </ul>
         </div>
       </section>
