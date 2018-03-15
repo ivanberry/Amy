@@ -191,7 +191,7 @@ class Editor extends Component {
 								<legend>Choose your tag</legend>
 								<Select options={this.state.tags} onSelectTags={this.articleTagsChange} />
 							</fieldset>
-							<input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} />
+							{/* <input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} /> */}
 							Title:{' '}
 							<input
 								ref={title => (this.title = title)}
