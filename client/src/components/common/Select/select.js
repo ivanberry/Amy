@@ -54,8 +54,8 @@ class Select extends Component {
     });
 
     return (
-      <div>
-        <div>
+      <section>
+        <section>
           <div className={styles['tag-choice-container']}>
             {/* placeholder container */}
             <div onClick={this.placeholderClick} className={focus}>
@@ -64,7 +64,7 @@ class Select extends Component {
             {/* selected items from dropdown lists or input directly */}
             <ul>
               {this.state.selectedTags.map((value, index) =>
-                <li key={value}>{value}</li>
+                <li className={styles['tag-choice__item']} key={value}>{value}</li>
               )}
               <li className={styles['tag-choice__item']}>
                 <input
@@ -81,24 +81,14 @@ class Select extends Component {
               {options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>)}
             </ul>
           </div>
-          {/* selected items from dropdown lists or input directly */}
-          <ul>
-            <li className={styles['tag-choice__item']}>
-              <input
-                ref={saveRef(this, 'tagInput')}
-                onBlur={this.handleInputBlur}
-                onKeydown={this.handleKeydown}
-              />
-            </li>
-          </ul>
-        </div>
+        </section>
         {/* dropdown lists */}
         <div className={styles['tag-options__wrapper']}>
-          <ul iclassName={blur}>
-            {options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>)}
+          <ul className={blur}>
+            {options.length ? options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>) : <li>暂无标签</li>}
           </ul>
         </div>
-      </div>
+      </section>
     );
   }
 }
