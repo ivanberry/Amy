@@ -190,19 +190,6 @@ class Editor extends Component {
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
 								<Select options={this.state.tags} onSelectTags={this.articleTagsChange} />
-								{/* {this.state.tags.map((tag, index) => {
-									return (
-										<label key={tag['name']}>
-											<input
-												onChange={e => this.checkBoxChangeHandler(e)}
-												type="checkbox"
-												className={styles.tag}
-												value={tag['name']}
-											/>
-											{tag['name']}
-										</label>
-									);
-								})} */}
 							</fieldset>
 							<input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} />
 							Title:{' '}

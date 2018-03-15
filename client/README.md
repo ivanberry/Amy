@@ -1,10 +1,11 @@
-## React 学习
-## Redux 学习
+## React全家桶实践
 
-### Redux
+- 组件间数据的传递
+- 组件基本写法
+- 如何优雅的写公共组件
 
->只有你意思到你需要它的时候，你才需要使用它，不然直接忽略掉.
+- Redux状态树的设计
+- Action creator ==> Saga ==> Reducer ==> State的流程
 
-### Notification Component
-
-### Loading Component
+- Blocked update实践
+- 嵌套路由的实现
