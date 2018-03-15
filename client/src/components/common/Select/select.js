@@ -14,7 +14,8 @@ class Select extends Component {
 		super(props);
 		this.state = {
 			isFocus: false,
-			hasTags: true
+			hasTags: true,
+			articleTags: '',
 		};
 	}
 
@@ -33,13 +34,13 @@ class Select extends Component {
 	};
 
 	handleKeydown = e => {
-		if (e.keyCode === 'Enter') {
-			this.props.testFunc();
+		if (e.keyCode === 13) {
+			this.props.onSelectTags();
 		}
 	};
 
 	render() {
-		let { options } = this.props;
+		let { options ,onSelectTags} = this.props;
 		let focus = classNames({
 			[styles['tag-choice']]: true,
 			[styles['isFocus']]: this.state.isFocus
@@ -58,7 +59,7 @@ class Select extends Component {
 								<input
 									ref={saveRef(this, 'tagInput')}
 									onBlur={this.handleInputBlur}
-									onKeydown={this.props.testFunc()}
+									onKeyDown={this.handleKeydown}
 								/>
 							</li>
 						</ul>
