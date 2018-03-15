@@ -1,5 +1,11 @@
-.tag-choice-container {
+.tag-choice__container,
+.tag-choice__wrapper {
     position: relative;
+}
+
+.tag-choice__container {
+    display: inline-block;
+    padding: 10px 20px;
 }
 
 .tag-choice {
@@ -7,7 +13,7 @@
 }
 
 .tag-choice__item {
-    float: left;
+    /* float: left; */
 }
 
 .tag-choice__carvet {
@@ -16,4 +22,12 @@
 
 .isFocus {
     display: none;
+}
+
+/* .tag-options__wrapper li {
+
+} */
+
+.tag-options__wrapper {
+    border: 1px solid green;
 }

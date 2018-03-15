@@ -96,8 +96,11 @@ class Editor extends Component {
 		});
 	};
 
-	testChange = () => {
-		console.log('xxx')
+	articleTagsChange = () => {
+		console.log('xx');
+		this.setState({
+			articleTags: 'React'
+		});
 	};
 
 	resetInput = () => {
@@ -186,20 +189,7 @@ class Editor extends Component {
 						<div>
 							<fieldset className={styles['tags-container']}>
 								<legend>Choose your tag</legend>
-								<Select options={this.state.tags} testFunc={this.testChange} />
-								{/* {this.state.tags.map((tag, index) => {
-									return (
-										<label key={tag['name']}>
-											<input
-												onChange={e => this.checkBoxChangeHandler(e)}
-												type="checkbox"
-												className={styles.tag}
-												value={tag['name']}
-											/>
-											{tag['name']}
-										</label>
-									);
-								})} */}
+								<Select options={this.state.tags} onSelectTags={this.articleTagsChange} />
 							</fieldset>
 							<input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} />
 							Title:{' '}
