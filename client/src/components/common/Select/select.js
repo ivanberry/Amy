@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { saveRef } from '../../../ulti/';
 
-/**
+/*o
  * options: @param []
  * onchange: func
  * onClick: func
@@ -19,12 +19,21 @@ class Select extends Component {
     };
   }
 
+<<<<<<< HEAD
   placeholderClick = e => {
     this.tagInput.focus();
     this.setState({
       isFocus: true
     });
   };
+=======
+	placeholderClick = e => {
+		this.tagInput.focus();
+		this.setState({
+			isFocus: true
+		});
+	};
+>>>>>>> feature_drone__CI
 
   handleInputBlur = e => {
     this.setState({
