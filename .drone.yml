@@ -2,7 +2,7 @@ pipeline:
   build:
     image: node:7
     volumes:
-      - ~/react:/temp/build
+      - /var/www/react:/temp/build
     commands:
       # - cd client
       # - npm config set registry https://registry.npm.taobao.org
