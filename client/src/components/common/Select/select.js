@@ -33,8 +33,9 @@ class Select extends Component {
   };
 
   handleKeydown = e => {
+    let _value = e.target.value.trim();
     if (e.keyCode === 13) {
-      this.props.onSelectTags();
+      this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
       this.setState({
         selectedTags: this.state.selectedTags.concat(e.target.value.trim())
       });
@@ -52,7 +53,7 @@ class Select extends Component {
     let blur = classNames({
       [styles['isFocus']]: !this.state.isFocus
     });
-
+    
     return (
       <section>
         <section>

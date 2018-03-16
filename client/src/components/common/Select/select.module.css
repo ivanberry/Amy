@@ -18,6 +18,16 @@
     border-radius: 4px;
 }
 
+.tag-choice__item {
+  position: relative;
+}
+.tag-choice__item:not(:last-child):after {
+  content: 'x';
+  position: absolute;
+  top: 0;
+  right:0;
+}
+
 .tag-choice__carvet {
     width: 10px;
 }
