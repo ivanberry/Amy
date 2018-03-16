@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import { saveRef } from '../../../ulti/';
 
-/**
+/*o
  * options: @param []
  * onchange: func
  * onClick: func
@@ -19,12 +19,12 @@ class Select extends Component {
     };
   }
 
-  placeholderClick = e => {
-    this.tagInput.focus();
-    this.setState({
-      isFocus: true
-    });
-  };
+	placeholderClick = e => {
+		this.tagInput.focus();
+		this.setState({
+			isFocus: true
+		});
+	};
 
   handleInputBlur = e => {
     this.setState({
