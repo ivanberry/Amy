@@ -16,15 +16,16 @@ class Select extends Component {
       isFocus: false,
       hasTags: true,
       selectedTags: [],
+      width: 0
     };
   }
 
-	placeholderClick = e => {
-		this.tagInput.focus();
-		this.setState({
-			isFocus: true
-		});
-	};
+  placeholderClick = e => {
+    this.tagInput.focus();
+    this.setState({
+      isFocus: true
+    });
+  };
 
   handleInputBlur = e => {
     this.setState({
@@ -40,6 +41,11 @@ class Select extends Component {
         selectedTags: this.state.selectedTags.concat(e.target.value.trim())
       });
       e.target.value = '';
+    } else {
+      this.mirrorInput.innerText = _value;
+      this.setState({
+        width: this.mirrorInput.offsetWidth
+      });
     }
   };
 
@@ -53,42 +59,50 @@ class Select extends Component {
     let blur = classNames({
       [styles['isFocus']]: !this.state.isFocus
     });
-    
+
+    let inline_input = classNames({
+      [styles['tag-choice__item']]: true,
+      [styles['tag-choice__inline']]: true
+    });
+
     return (
       <section>
-        <section>
-          <div className={styles['tag-choice-container']}>
-            {/* placeholder container */}
+        <section className={styles['tag-choice__container']}>
+          <div className={styles['tag-choice__wrapper']}>
             <div onClick={this.placeholderClick} className={focus}>
               placeholder
-						</div>
-            {/* selected items from dropdown lists or input directly */}
+            </div>
             <ul>
               {this.state.selectedTags.map((value, index) =>
                 <li className={styles['tag-choice__item']} key={value}>{value}</li>
               )}
-              <li className={styles['tag-choice__item']}>
-                <input
-                  ref={saveRef(this, 'tagInput')}
-                  onBlur={this.handleInputBlur}
-                  onKeyDown={this.handleKeydown}
-                />
+              <li className={inline_input}>
+                <div className={styles['tag-choice__wrap']}>
+                  <input
+                    ref={saveRef(this, 'tagInput')}
+                    onBlur={this.handleInputBlur}
+                    onKeyDown={this.handleKeydown}
+                    className={styles['tag-choice__inline']}
+                    style={{width: this.state.width}}
+                  />
+                  <span ref={saveRef(this, 'mirrorInput')} className={styles['tag-choice__mirror']}>"&nbsp"</span>
+                </div>
               </li>
             </ul>
           </div>
           {/* dropdown lists */}
-          <div>
+          {/* <div>
             <ul style={{ display: 'none' }}>
               {options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>)}
             </ul>
-          </div>
+          </div> */}
         </section>
         {/* dropdown lists */}
-        <div className={styles['tag-options__wrapper']}>
+        {/* <div className={styles['tag-options__wrapper']}>
           <ul className={blur}>
             {options.length ? options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>) : <li>{this.props.notFoundContent}</li>}
           </ul>
-        </div>
+        </div> */}
       </section>
     );
   }
