@@ -97,9 +97,8 @@ class Editor extends Component {
 	};
 
 	articleTagsChange = (value) => {
-		console.log(value);
 		this.setState({
-			articleTags: 'React'
+			articleTags: value 
 		});
 	};
 

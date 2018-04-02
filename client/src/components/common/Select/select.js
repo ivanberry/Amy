@@ -36,6 +36,7 @@ class Select extends Component {
   handleKeydown = e => {
     let _value = e.target.value.trim();
     if (e.keyCode === 13) {
+      //after enter, lift up the tags inputed to parent component
       this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
       this.setState({
         selectedTags: this.state.selectedTags.concat(e.target.value.trim())
@@ -50,7 +51,7 @@ class Select extends Component {
   };
 
   render() {
-    let { options } = this.props;
+    let { options, onSelectTags } = this.props;
     let focus = classNames({
       [styles['tag-choice']]: true,
       [styles['isFocus']]: this.state.isFocus
