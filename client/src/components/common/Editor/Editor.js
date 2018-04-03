@@ -142,7 +142,6 @@ class Editor extends Component {
 					name: _t.value
 				})
 				.then(res => {
-					console.log(res);
 					_t.value = '';
 				})
 				.catch(err => {
