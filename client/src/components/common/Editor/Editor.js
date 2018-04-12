@@ -187,7 +187,7 @@ class Editor extends Component {
 					) : (
 							<div>
 								<fieldset className={styles['tags-container']}>
-									<legend>Choose your tag</legend>
+									<legend>分类: </legend>
 									<Select options={this.state.tags} onSelectTags={this.articleTagsChange} notFoundContent='暂无标签' />
 								</fieldset>
 								{/* <input placeholder="添加新标签，多个用空格隔开" onKeyPress={this.handleNewTagAdd} /> */}

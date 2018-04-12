@@ -20,7 +20,7 @@ class Select extends Component {
     };
   }
 
-  placeholderClick = e => {
+  handleClickToFocus = e => {
     this.tagInput.focus();
     this.setState({
       isFocus: true
@@ -51,7 +51,7 @@ class Select extends Component {
   };
 
   render() {
-    let { options, onSelectTags } = this.props;
+    let { options } = this.props;
     let focus = classNames({
       [styles['tag-choice']]: true,
       [styles['isFocus']]: this.state.isFocus
@@ -69,13 +69,10 @@ class Select extends Component {
     return (
       <section>
         <section className={styles['tag-choice__container']}>
-          <div className={styles['tag-choice__wrapper']}>
-            <div onClick={this.placeholderClick} className={focus}>
-              placeholder
-            </div>
+          <div className={styles['tag-choice__wrapper']} onClick={this.handleClickToFocus}>
             <ul>
               {this.state.selectedTags.map((value, index) =>
-                <li className={styles['tag-choice__item']} key={value}>{value}</li>
+                <li className={styles['tag-choice__item']} key={value + '_' + index}>{value}</li>
               )}
               <li className={inline_input}>
                 <div className={styles['tag-choice__wrap']}>
