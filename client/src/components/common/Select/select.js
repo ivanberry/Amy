@@ -51,15 +51,15 @@ class Select extends Component {
   };
 
   render() {
-    let { options } = this.props;
-    let focus = classNames({
-      [styles['tag-choice']]: true,
-      [styles['isFocus']]: this.state.isFocus
-    });
+    // let { options } = this.props;
+    // // let focus = classNames({
+    //   [styles['tag-choice']]: true,
+    //   [styles['isFocus']]: this.state.isFocus
+    // });
 
-    let blur = classNames({
-      [styles['isFocus']]: !this.state.isFocus
-    });
+    // let blur = classNames({
+    //   [styles['isFocus']]: !this.state.isFocus
+    // });
 
     let inline_input = classNames({
       [styles['tag-choice__item']]: true,
