@@ -72,7 +72,12 @@ class Select extends Component {
           <div className={styles['tag-choice__wrapper']} onClick={this.handleClickToFocus}>
             <ul>
               {this.state.selectedTags.map((value, index) =>
-                <li className={styles['tag-choice__item']} key={value + '_' + index}>{value}</li>
+                <li className={styles['tag-choice__item']} key={value + '_' + index}>
+                  <div className={styles['tag-choice__item__content']}>
+                    {value}
+                  </div>
+                  <span className={styles['tag-choice__item__remove']}>x</span>
+                </li>
               )}
               <li className={inline_input}>
                 <div className={styles['tag-choice__wrap']}>
