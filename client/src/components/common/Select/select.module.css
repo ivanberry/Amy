@@ -10,7 +10,7 @@
 
 .tag-choice__wrapper {
 	min-height: 32px;
-    border: 1px solid red;
+    border: 1px solid rgba(0,0,0,.25);
 }
 
 .tag-choice__wrapper:before,

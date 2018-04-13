@@ -35,12 +35,15 @@ class Select extends Component {
 
   handleKeydown = e => {
     let _value = e.target.value.trim();
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 )  {
+      // let _hasValue = this.state.selectedTags.findIndex(_value);
+      // if (_hasValue !== -1) return false;
       //after enter, lift up the tags inputed to parent component
-      this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
+      //local state async change first
       this.setState({
-        selectedTags: this.state.selectedTags.concat(e.target.value.trim())
-      });
+        selectedTags: [...this.state.selectedTags, e.target.value.trim()]
+      }, () => console.log(this.state.selectedTags));
+      this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
       e.target.value = '';
     } else {
       this.mirrorInput.innerText = _value;
