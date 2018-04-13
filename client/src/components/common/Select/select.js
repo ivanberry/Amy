@@ -54,16 +54,6 @@ class Select extends Component {
   };
 
   render() {
-    // let { options } = this.props;
-    // // let focus = classNames({
-    //   [styles['tag-choice']]: true,
-    //   [styles['isFocus']]: this.state.isFocus
-    // });
-
-    // let blur = classNames({
-    //   [styles['isFocus']]: !this.state.isFocus
-    // });
-
     let inline_input = classNames({
       [styles['tag-choice__item']]: true,
       [styles['tag-choice__inline']]: true
@@ -74,6 +64,7 @@ class Select extends Component {
         <section className={styles['tag-choice__container']}>
           <div className={styles['tag-choice__wrapper']} onClick={this.handleClickToFocus}>
             <ul>
+              {/* why change preview state will change Select component state? */}
               {this.state.selectedTags.map((value, index) =>
                 <li className={styles['tag-choice__item']} key={value + '_' + index}>
                   <div className={styles['tag-choice__item__content']}>
