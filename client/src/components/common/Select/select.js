@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './select.module.css';
 import classNames from 'classnames';
 
-import { saveRef } from '../../../ulti/';
+import * as Ulti from '../../../ulti/';
 
 /*o
  * options: @param []
@@ -15,9 +15,13 @@ class Select extends Component {
     this.state = {
       isFocus: false,
       hasTags: true,
-      selectedTags: [],
+      selectedTags: Ulti.getInfo('__TAGS__').tags.v || [],
       width: 0
     };
+  }
+
+  shouldComponentUpdate(nextProp, nextState) {
+    return true;
   }
 
   handleClickToFocus = e => {
@@ -42,7 +46,7 @@ class Select extends Component {
       //local state async change first
       this.setState({
         selectedTags: [...this.state.selectedTags, e.target.value.trim()]
-      }, () => console.log(this.state.selectedTags));
+      }, () => Ulti.storeInfo('__TAGS__', { tags: { v: this.state.selectedTags } }));
       this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
       e.target.value = '';
     } else {
@@ -76,13 +80,13 @@ class Select extends Component {
               <li className={inline_input}>
                 <div className={styles['tag-choice__wrap']}>
                   <input
-                    ref={saveRef(this, 'tagInput')}
+                    ref={Ulti.saveRef(this, 'tagInput')}
                     onBlur={this.handleInputBlur}
                     onKeyDown={this.handleKeydown}
                     className={styles['tag-choice__inline']}
                     style={{width: this.state.width}}
                   />
-                  <span ref={saveRef(this, 'mirrorInput')} className={styles['tag-choice__mirror']}>"&nbsp"</span>
+                  <span ref={Ulti.saveRef(this, 'mirrorInput')} className={styles['tag-choice__mirror']}>"&nbsp"</span>
                 </div>
               </li>
             </ul>
