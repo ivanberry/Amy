@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './select.module.css';
 import classNames from 'classnames';
 
-import { saveRef } from '../../../ulti/';
+import * as Ulti from '../../../ulti/';
 
 /*o
  * options: @param []
@@ -15,12 +15,16 @@ class Select extends Component {
     this.state = {
       isFocus: false,
       hasTags: true,
-      selectedTags: [],
+      selectedTags: Ulti.getInfo('__TAGS__').tags.v || [],
       width: 0
     };
   }
 
-  placeholderClick = e => {
+  shouldComponentUpdate(nextProp, nextState) {
+    return true;
+  }
+
+  handleClickToFocus = e => {
     this.tagInput.focus();
     this.setState({
       isFocus: true
@@ -35,12 +39,15 @@ class Select extends Component {
 
   handleKeydown = e => {
     let _value = e.target.value.trim();
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 )  {
+      // let _hasValue = this.state.selectedTags.findIndex(_value);
+      // if (_hasValue !== -1) return false;
       //after enter, lift up the tags inputed to parent component
-      this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
+      //local state async change first
       this.setState({
-        selectedTags: this.state.selectedTags.concat(e.target.value.trim())
-      });
+        selectedTags: [...this.state.selectedTags, e.target.value.trim()]
+      }, () => Ulti.storeInfo('__TAGS__', { tags: { v: this.state.selectedTags } }));
+      this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
       e.target.value = '';
     } else {
       this.mirrorInput.innerText = _value;
@@ -51,16 +58,6 @@ class Select extends Component {
   };
 
   render() {
-    let { options, onSelectTags } = this.props;
-    let focus = classNames({
-      [styles['tag-choice']]: true,
-      [styles['isFocus']]: this.state.isFocus
-    });
-
-    let blur = classNames({
-      [styles['isFocus']]: !this.state.isFocus
-    });
-
     let inline_input = classNames({
       [styles['tag-choice__item']]: true,
       [styles['tag-choice__inline']]: true
@@ -69,24 +66,27 @@ class Select extends Component {
     return (
       <section>
         <section className={styles['tag-choice__container']}>
-          <div className={styles['tag-choice__wrapper']}>
-            <div onClick={this.placeholderClick} className={focus}>
-              placeholder
-            </div>
+          <div className={styles['tag-choice__wrapper']} onClick={this.handleClickToFocus}>
             <ul>
+              {/* why change preview state will change Select component state? */}
               {this.state.selectedTags.map((value, index) =>
-                <li className={styles['tag-choice__item']} key={value}>{value}</li>
+                <li className={styles['tag-choice__item']} key={value + '_' + index}>
+                  <div className={styles['tag-choice__item__content']}>
+                    {value}
+                  </div>
+                  <span className={styles['tag-choice__item__remove']}>x</span>
+                </li>
               )}
               <li className={inline_input}>
                 <div className={styles['tag-choice__wrap']}>
                   <input
-                    ref={saveRef(this, 'tagInput')}
+                    ref={Ulti.saveRef(this, 'tagInput')}
                     onBlur={this.handleInputBlur}
                     onKeyDown={this.handleKeydown}
                     className={styles['tag-choice__inline']}
                     style={{width: this.state.width}}
                   />
-                  <span ref={saveRef(this, 'mirrorInput')} className={styles['tag-choice__mirror']}>"&nbsp"</span>
+                  <span ref={Ulti.saveRef(this, 'mirrorInput')} className={styles['tag-choice__mirror']}>"&nbsp"</span>
                 </div>
               </li>
             </ul>
