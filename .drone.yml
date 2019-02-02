@@ -1,8 +1,11 @@
 pipeline:
   build:
     image: node:7
+    volumes:
+      - /var/www/react:/temp/build
     commands:
       - cd client
       - npm config set registry https://registry.npm.taobao.org
       - npm install --no-optional
-      - npm run build
+      - yarn run build
+      - cp -rf $PWD/build/* /temp/build

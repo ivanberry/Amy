@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import styles from './select.module.css';
 import classNames from 'classnames';
 
-import { saveRef } from '../../../ulti/';
+import * as Ulti from '../../../ulti/';
 
-/**
+/*o
  * options: @param []
  * onchange: func
  * onClick: func
@@ -15,11 +15,16 @@ class Select extends Component {
     this.state = {
       isFocus: false,
       hasTags: true,
-      selectedTags: [],
+      selectedTags: Ulti.getInfo('__TAGS__').tags.v || [],
+      width: 0
     };
   }
 
-  placeholderClick = e => {
+  shouldComponentUpdate(nextProp, nextState) {
+    return true;
+  }
+
+  handleClickToFocus = e => {
     this.tagInput.focus();
     this.setState({
       isFocus: true
@@ -33,61 +38,72 @@ class Select extends Component {
   };
 
   handleKeydown = e => {
-    if (e.keyCode === 13) {
-      this.props.onSelectTags();
+    let _value = e.target.value.trim();
+    if (e.keyCode === 13 )  {
+      // let _hasValue = this.state.selectedTags.findIndex(_value);
+      // if (_hasValue !== -1) return false;
+      //after enter, lift up the tags inputed to parent component
+      //local state async change first
       this.setState({
-        selectedTags: this.state.selectedTags.concat(e.target.value.trim())
-      });
+        selectedTags: [...this.state.selectedTags, e.target.value.trim()]
+      }, () => Ulti.storeInfo('__TAGS__', { tags: { v: this.state.selectedTags } }));
+      this.props.onSelectTags(this.state.selectedTags.concat(_value.trim()).join(','));
       e.target.value = '';
+    } else {
+      this.mirrorInput.innerText = _value;
+      this.setState({
+        width: this.mirrorInput.offsetWidth
+      });
     }
   };
 
   render() {
-    let { options } = this.props;
-    let focus = classNames({
-      [styles['tag-choice']]: true,
-      [styles['isFocus']]: this.state.isFocus
-    });
-
-    let blur = classNames({
-      [styles['isFocus']]: !this.state.isFocus
+    let inline_input = classNames({
+      [styles['tag-choice__item']]: true,
+      [styles['tag-choice__inline']]: true
     });
 
     return (
       <section>
-        <section>
-          <div className={styles['tag-choice-container']}>
-            {/* placeholder container */}
-            <div onClick={this.placeholderClick} className={focus}>
-              placeholder
-						</div>
-            {/* selected items from dropdown lists or input directly */}
+        <section className={styles['tag-choice__container']}>
+          <div className={styles['tag-choice__wrapper']} onClick={this.handleClickToFocus}>
             <ul>
+              {/* why change preview state will change Select component state? */}
               {this.state.selectedTags.map((value, index) =>
-                <li className={styles['tag-choice__item']} key={value}>{value}</li>
+                <li className={styles['tag-choice__item']} key={value + '_' + index}>
+                  <div className={styles['tag-choice__item__content']}>
+                    {value}
+                  </div>
+                  <span className={styles['tag-choice__item__remove']}>x</span>
+                </li>
               )}
-              <li className={styles['tag-choice__item']}>
-                <input
-                  ref={saveRef(this, 'tagInput')}
-                  onBlur={this.handleInputBlur}
-                  onKeyDown={this.handleKeydown}
-                />
+              <li className={inline_input}>
+                <div className={styles['tag-choice__wrap']}>
+                  <input
+                    ref={Ulti.saveRef(this, 'tagInput')}
+                    onBlur={this.handleInputBlur}
+                    onKeyDown={this.handleKeydown}
+                    className={styles['tag-choice__inline']}
+                    style={{width: this.state.width}}
+                  />
+                  <span ref={Ulti.saveRef(this, 'mirrorInput')} className={styles['tag-choice__mirror']}>"&nbsp"</span>
+                </div>
               </li>
             </ul>
           </div>
           {/* dropdown lists */}
-          <div>
+          {/* <div>
             <ul style={{ display: 'none' }}>
               {options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>)}
             </ul>
-          </div>
+          </div> */}
         </section>
         {/* dropdown lists */}
-        <div className={styles['tag-options__wrapper']}>
+        {/* <div className={styles['tag-options__wrapper']}>
           <ul className={blur}>
-            {options.length ? options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>) : <li>暂无标签</li>}
+            {options.length ? options.map((option, index) => <li key={`option_${index}`}>{option['name']}</li>) : <li>{this.props.notFoundContent}</li>}
           </ul>
-        </div>
+        </div> */}
       </section>
     );
   }
